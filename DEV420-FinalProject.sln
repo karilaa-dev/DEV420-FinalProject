@@ -5,6 +5,8 @@ VisualStudioVersion = 18.7.11903.348 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalManagement.Server", "HospitalManagement.Server\HospitalManagement.Server.csproj", "{1D17F64B-E5B2-48A1-BA88-7FE144A50236}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HospitalManagement.Client", "HospitalManagement.Client\HospitalManagement.Client.csproj", "{CEC9B7FD-AF77-40AA-A1E4-C4B65D54F479}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1D17F64B-E5B2-48A1-BA88-7FE144A50236}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D17F64B-E5B2-48A1-BA88-7FE144A50236}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D17F64B-E5B2-48A1-BA88-7FE144A50236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEC9B7FD-AF77-40AA-A1E4-C4B65D54F479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEC9B7FD-AF77-40AA-A1E4-C4B65D54F479}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEC9B7FD-AF77-40AA-A1E4-C4B65D54F479}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEC9B7FD-AF77-40AA-A1E4-C4B65D54F479}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
