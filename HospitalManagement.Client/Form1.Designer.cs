@@ -29,6 +29,7 @@ namespace HospitalManagement.Client
         private void InitializeComponent()
         {
             headerPanel = new System.Windows.Forms.Panel();
+            btnLogout = new System.Windows.Forms.Button();
             lblNotifications = new System.Windows.Forms.Label();
             lblConnection = new System.Windows.Forms.Label();
             lblRole = new System.Windows.Forms.Label();
@@ -197,7 +198,6 @@ namespace HospitalManagement.Client
             vitalsBloodPressureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             vitalsOxygenColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             vitalsStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            btnLogout = new System.Windows.Forms.Button();
             headerPanel.SuspendLayout();
             statusStrip.SuspendLayout();
             mainTabs.SuspendLayout();
@@ -251,6 +251,16 @@ namespace HospitalManagement.Client
             headerPanel.Name = "headerPanel";
             headerPanel.Size = new System.Drawing.Size(1579, 111);
             headerPanel.TabIndex = 0;
+            // 
+            // btnLogout
+            // 
+            btnLogout.Location = new System.Drawing.Point(248, 53);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new System.Drawing.Size(145, 39);
+            btnLogout.TabIndex = 5;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
             // lblNotifications
             // 
@@ -595,6 +605,7 @@ namespace HospitalManagement.Client
             btnClearPatient.TabIndex = 18;
             btnClearPatient.Text = "Clear";
             btnClearPatient.UseVisualStyleBackColor = true;
+            btnClearPatient.Click += btnClearPatient_Click;
             // 
             // btnDeletePatient
             // 
@@ -605,6 +616,7 @@ namespace HospitalManagement.Client
             btnDeletePatient.TabIndex = 17;
             btnDeletePatient.Text = "Delete Patient";
             btnDeletePatient.UseVisualStyleBackColor = true;
+            btnDeletePatient.Click += btnDeletePatient_Click;
             // 
             // btnUpdatePatient
             // 
@@ -615,6 +627,7 @@ namespace HospitalManagement.Client
             btnUpdatePatient.TabIndex = 16;
             btnUpdatePatient.Text = "Update";
             btnUpdatePatient.UseVisualStyleBackColor = true;
+            btnUpdatePatient.Click += btnUpdatePatient_Click;
             // 
             // btnAddPatient
             // 
@@ -625,6 +638,7 @@ namespace HospitalManagement.Client
             btnAddPatient.TabIndex = 15;
             btnAddPatient.Text = "Add Patient";
             btnAddPatient.UseVisualStyleBackColor = true;
+            btnAddPatient.Click += btnAddPatient_Click;
             // 
             // chkPatientAdmitted
             // 
@@ -785,6 +799,7 @@ namespace HospitalManagement.Client
             patientGrid.RowHeadersWidth = 51;
             patientGrid.Size = new System.Drawing.Size(1045, 808);
             patientGrid.TabIndex = 1;
+            patientGrid.CellDoubleClick += patientGrid_CellDoubleClick;
             // 
             // patientIdColumn
             // 
@@ -854,6 +869,7 @@ namespace HospitalManagement.Client
             btnPatientRefresh.TabIndex = 5;
             btnPatientRefresh.Text = "Refresh";
             btnPatientRefresh.UseVisualStyleBackColor = true;
+            btnPatientRefresh.Click += btnPatientRefresh_Click;
             // 
             // btnPatientSearch
             // 
@@ -865,6 +881,7 @@ namespace HospitalManagement.Client
             btnPatientSearch.TabIndex = 4;
             btnPatientSearch.Text = "Search";
             btnPatientSearch.UseVisualStyleBackColor = true;
+            btnPatientSearch.Click += btnPatientSearch_Click;
             // 
             // cmbPatientFilter
             // 
@@ -2063,16 +2080,6 @@ namespace HospitalManagement.Client
             vitalsStatusColumn.Name = "vitalsStatusColumn";
             vitalsStatusColumn.ReadOnly = true;
             vitalsStatusColumn.Width = 160;
-            // 
-            // btnLogout
-            // 
-            btnLogout.Location = new System.Drawing.Point(248, 53);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new System.Drawing.Size(145, 39);
-            btnLogout.TabIndex = 5;
-            btnLogout.Text = "Logout";
-            btnLogout.UseVisualStyleBackColor = true;
-            btnLogout.Click += btnLogout_Click;
             // 
             // Form1
             // 
