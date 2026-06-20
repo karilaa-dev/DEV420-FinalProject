@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MongoDB.Driver;
+using System.Configuration;
 
 namespace HospitalManagement.Client
 {
@@ -40,9 +41,15 @@ namespace HospitalManagement.Client
                 return;
             }
 
-            // Connect to MongoDB
-            MongoClient client = new MongoClient("mongodb://localhost:27017");
-            IMongoDatabase database = client.GetDatabase("HospitalManagementDB");
+            // Connect to MongoDB using App.config
+            string mongoConnectionString =
+                ConfigurationManager.ConnectionStrings["MongoConnection"].ConnectionString;
+
+            MongoClient client = new MongoClient(mongoConnectionString);
+
+            IMongoDatabase database =
+                client.GetDatabase(MongoUrl.Create(mongoConnectionString).DatabaseName);
+
             IMongoCollection<User> users = database.GetCollection<User>("Users");
 
             // Check if username already exists
