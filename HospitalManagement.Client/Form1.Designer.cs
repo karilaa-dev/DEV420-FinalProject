@@ -29,22 +29,27 @@ namespace HospitalManagement.Client
         private void InitializeComponent()
         {
             headerPanel = new System.Windows.Forms.Panel();
+            btnNotifications = new System.Windows.Forms.Button();
             btnLogout = new System.Windows.Forms.Button();
-            lblNotifications = new System.Windows.Forms.Label();
-            lblConnection = new System.Windows.Forms.Label();
             lblRole = new System.Windows.Forms.Label();
             lblLoggedInUser = new System.Windows.Forms.Label();
-            lblSystemTitle = new System.Windows.Forms.Label();
             statusStrip = new System.Windows.Forms.StatusStrip();
             statusText = new System.Windows.Forms.ToolStripStatusLabel();
+            connectionStatusText = new System.Windows.Forms.ToolStripStatusLabel();
             mainTabs = new System.Windows.Forms.TabControl();
             dashboardTab = new System.Windows.Forms.TabPage();
             grpCriticalStatus = new System.Windows.Forms.GroupBox();
-            lstCriticalStatus = new System.Windows.Forms.ListBox();
+            currentAlertsGrid = new System.Windows.Forms.DataGridView();
+            alertTypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            alertSubjectColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            alertDetailsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            alertUpdatedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             grpBedStatus = new System.Windows.Forms.GroupBox();
-            lstBedStatus = new System.Windows.Forms.ListBox();
-            grpRealTimeUpdates = new System.Windows.Forms.GroupBox();
-            lstRealTimeUpdates = new System.Windows.Forms.ListBox();
+            bedStatusGrid = new System.Windows.Forms.DataGridView();
+            bedDepartmentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            bedOpenColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            bedTotalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            bedUpdatedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             grpQuickCounts = new System.Windows.Forms.GroupBox();
             txtDashboardEmergencies = new System.Windows.Forms.TextBox();
             lblDashboardEmergencies = new System.Windows.Forms.Label();
@@ -56,6 +61,82 @@ namespace HospitalManagement.Client
             lblDashboardAppointments = new System.Windows.Forms.Label();
             txtDashboardPatients = new System.Windows.Forms.TextBox();
             lblDashboardPatients = new System.Windows.Forms.Label();
+            doctorVisitsTab = new System.Windows.Forms.TabPage();
+            grpDoctorTodayVisits = new System.Windows.Forms.GroupBox();
+            doctorVisitsGrid = new System.Windows.Forms.DataGridView();
+            doctorVisitTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            doctorVisitPatientColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            doctorVisitStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            doctorVisitReasonColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            grpDoctorTodayVisit = new System.Windows.Forms.GroupBox();
+            btnTextNextVisitPatient = new System.Windows.Forms.Button();
+            lblDoctorTodayVisitPlaceholder = new System.Windows.Forms.Label();
+            lblDoctorTodayVisitNotesValue = new System.Windows.Forms.Label();
+            lblDoctorTodayVisitNotesCaption = new System.Windows.Forms.Label();
+            lblDoctorTodayVisitReasonValue = new System.Windows.Forms.Label();
+            lblDoctorTodayVisitReasonCaption = new System.Windows.Forms.Label();
+            lblDoctorTodayVisitStatusValue = new System.Windows.Forms.Label();
+            lblDoctorTodayVisitStatusCaption = new System.Windows.Forms.Label();
+            lblDoctorTodayVisitPatientValue = new System.Windows.Forms.Label();
+            lblDoctorTodayVisitPatientCaption = new System.Windows.Forms.Label();
+            lblDoctorTodayVisitTimeValue = new System.Windows.Forms.Label();
+            lblDoctorTodayVisitTimeCaption = new System.Windows.Forms.Label();
+            lblDoctorTodayVisitDateValue = new System.Windows.Forms.Label();
+            lblDoctorTodayVisitDateCaption = new System.Windows.Forms.Label();
+            pnlDoctorTodayVisitStatus = new System.Windows.Forms.Panel();
+            grpDoctorLastVisit = new System.Windows.Forms.GroupBox();
+            btnTextLastVisitPatient = new System.Windows.Forms.Button();
+            lblDoctorLastVisitPlaceholder = new System.Windows.Forms.Label();
+            lblDoctorLastVisitNotesValue = new System.Windows.Forms.Label();
+            lblDoctorLastVisitNotesCaption = new System.Windows.Forms.Label();
+            lblDoctorLastVisitReasonValue = new System.Windows.Forms.Label();
+            lblDoctorLastVisitReasonCaption = new System.Windows.Forms.Label();
+            lblDoctorLastVisitStatusValue = new System.Windows.Forms.Label();
+            lblDoctorLastVisitStatusCaption = new System.Windows.Forms.Label();
+            lblDoctorLastVisitPatientValue = new System.Windows.Forms.Label();
+            lblDoctorLastVisitPatientCaption = new System.Windows.Forms.Label();
+            lblDoctorLastVisitTimeValue = new System.Windows.Forms.Label();
+            lblDoctorLastVisitTimeCaption = new System.Windows.Forms.Label();
+            lblDoctorLastVisitDateValue = new System.Windows.Forms.Label();
+            lblDoctorLastVisitDateCaption = new System.Windows.Forms.Label();
+            pnlDoctorLastVisitStatus = new System.Windows.Forms.Panel();
+            patientCareTab = new System.Windows.Forms.TabPage();
+            grpPatientLatestVitals = new System.Windows.Forms.GroupBox();
+            lblPatientVitalsPlaceholder = new System.Windows.Forms.Label();
+            lblVitalNotes = new System.Windows.Forms.Label();
+            pnlVitalUpdated = new System.Windows.Forms.Panel();
+            lblVitalUpdated = new System.Windows.Forms.Label();
+            lblVitalUpdatedCaption = new System.Windows.Forms.Label();
+            pnlVitalStatus = new System.Windows.Forms.Panel();
+            lblVitalStatus = new System.Windows.Forms.Label();
+            lblVitalStatusCaption = new System.Windows.Forms.Label();
+            pnlVitalTemperature = new System.Windows.Forms.Panel();
+            lblVitalTemperature = new System.Windows.Forms.Label();
+            lblVitalTemperatureCaption = new System.Windows.Forms.Label();
+            pnlVitalOxygen = new System.Windows.Forms.Panel();
+            lblVitalOxygen = new System.Windows.Forms.Label();
+            lblVitalOxygenCaption = new System.Windows.Forms.Label();
+            pnlVitalBloodPressure = new System.Windows.Forms.Panel();
+            lblVitalBloodPressure = new System.Windows.Forms.Label();
+            lblVitalBloodPressureCaption = new System.Windows.Forms.Label();
+            pnlVitalHeartRate = new System.Windows.Forms.Panel();
+            lblVitalHeartRate = new System.Windows.Forms.Label();
+            lblVitalHeartRateCaption = new System.Windows.Forms.Label();
+            grpPatientNextAppointment = new System.Windows.Forms.GroupBox();
+            lblPatientAppointmentPlaceholder = new System.Windows.Forms.Label();
+            lblPatientAppointmentNotesValue = new System.Windows.Forms.Label();
+            lblPatientAppointmentNotesCaption = new System.Windows.Forms.Label();
+            lblPatientAppointmentReasonValue = new System.Windows.Forms.Label();
+            lblPatientAppointmentReasonCaption = new System.Windows.Forms.Label();
+            lblPatientAppointmentStatusValue = new System.Windows.Forms.Label();
+            lblPatientAppointmentStatusCaption = new System.Windows.Forms.Label();
+            lblPatientAppointmentDoctorValue = new System.Windows.Forms.Label();
+            lblPatientAppointmentDoctorCaption = new System.Windows.Forms.Label();
+            lblPatientAppointmentTimeValue = new System.Windows.Forms.Label();
+            lblPatientAppointmentTimeCaption = new System.Windows.Forms.Label();
+            lblPatientAppointmentDateValue = new System.Windows.Forms.Label();
+            lblPatientAppointmentDateCaption = new System.Windows.Forms.Label();
+            pnlPatientAppointmentStatus = new System.Windows.Forms.Panel();
             patientsTab = new System.Windows.Forms.TabPage();
             grpPatientDetails = new System.Windows.Forms.GroupBox();
             btnClearPatient = new System.Windows.Forms.Button();
@@ -98,8 +179,8 @@ namespace HospitalManagement.Client
             appointmentReasonColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             appointmentStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             grpAppointmentDetails = new System.Windows.Forms.GroupBox();
+            btnClearAppointment = new System.Windows.Forms.Button();
             btnAppointmentRefresh = new System.Windows.Forms.Button();
-            btnCancelAppointment = new System.Windows.Forms.Button();
             btnUpdateAppointment = new System.Windows.Forms.Button();
             btnAddAppointment = new System.Windows.Forms.Button();
             txtAppointmentNotes = new System.Windows.Forms.TextBox();
@@ -114,7 +195,7 @@ namespace HospitalManagement.Client
             lblAppointmentReason = new System.Windows.Forms.Label();
             cmbAppointmentDoctor = new System.Windows.Forms.ComboBox();
             lblAppointmentDoctor = new System.Windows.Forms.Label();
-            txtAppointmentPatient = new System.Windows.Forms.TextBox();
+            cmbAppointmentPatientPicker = new System.Windows.Forms.ComboBox();
             lblAppointmentPatient = new System.Windows.Forms.Label();
             inventoryTab = new System.Windows.Forms.TabPage();
             grpLowStock = new System.Windows.Forms.GroupBox();
@@ -164,15 +245,18 @@ namespace HospitalManagement.Client
             dtpReportStart = new System.Windows.Forms.DateTimePicker();
             lblReportStart = new System.Windows.Forms.Label();
             communicationTab = new System.Windows.Forms.TabPage();
-            grpNotifications = new System.Windows.Forms.GroupBox();
-            lstNotifications = new System.Windows.Forms.ListBox();
             grpMessageHistory = new System.Windows.Forms.GroupBox();
             txtMessageInput = new System.Windows.Forms.TextBox();
             btnSendMessage = new System.Windows.Forms.Button();
-            lstMessageHistory = new System.Windows.Forms.ListBox();
+            messageHistoryFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             grpConversations = new System.Windows.Forms.GroupBox();
             btnNewConversation = new System.Windows.Forms.Button();
             lstConversations = new System.Windows.Forms.ListBox();
+            patientMessagesTab = new System.Windows.Forms.TabPage();
+            grpPatientMessageHistory = new System.Windows.Forms.GroupBox();
+            txtPatientMessageInput = new System.Windows.Forms.TextBox();
+            btnSendPatientMessage = new System.Windows.Forms.Button();
+            patientMessageHistoryFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             monitoringTab = new System.Windows.Forms.TabPage();
             grpMonitoringAlerts = new System.Windows.Forms.GroupBox();
             lstMonitoringAlerts = new System.Windows.Forms.ListBox();
@@ -189,7 +273,7 @@ namespace HospitalManagement.Client
             lblBloodPressure = new System.Windows.Forms.Label();
             numHeartRate = new System.Windows.Forms.NumericUpDown();
             lblHeartRate = new System.Windows.Forms.Label();
-            txtMonitoringPatient = new System.Windows.Forms.TextBox();
+            cmbMonitoringPatientPicker = new System.Windows.Forms.ComboBox();
             lblMonitoringPatient = new System.Windows.Forms.Label();
             vitalsGrid = new System.Windows.Forms.DataGridView();
             vitalsPatientColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -203,9 +287,24 @@ namespace HospitalManagement.Client
             mainTabs.SuspendLayout();
             dashboardTab.SuspendLayout();
             grpCriticalStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)currentAlertsGrid).BeginInit();
             grpBedStatus.SuspendLayout();
-            grpRealTimeUpdates.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)bedStatusGrid).BeginInit();
             grpQuickCounts.SuspendLayout();
+            doctorVisitsTab.SuspendLayout();
+            grpDoctorTodayVisits.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)doctorVisitsGrid).BeginInit();
+            grpDoctorTodayVisit.SuspendLayout();
+            grpDoctorLastVisit.SuspendLayout();
+            patientCareTab.SuspendLayout();
+            grpPatientLatestVitals.SuspendLayout();
+            pnlVitalUpdated.SuspendLayout();
+            pnlVitalStatus.SuspendLayout();
+            pnlVitalTemperature.SuspendLayout();
+            pnlVitalOxygen.SuspendLayout();
+            pnlVitalBloodPressure.SuspendLayout();
+            pnlVitalHeartRate.SuspendLayout();
+            grpPatientNextAppointment.SuspendLayout();
             patientsTab.SuspendLayout();
             grpPatientDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)patientGrid).BeginInit();
@@ -225,9 +324,10 @@ namespace HospitalManagement.Client
             grpAnalyticsSummary.SuspendLayout();
             grpAnalyticsFilters.SuspendLayout();
             communicationTab.SuspendLayout();
-            grpNotifications.SuspendLayout();
             grpMessageHistory.SuspendLayout();
             grpConversations.SuspendLayout();
+            patientMessagesTab.SuspendLayout();
+            grpPatientMessageHistory.SuspendLayout();
             monitoringTab.SuspendLayout();
             grpMonitoringAlerts.SuspendLayout();
             grpVitalsEntry.SuspendLayout();
@@ -239,199 +339,246 @@ namespace HospitalManagement.Client
             // 
             // headerPanel
             // 
+            headerPanel.Controls.Add(btnNotifications);
             headerPanel.Controls.Add(btnLogout);
-            headerPanel.Controls.Add(lblNotifications);
-            headerPanel.Controls.Add(lblConnection);
             headerPanel.Controls.Add(lblRole);
             headerPanel.Controls.Add(lblLoggedInUser);
-            headerPanel.Controls.Add(lblSystemTitle);
             headerPanel.Dock = System.Windows.Forms.DockStyle.Top;
             headerPanel.Location = new System.Drawing.Point(0, 0);
-            headerPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            headerPanel.Margin = new System.Windows.Forms.Padding(4);
             headerPanel.Name = "headerPanel";
-            headerPanel.Size = new System.Drawing.Size(1579, 111);
+            headerPanel.Size = new System.Drawing.Size(1382, 72);
             headerPanel.TabIndex = 0;
+            // 
+            // btnNotifications
+            // 
+            btnNotifications.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnNotifications.Location = new System.Drawing.Point(1084, 12);
+            btnNotifications.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            btnNotifications.Name = "btnNotifications";
+            btnNotifications.Size = new System.Drawing.Size(127, 43);
+            btnNotifications.TabIndex = 5;
+            btnNotifications.Text = "Notifications";
+            btnNotifications.UseVisualStyleBackColor = true;
+            btnNotifications.Click += btnNotifications_Click;
             // 
             // btnLogout
             // 
-            btnLogout.Location = new System.Drawing.Point(248, 53);
+            btnLogout.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnLogout.Location = new System.Drawing.Point(1217, 12);
+            btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new System.Drawing.Size(145, 39);
-            btnLogout.TabIndex = 5;
+            btnLogout.Size = new System.Drawing.Size(153, 43);
+            btnLogout.TabIndex = 6;
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = true;
             btnLogout.Click += btnLogout_Click;
             // 
-            // lblNotifications
-            // 
-            lblNotifications.AutoSize = true;
-            lblNotifications.Location = new System.Drawing.Point(1176, 62);
-            lblNotifications.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            lblNotifications.Name = "lblNotifications";
-            lblNotifications.Size = new System.Drawing.Size(235, 20);
-            lblNotifications.TabIndex = 4;
-            lblNotifications.Text = "Notifications: 3 pending | 1 urgent";
-            // 
-            // lblConnection
-            // 
-            lblConnection.AutoSize = true;
-            lblConnection.Location = new System.Drawing.Point(861, 62);
-            lblConnection.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            lblConnection.Name = "lblConnection";
-            lblConnection.Size = new System.Drawing.Size(196, 20);
-            lblConnection.TabIndex = 3;
-            lblConnection.Text = "SignalR Connection: Waiting";
-            // 
             // lblRole
             // 
             lblRole.AutoSize = true;
-            lblRole.Location = new System.Drawing.Point(521, 62);
+            lblRole.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            lblRole.Location = new System.Drawing.Point(13, 34);
             lblRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblRole.Name = "lblRole";
-            lblRole.Size = new System.Drawing.Size(177, 20);
+            lblRole.Size = new System.Drawing.Size(184, 21);
             lblRole.TabIndex = 2;
             lblRole.Text = "Role: Administrative Staff";
             // 
             // lblLoggedInUser
             // 
             lblLoggedInUser.AutoSize = true;
-            lblLoggedInUser.Location = new System.Drawing.Point(32, 62);
+            lblLoggedInUser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            lblLoggedInUser.Location = new System.Drawing.Point(13, 9);
             lblLoggedInUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblLoggedInUser.Name = "lblLoggedInUser";
-            lblLoggedInUser.Size = new System.Drawing.Size(182, 20);
+            lblLoggedInUser.Size = new System.Drawing.Size(138, 21);
             lblLoggedInUser.TabIndex = 1;
-            lblLoggedInUser.Text = "Logged in as: Current User";
-            // 
-            // lblSystemTitle
-            // 
-            lblSystemTitle.AutoSize = true;
-            lblSystemTitle.Location = new System.Drawing.Point(32, 25);
-            lblSystemTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            lblSystemTitle.Name = "lblSystemTitle";
-            lblSystemTitle.Size = new System.Drawing.Size(208, 20);
-            lblSystemTitle.TabIndex = 0;
-            lblSystemTitle.Text = "Hospital Management System";
+            lblLoggedInUser.Text = "User: Current User";
+            lblLoggedInUser.Click += lblLoggedInUser_Click;
             // 
             // statusStrip
             // 
             statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { statusText });
-            statusStrip.Location = new System.Drawing.Point(0, 1145);
+            statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { statusText, connectionStatusText });
+            statusStrip.Location = new System.Drawing.Point(0, 856);
             statusStrip.Name = "statusStrip";
-            statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            statusStrip.Size = new System.Drawing.Size(1579, 26);
+            statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 17, 0);
+            statusStrip.Size = new System.Drawing.Size(1382, 22);
             statusStrip.TabIndex = 2;
             statusStrip.Text = "statusStrip";
             // 
             // statusText
             // 
             statusText.Name = "statusText";
-            statusText.Size = new System.Drawing.Size(421, 20);
-            statusText.Text = "Ready | Client dashboard design only | No live data connected";
+            statusText.Size = new System.Drawing.Size(1248, 17);
+            statusText.Spring = true;
+            statusText.Text = "Ready";
+            statusText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // connectionStatusText
+            // 
+            connectionStatusText.Name = "connectionStatusText";
+            connectionStatusText.Size = new System.Drawing.Size(116, 17);
+            connectionStatusText.Text = "Connection: Waiting";
             // 
             // mainTabs
             // 
             mainTabs.Controls.Add(dashboardTab);
+            mainTabs.Controls.Add(doctorVisitsTab);
+            mainTabs.Controls.Add(patientCareTab);
             mainTabs.Controls.Add(patientsTab);
             mainTabs.Controls.Add(appointmentsTab);
             mainTabs.Controls.Add(inventoryTab);
             mainTabs.Controls.Add(analyticsTab);
             mainTabs.Controls.Add(communicationTab);
+            mainTabs.Controls.Add(patientMessagesTab);
             mainTabs.Controls.Add(monitoringTab);
             mainTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            mainTabs.Location = new System.Drawing.Point(0, 111);
-            mainTabs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            mainTabs.Location = new System.Drawing.Point(0, 72);
+            mainTabs.Margin = new System.Windows.Forms.Padding(4);
             mainTabs.Name = "mainTabs";
             mainTabs.SelectedIndex = 0;
-            mainTabs.Size = new System.Drawing.Size(1579, 1034);
+            mainTabs.Size = new System.Drawing.Size(1382, 784);
             mainTabs.TabIndex = 1;
             // 
             // dashboardTab
             // 
             dashboardTab.Controls.Add(grpCriticalStatus);
             dashboardTab.Controls.Add(grpBedStatus);
-            dashboardTab.Controls.Add(grpRealTimeUpdates);
             dashboardTab.Controls.Add(grpQuickCounts);
-            dashboardTab.Location = new System.Drawing.Point(4, 29);
-            dashboardTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dashboardTab.Location = new System.Drawing.Point(4, 24);
+            dashboardTab.Margin = new System.Windows.Forms.Padding(4);
             dashboardTab.Name = "dashboardTab";
-            dashboardTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            dashboardTab.Size = new System.Drawing.Size(1571, 1001);
+            dashboardTab.Padding = new System.Windows.Forms.Padding(4);
+            dashboardTab.Size = new System.Drawing.Size(1374, 756);
             dashboardTab.TabIndex = 0;
             dashboardTab.Text = "Dashboard";
             dashboardTab.UseVisualStyleBackColor = true;
             // 
             // grpCriticalStatus
             // 
-            grpCriticalStatus.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            grpCriticalStatus.Controls.Add(lstCriticalStatus);
-            grpCriticalStatus.Location = new System.Drawing.Point(32, 660);
-            grpCriticalStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            grpCriticalStatus.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            grpCriticalStatus.Controls.Add(currentAlertsGrid);
+            grpCriticalStatus.Location = new System.Drawing.Point(686, 216);
+            grpCriticalStatus.Margin = new System.Windows.Forms.Padding(4);
             grpCriticalStatus.Name = "grpCriticalStatus";
-            grpCriticalStatus.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpCriticalStatus.Size = new System.Drawing.Size(1504, 292);
+            grpCriticalStatus.Padding = new System.Windows.Forms.Padding(4);
+            grpCriticalStatus.Size = new System.Drawing.Size(658, 495);
             grpCriticalStatus.TabIndex = 3;
             grpCriticalStatus.TabStop = false;
-            grpCriticalStatus.Text = "Emergency and Critical Status";
+            grpCriticalStatus.Text = "Current Alerts";
             // 
-            // lstCriticalStatus
+            // currentAlertsGrid
             // 
-            lstCriticalStatus.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            lstCriticalStatus.FormattingEnabled = true;
-            lstCriticalStatus.Location = new System.Drawing.Point(21, 37);
-            lstCriticalStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            lstCriticalStatus.Name = "lstCriticalStatus";
-            lstCriticalStatus.Size = new System.Drawing.Size(1460, 224);
-            lstCriticalStatus.TabIndex = 0;
+            currentAlertsGrid.AllowUserToAddRows = false;
+            currentAlertsGrid.AllowUserToDeleteRows = false;
+            currentAlertsGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            currentAlertsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            currentAlertsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { alertTypeColumn, alertSubjectColumn, alertDetailsColumn, alertUpdatedColumn });
+            currentAlertsGrid.Location = new System.Drawing.Point(18, 28);
+            currentAlertsGrid.Margin = new System.Windows.Forms.Padding(4);
+            currentAlertsGrid.Name = "currentAlertsGrid";
+            currentAlertsGrid.ReadOnly = true;
+            currentAlertsGrid.RowHeadersWidth = 51;
+            currentAlertsGrid.Size = new System.Drawing.Size(620, 443);
+            currentAlertsGrid.TabIndex = 0;
+            // 
+            // alertTypeColumn
+            // 
+            alertTypeColumn.HeaderText = "Type / Severity";
+            alertTypeColumn.MinimumWidth = 6;
+            alertTypeColumn.Name = "alertTypeColumn";
+            alertTypeColumn.ReadOnly = true;
+            alertTypeColumn.Width = 140;
+            // 
+            // alertSubjectColumn
+            // 
+            alertSubjectColumn.HeaderText = "Patient or Item";
+            alertSubjectColumn.MinimumWidth = 6;
+            alertSubjectColumn.Name = "alertSubjectColumn";
+            alertSubjectColumn.ReadOnly = true;
+            alertSubjectColumn.Width = 160;
+            // 
+            // alertDetailsColumn
+            // 
+            alertDetailsColumn.HeaderText = "Details";
+            alertDetailsColumn.MinimumWidth = 6;
+            alertDetailsColumn.Name = "alertDetailsColumn";
+            alertDetailsColumn.ReadOnly = true;
+            alertDetailsColumn.Width = 220;
+            // 
+            // alertUpdatedColumn
+            // 
+            alertUpdatedColumn.HeaderText = "Updated";
+            alertUpdatedColumn.MinimumWidth = 6;
+            alertUpdatedColumn.Name = "alertUpdatedColumn";
+            alertUpdatedColumn.ReadOnly = true;
+            alertUpdatedColumn.Width = 120;
             // 
             // grpBedStatus
             // 
-            grpBedStatus.Controls.Add(lstBedStatus);
-            grpBedStatus.Location = new System.Drawing.Point(32, 357);
-            grpBedStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            grpBedStatus.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            grpBedStatus.Controls.Add(bedStatusGrid);
+            grpBedStatus.Location = new System.Drawing.Point(28, 216);
+            grpBedStatus.Margin = new System.Windows.Forms.Padding(4);
             grpBedStatus.Name = "grpBedStatus";
-            grpBedStatus.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpBedStatus.Size = new System.Drawing.Size(440, 271);
+            grpBedStatus.Padding = new System.Windows.Forms.Padding(4);
+            grpBedStatus.Size = new System.Drawing.Size(632, 495);
             grpBedStatus.TabIndex = 1;
             grpBedStatus.TabStop = false;
             grpBedStatus.Text = "Bed Availability";
             // 
-            // lstBedStatus
+            // bedStatusGrid
             // 
-            lstBedStatus.FormattingEnabled = true;
-            lstBedStatus.Items.AddRange(new object[] { "Emergency: 6 beds available", "ICU: 2 beds available", "Pediatrics: 8 beds available", "Surgery Recovery: 4 beds available", "General Ward: 19 beds available" });
-            lstBedStatus.Location = new System.Drawing.Point(21, 37);
-            lstBedStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            lstBedStatus.Name = "lstBedStatus";
-            lstBedStatus.Size = new System.Drawing.Size(393, 204);
-            lstBedStatus.TabIndex = 0;
+            bedStatusGrid.AllowUserToAddRows = false;
+            bedStatusGrid.AllowUserToDeleteRows = false;
+            bedStatusGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            bedStatusGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            bedStatusGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { bedDepartmentColumn, bedOpenColumn, bedTotalColumn, bedUpdatedColumn });
+            bedStatusGrid.Location = new System.Drawing.Point(18, 28);
+            bedStatusGrid.Margin = new System.Windows.Forms.Padding(4);
+            bedStatusGrid.Name = "bedStatusGrid";
+            bedStatusGrid.ReadOnly = true;
+            bedStatusGrid.RowHeadersWidth = 51;
+            bedStatusGrid.Size = new System.Drawing.Size(594, 443);
+            bedStatusGrid.TabIndex = 0;
             // 
-            // grpRealTimeUpdates
+            // bedDepartmentColumn
             // 
-            grpRealTimeUpdates.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            grpRealTimeUpdates.Controls.Add(lstRealTimeUpdates);
-            grpRealTimeUpdates.Location = new System.Drawing.Point(499, 37);
-            grpRealTimeUpdates.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpRealTimeUpdates.Name = "grpRealTimeUpdates";
-            grpRealTimeUpdates.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpRealTimeUpdates.Size = new System.Drawing.Size(1037, 591);
-            grpRealTimeUpdates.TabIndex = 2;
-            grpRealTimeUpdates.TabStop = false;
-            grpRealTimeUpdates.Text = "Real-Time Updates";
+            bedDepartmentColumn.HeaderText = "Department";
+            bedDepartmentColumn.MinimumWidth = 6;
+            bedDepartmentColumn.Name = "bedDepartmentColumn";
+            bedDepartmentColumn.ReadOnly = true;
+            bedDepartmentColumn.Width = 180;
             // 
-            // lstRealTimeUpdates
+            // bedOpenColumn
             // 
-            lstRealTimeUpdates.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            lstRealTimeUpdates.FormattingEnabled = true;
-            lstRealTimeUpdates.Items.AddRange(new object[] { "Appointment update feed will appear here.", "Inventory alerts will appear here.", "Emergency broadcasts will appear here.", "Patient monitoring updates will appear here." });
-            lstRealTimeUpdates.Location = new System.Drawing.Point(21, 37);
-            lstRealTimeUpdates.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            lstRealTimeUpdates.Name = "lstRealTimeUpdates";
-            lstRealTimeUpdates.Size = new System.Drawing.Size(993, 524);
-            lstRealTimeUpdates.TabIndex = 0;
+            bedOpenColumn.HeaderText = "Open Beds";
+            bedOpenColumn.MinimumWidth = 6;
+            bedOpenColumn.Name = "bedOpenColumn";
+            bedOpenColumn.ReadOnly = true;
+            bedOpenColumn.Width = 110;
+            // 
+            // bedTotalColumn
+            // 
+            bedTotalColumn.HeaderText = "Total Beds";
+            bedTotalColumn.MinimumWidth = 6;
+            bedTotalColumn.Name = "bedTotalColumn";
+            bedTotalColumn.ReadOnly = true;
+            bedTotalColumn.Width = 110;
+            // 
+            // bedUpdatedColumn
+            // 
+            bedUpdatedColumn.HeaderText = "Last Updated";
+            bedUpdatedColumn.MinimumWidth = 6;
+            bedUpdatedColumn.Name = "bedUpdatedColumn";
+            bedUpdatedColumn.ReadOnly = true;
+            bedUpdatedColumn.Width = 140;
             // 
             // grpQuickCounts
             // 
+            grpQuickCounts.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             grpQuickCounts.Controls.Add(txtDashboardEmergencies);
             grpQuickCounts.Controls.Add(lblDashboardEmergencies);
             grpQuickCounts.Controls.Add(txtDashboardLowStock);
@@ -442,125 +589,942 @@ namespace HospitalManagement.Client
             grpQuickCounts.Controls.Add(lblDashboardAppointments);
             grpQuickCounts.Controls.Add(txtDashboardPatients);
             grpQuickCounts.Controls.Add(lblDashboardPatients);
-            grpQuickCounts.Location = new System.Drawing.Point(32, 37);
-            grpQuickCounts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            grpQuickCounts.Location = new System.Drawing.Point(28, 28);
+            grpQuickCounts.Margin = new System.Windows.Forms.Padding(4);
             grpQuickCounts.Name = "grpQuickCounts";
-            grpQuickCounts.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpQuickCounts.Size = new System.Drawing.Size(440, 295);
+            grpQuickCounts.Padding = new System.Windows.Forms.Padding(4);
+            grpQuickCounts.Size = new System.Drawing.Size(1316, 160);
             grpQuickCounts.TabIndex = 0;
             grpQuickCounts.TabStop = false;
             grpQuickCounts.Text = "Today Overview";
             // 
             // txtDashboardEmergencies
             // 
-            txtDashboardEmergencies.Location = new System.Drawing.Point(245, 222);
-            txtDashboardEmergencies.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtDashboardEmergencies.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+            txtDashboardEmergencies.Location = new System.Drawing.Point(1066, 72);
+            txtDashboardEmergencies.Margin = new System.Windows.Forms.Padding(4);
             txtDashboardEmergencies.Name = "txtDashboardEmergencies";
             txtDashboardEmergencies.ReadOnly = true;
-            txtDashboardEmergencies.Size = new System.Drawing.Size(169, 27);
+            txtDashboardEmergencies.Size = new System.Drawing.Size(214, 39);
             txtDashboardEmergencies.TabIndex = 9;
             txtDashboardEmergencies.Text = "1";
+            txtDashboardEmergencies.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblDashboardEmergencies
             // 
             lblDashboardEmergencies.AutoSize = true;
-            lblDashboardEmergencies.Location = new System.Drawing.Point(21, 226);
+            lblDashboardEmergencies.Location = new System.Drawing.Point(1066, 47);
             lblDashboardEmergencies.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblDashboardEmergencies.Name = "lblDashboardEmergencies";
-            lblDashboardEmergencies.Size = new System.Drawing.Size(124, 20);
+            lblDashboardEmergencies.Size = new System.Drawing.Size(99, 15);
             lblDashboardEmergencies.TabIndex = 8;
             lblDashboardEmergencies.Text = "Emergency Alerts";
             // 
             // txtDashboardLowStock
             // 
-            txtDashboardLowStock.Location = new System.Drawing.Point(245, 178);
-            txtDashboardLowStock.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtDashboardLowStock.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+            txtDashboardLowStock.Location = new System.Drawing.Point(810, 72);
+            txtDashboardLowStock.Margin = new System.Windows.Forms.Padding(4);
             txtDashboardLowStock.Name = "txtDashboardLowStock";
             txtDashboardLowStock.ReadOnly = true;
-            txtDashboardLowStock.Size = new System.Drawing.Size(169, 27);
+            txtDashboardLowStock.Size = new System.Drawing.Size(214, 39);
             txtDashboardLowStock.TabIndex = 7;
             txtDashboardLowStock.Text = "7";
+            txtDashboardLowStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblDashboardLowStock
             // 
             lblDashboardLowStock.AutoSize = true;
-            lblDashboardLowStock.Location = new System.Drawing.Point(21, 183);
+            lblDashboardLowStock.Location = new System.Drawing.Point(810, 47);
             lblDashboardLowStock.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblDashboardLowStock.Name = "lblDashboardLowStock";
-            lblDashboardLowStock.Size = new System.Drawing.Size(116, 20);
+            lblDashboardLowStock.Size = new System.Drawing.Size(93, 15);
             lblDashboardLowStock.TabIndex = 6;
             lblDashboardLowStock.Text = "Low Stock Items";
             // 
             // txtDashboardOpenBeds
             // 
-            txtDashboardOpenBeds.Location = new System.Drawing.Point(245, 135);
-            txtDashboardOpenBeds.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtDashboardOpenBeds.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+            txtDashboardOpenBeds.Location = new System.Drawing.Point(554, 72);
+            txtDashboardOpenBeds.Margin = new System.Windows.Forms.Padding(4);
             txtDashboardOpenBeds.Name = "txtDashboardOpenBeds";
             txtDashboardOpenBeds.ReadOnly = true;
-            txtDashboardOpenBeds.Size = new System.Drawing.Size(169, 27);
+            txtDashboardOpenBeds.Size = new System.Drawing.Size(214, 39);
             txtDashboardOpenBeds.TabIndex = 5;
             txtDashboardOpenBeds.Text = "39";
+            txtDashboardOpenBeds.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblDashboardOpenBeds
             // 
             lblDashboardOpenBeds.AutoSize = true;
-            lblDashboardOpenBeds.Location = new System.Drawing.Point(21, 140);
+            lblDashboardOpenBeds.Location = new System.Drawing.Point(554, 47);
             lblDashboardOpenBeds.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblDashboardOpenBeds.Name = "lblDashboardOpenBeds";
-            lblDashboardOpenBeds.Size = new System.Drawing.Size(81, 20);
+            lblDashboardOpenBeds.Size = new System.Drawing.Size(64, 15);
             lblDashboardOpenBeds.TabIndex = 4;
             lblDashboardOpenBeds.Text = "Open Beds";
             // 
             // txtDashboardAppointments
             // 
-            txtDashboardAppointments.Location = new System.Drawing.Point(245, 92);
-            txtDashboardAppointments.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtDashboardAppointments.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+            txtDashboardAppointments.Location = new System.Drawing.Point(298, 72);
+            txtDashboardAppointments.Margin = new System.Windows.Forms.Padding(4);
             txtDashboardAppointments.Name = "txtDashboardAppointments";
             txtDashboardAppointments.ReadOnly = true;
-            txtDashboardAppointments.Size = new System.Drawing.Size(169, 27);
+            txtDashboardAppointments.Size = new System.Drawing.Size(214, 39);
             txtDashboardAppointments.TabIndex = 3;
             txtDashboardAppointments.Text = "24";
+            txtDashboardAppointments.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblDashboardAppointments
             // 
             lblDashboardAppointments.AutoSize = true;
-            lblDashboardAppointments.Location = new System.Drawing.Point(21, 97);
+            lblDashboardAppointments.Location = new System.Drawing.Point(298, 47);
             lblDashboardAppointments.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblDashboardAppointments.Name = "lblDashboardAppointments";
-            lblDashboardAppointments.Size = new System.Drawing.Size(147, 20);
+            lblDashboardAppointments.Size = new System.Drawing.Size(118, 15);
             lblDashboardAppointments.TabIndex = 2;
             lblDashboardAppointments.Text = "Appointments Today";
             // 
             // txtDashboardPatients
             // 
-            txtDashboardPatients.Location = new System.Drawing.Point(245, 49);
-            txtDashboardPatients.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtDashboardPatients.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+            txtDashboardPatients.Location = new System.Drawing.Point(42, 72);
+            txtDashboardPatients.Margin = new System.Windows.Forms.Padding(4);
             txtDashboardPatients.Name = "txtDashboardPatients";
             txtDashboardPatients.ReadOnly = true;
-            txtDashboardPatients.Size = new System.Drawing.Size(169, 27);
+            txtDashboardPatients.Size = new System.Drawing.Size(214, 39);
             txtDashboardPatients.TabIndex = 1;
             txtDashboardPatients.Text = "126";
+            txtDashboardPatients.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblDashboardPatients
             // 
             lblDashboardPatients.AutoSize = true;
-            lblDashboardPatients.Location = new System.Drawing.Point(21, 54);
+            lblDashboardPatients.Location = new System.Drawing.Point(42, 47);
             lblDashboardPatients.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblDashboardPatients.Name = "lblDashboardPatients";
-            lblDashboardPatients.Size = new System.Drawing.Size(105, 20);
+            lblDashboardPatients.Size = new System.Drawing.Size(85, 15);
             lblDashboardPatients.TabIndex = 0;
             lblDashboardPatients.Text = "Active Patients";
+            // 
+            // doctorVisitsTab
+            // 
+            doctorVisitsTab.Controls.Add(grpDoctorTodayVisits);
+            doctorVisitsTab.Controls.Add(grpDoctorTodayVisit);
+            doctorVisitsTab.Controls.Add(grpDoctorLastVisit);
+            doctorVisitsTab.Location = new System.Drawing.Point(4, 24);
+            doctorVisitsTab.Margin = new System.Windows.Forms.Padding(4);
+            doctorVisitsTab.Name = "doctorVisitsTab";
+            doctorVisitsTab.Padding = new System.Windows.Forms.Padding(4);
+            doctorVisitsTab.Size = new System.Drawing.Size(1374, 756);
+            doctorVisitsTab.TabIndex = 10;
+            doctorVisitsTab.Text = "My Visits";
+            doctorVisitsTab.UseVisualStyleBackColor = true;
+            // 
+            // grpDoctorTodayVisits
+            // 
+            grpDoctorTodayVisits.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            grpDoctorTodayVisits.Controls.Add(doctorVisitsGrid);
+            grpDoctorTodayVisits.Location = new System.Drawing.Point(687, 20);
+            grpDoctorTodayVisits.Margin = new System.Windows.Forms.Padding(4);
+            grpDoctorTodayVisits.Name = "grpDoctorTodayVisits";
+            grpDoctorTodayVisits.Padding = new System.Windows.Forms.Padding(4);
+            grpDoctorTodayVisits.Size = new System.Drawing.Size(663, 717);
+            grpDoctorTodayVisits.TabIndex = 2;
+            grpDoctorTodayVisits.TabStop = false;
+            grpDoctorTodayVisits.Text = "Today's Visits";
+            // 
+            // doctorVisitsGrid
+            // 
+            doctorVisitsGrid.AllowUserToAddRows = false;
+            doctorVisitsGrid.AllowUserToDeleteRows = false;
+            doctorVisitsGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            doctorVisitsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            doctorVisitsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { doctorVisitTimeColumn, doctorVisitPatientColumn, doctorVisitStatusColumn, doctorVisitReasonColumn });
+            doctorVisitsGrid.Location = new System.Drawing.Point(19, 24);
+            doctorVisitsGrid.Margin = new System.Windows.Forms.Padding(4);
+            doctorVisitsGrid.Name = "doctorVisitsGrid";
+            doctorVisitsGrid.ReadOnly = true;
+            doctorVisitsGrid.RowHeadersWidth = 51;
+            doctorVisitsGrid.Size = new System.Drawing.Size(636, 675);
+            doctorVisitsGrid.TabIndex = 0;
+            doctorVisitsGrid.CellContentClick += doctorVisitsGrid_CellContentClick;
+            doctorVisitsGrid.SelectionChanged += doctorVisitsGrid_SelectionChanged;
+            // 
+            // doctorVisitTimeColumn
+            // 
+            doctorVisitTimeColumn.HeaderText = "Time";
+            doctorVisitTimeColumn.MinimumWidth = 6;
+            doctorVisitTimeColumn.Name = "doctorVisitTimeColumn";
+            doctorVisitTimeColumn.ReadOnly = true;
+            // 
+            // doctorVisitPatientColumn
+            // 
+            doctorVisitPatientColumn.HeaderText = "Patient";
+            doctorVisitPatientColumn.MinimumWidth = 6;
+            doctorVisitPatientColumn.Name = "doctorVisitPatientColumn";
+            doctorVisitPatientColumn.ReadOnly = true;
+            doctorVisitPatientColumn.Width = 190;
+            // 
+            // doctorVisitStatusColumn
+            // 
+            doctorVisitStatusColumn.HeaderText = "Status";
+            doctorVisitStatusColumn.MinimumWidth = 6;
+            doctorVisitStatusColumn.Name = "doctorVisitStatusColumn";
+            doctorVisitStatusColumn.ReadOnly = true;
+            doctorVisitStatusColumn.Width = 140;
+            // 
+            // doctorVisitReasonColumn
+            // 
+            doctorVisitReasonColumn.HeaderText = "Reason";
+            doctorVisitReasonColumn.MinimumWidth = 6;
+            doctorVisitReasonColumn.Name = "doctorVisitReasonColumn";
+            doctorVisitReasonColumn.ReadOnly = true;
+            doctorVisitReasonColumn.Width = 260;
+            // 
+            // grpDoctorTodayVisit
+            // 
+            grpDoctorTodayVisit.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            grpDoctorTodayVisit.Controls.Add(btnTextNextVisitPatient);
+            grpDoctorTodayVisit.Controls.Add(lblDoctorTodayVisitPlaceholder);
+            grpDoctorTodayVisit.Controls.Add(lblDoctorTodayVisitNotesValue);
+            grpDoctorTodayVisit.Controls.Add(lblDoctorTodayVisitNotesCaption);
+            grpDoctorTodayVisit.Controls.Add(lblDoctorTodayVisitReasonValue);
+            grpDoctorTodayVisit.Controls.Add(lblDoctorTodayVisitReasonCaption);
+            grpDoctorTodayVisit.Controls.Add(lblDoctorTodayVisitStatusValue);
+            grpDoctorTodayVisit.Controls.Add(lblDoctorTodayVisitStatusCaption);
+            grpDoctorTodayVisit.Controls.Add(lblDoctorTodayVisitPatientValue);
+            grpDoctorTodayVisit.Controls.Add(lblDoctorTodayVisitPatientCaption);
+            grpDoctorTodayVisit.Controls.Add(lblDoctorTodayVisitTimeValue);
+            grpDoctorTodayVisit.Controls.Add(lblDoctorTodayVisitTimeCaption);
+            grpDoctorTodayVisit.Controls.Add(lblDoctorTodayVisitDateValue);
+            grpDoctorTodayVisit.Controls.Add(lblDoctorTodayVisitDateCaption);
+            grpDoctorTodayVisit.Controls.Add(pnlDoctorTodayVisitStatus);
+            grpDoctorTodayVisit.Location = new System.Drawing.Point(20, 20);
+            grpDoctorTodayVisit.Margin = new System.Windows.Forms.Padding(4);
+            grpDoctorTodayVisit.Name = "grpDoctorTodayVisit";
+            grpDoctorTodayVisit.Padding = new System.Windows.Forms.Padding(4);
+            grpDoctorTodayVisit.Size = new System.Drawing.Size(646, 210);
+            grpDoctorTodayVisit.TabIndex = 1;
+            grpDoctorTodayVisit.TabStop = false;
+            grpDoctorTodayVisit.Text = "Today Visit View";
+            // 
+            // btnTextNextVisitPatient
+            // 
+            btnTextNextVisitPatient.Enabled = false;
+            btnTextNextVisitPatient.Location = new System.Drawing.Point(34, 162);
+            btnTextNextVisitPatient.Margin = new System.Windows.Forms.Padding(4);
+            btnTextNextVisitPatient.Name = "btnTextNextVisitPatient";
+            btnTextNextVisitPatient.Size = new System.Drawing.Size(130, 28);
+            btnTextNextVisitPatient.TabIndex = 14;
+            btnTextNextVisitPatient.Text = "Text Patient";
+            btnTextNextVisitPatient.UseVisualStyleBackColor = true;
+            btnTextNextVisitPatient.Click += btnTextVisitPatient_Click;
+            // 
+            // lblDoctorTodayVisitPlaceholder
+            // 
+            lblDoctorTodayVisitPlaceholder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblDoctorTodayVisitPlaceholder.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic);
+            lblDoctorTodayVisitPlaceholder.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblDoctorTodayVisitPlaceholder.Location = new System.Drawing.Point(110, 26);
+            lblDoctorTodayVisitPlaceholder.Name = "lblDoctorTodayVisitPlaceholder";
+            lblDoctorTodayVisitPlaceholder.Size = new System.Drawing.Size(529, 32);
+            lblDoctorTodayVisitPlaceholder.TabIndex = 13;
+            lblDoctorTodayVisitPlaceholder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            lblDoctorTodayVisitPlaceholder.Visible = false;
+            lblDoctorTodayVisitPlaceholder.Click += lblDoctorTodayVisitPlaceholder_Click;
+            // 
+            // lblDoctorTodayVisitNotesValue
+            // 
+            lblDoctorTodayVisitNotesValue.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblDoctorTodayVisitNotesValue.Location = new System.Drawing.Point(111, 137);
+            lblDoctorTodayVisitNotesValue.Name = "lblDoctorTodayVisitNotesValue";
+            lblDoctorTodayVisitNotesValue.Size = new System.Drawing.Size(521, 20);
+            lblDoctorTodayVisitNotesValue.TabIndex = 12;
+            // 
+            // lblDoctorTodayVisitNotesCaption
+            // 
+            lblDoctorTodayVisitNotesCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblDoctorTodayVisitNotesCaption.Location = new System.Drawing.Point(34, 136);
+            lblDoctorTodayVisitNotesCaption.Name = "lblDoctorTodayVisitNotesCaption";
+            lblDoctorTodayVisitNotesCaption.Size = new System.Drawing.Size(70, 20);
+            lblDoctorTodayVisitNotesCaption.TabIndex = 11;
+            lblDoctorTodayVisitNotesCaption.Text = "Notes";
+            // 
+            // lblDoctorTodayVisitReasonValue
+            // 
+            lblDoctorTodayVisitReasonValue.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblDoctorTodayVisitReasonValue.Location = new System.Drawing.Point(111, 115);
+            lblDoctorTodayVisitReasonValue.Name = "lblDoctorTodayVisitReasonValue";
+            lblDoctorTodayVisitReasonValue.Size = new System.Drawing.Size(521, 20);
+            lblDoctorTodayVisitReasonValue.TabIndex = 10;
+            // 
+            // lblDoctorTodayVisitReasonCaption
+            // 
+            lblDoctorTodayVisitReasonCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblDoctorTodayVisitReasonCaption.Location = new System.Drawing.Point(34, 114);
+            lblDoctorTodayVisitReasonCaption.Name = "lblDoctorTodayVisitReasonCaption";
+            lblDoctorTodayVisitReasonCaption.Size = new System.Drawing.Size(70, 20);
+            lblDoctorTodayVisitReasonCaption.TabIndex = 9;
+            lblDoctorTodayVisitReasonCaption.Text = "Reason";
+            // 
+            // lblDoctorTodayVisitStatusValue
+            // 
+            lblDoctorTodayVisitStatusValue.Location = new System.Drawing.Point(110, 92);
+            lblDoctorTodayVisitStatusValue.Name = "lblDoctorTodayVisitStatusValue";
+            lblDoctorTodayVisitStatusValue.Size = new System.Drawing.Size(521, 20);
+            lblDoctorTodayVisitStatusValue.TabIndex = 8;
+            // 
+            // lblDoctorTodayVisitStatusCaption
+            // 
+            lblDoctorTodayVisitStatusCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblDoctorTodayVisitStatusCaption.Location = new System.Drawing.Point(34, 92);
+            lblDoctorTodayVisitStatusCaption.Name = "lblDoctorTodayVisitStatusCaption";
+            lblDoctorTodayVisitStatusCaption.Size = new System.Drawing.Size(70, 20);
+            lblDoctorTodayVisitStatusCaption.TabIndex = 7;
+            lblDoctorTodayVisitStatusCaption.Text = "Status";
+            // 
+            // lblDoctorTodayVisitPatientValue
+            // 
+            lblDoctorTodayVisitPatientValue.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblDoctorTodayVisitPatientValue.Location = new System.Drawing.Point(111, 71);
+            lblDoctorTodayVisitPatientValue.Name = "lblDoctorTodayVisitPatientValue";
+            lblDoctorTodayVisitPatientValue.Size = new System.Drawing.Size(521, 20);
+            lblDoctorTodayVisitPatientValue.TabIndex = 6;
+            // 
+            // lblDoctorTodayVisitPatientCaption
+            // 
+            lblDoctorTodayVisitPatientCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblDoctorTodayVisitPatientCaption.Location = new System.Drawing.Point(34, 70);
+            lblDoctorTodayVisitPatientCaption.Name = "lblDoctorTodayVisitPatientCaption";
+            lblDoctorTodayVisitPatientCaption.Size = new System.Drawing.Size(70, 20);
+            lblDoctorTodayVisitPatientCaption.TabIndex = 5;
+            lblDoctorTodayVisitPatientCaption.Text = "Patient";
+            // 
+            // lblDoctorTodayVisitTimeValue
+            // 
+            lblDoctorTodayVisitTimeValue.Location = new System.Drawing.Point(110, 48);
+            lblDoctorTodayVisitTimeValue.Name = "lblDoctorTodayVisitTimeValue";
+            lblDoctorTodayVisitTimeValue.Size = new System.Drawing.Size(521, 20);
+            lblDoctorTodayVisitTimeValue.TabIndex = 4;
+            // 
+            // lblDoctorTodayVisitTimeCaption
+            // 
+            lblDoctorTodayVisitTimeCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblDoctorTodayVisitTimeCaption.Location = new System.Drawing.Point(34, 48);
+            lblDoctorTodayVisitTimeCaption.Name = "lblDoctorTodayVisitTimeCaption";
+            lblDoctorTodayVisitTimeCaption.Size = new System.Drawing.Size(70, 20);
+            lblDoctorTodayVisitTimeCaption.TabIndex = 3;
+            lblDoctorTodayVisitTimeCaption.Text = "Time";
+            // 
+            // lblDoctorTodayVisitDateValue
+            // 
+            lblDoctorTodayVisitDateValue.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblDoctorTodayVisitDateValue.Location = new System.Drawing.Point(111, 27);
+            lblDoctorTodayVisitDateValue.Name = "lblDoctorTodayVisitDateValue";
+            lblDoctorTodayVisitDateValue.Size = new System.Drawing.Size(521, 20);
+            lblDoctorTodayVisitDateValue.TabIndex = 2;
+            // 
+            // lblDoctorTodayVisitDateCaption
+            // 
+            lblDoctorTodayVisitDateCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblDoctorTodayVisitDateCaption.Location = new System.Drawing.Point(34, 26);
+            lblDoctorTodayVisitDateCaption.Name = "lblDoctorTodayVisitDateCaption";
+            lblDoctorTodayVisitDateCaption.Size = new System.Drawing.Size(70, 20);
+            lblDoctorTodayVisitDateCaption.TabIndex = 1;
+            lblDoctorTodayVisitDateCaption.Text = "Date";
+            // 
+            // pnlDoctorTodayVisitStatus
+            // 
+            pnlDoctorTodayVisitStatus.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            pnlDoctorTodayVisitStatus.BackColor = System.Drawing.SystemColors.ControlDark;
+            pnlDoctorTodayVisitStatus.Location = new System.Drawing.Point(19, 25);
+            pnlDoctorTodayVisitStatus.Name = "pnlDoctorTodayVisitStatus";
+            pnlDoctorTodayVisitStatus.Size = new System.Drawing.Size(6, 128);
+            pnlDoctorTodayVisitStatus.TabIndex = 0;
+            // 
+            // grpDoctorLastVisit
+            // 
+            grpDoctorLastVisit.Controls.Add(btnTextLastVisitPatient);
+            grpDoctorLastVisit.Controls.Add(lblDoctorLastVisitPlaceholder);
+            grpDoctorLastVisit.Controls.Add(lblDoctorLastVisitNotesValue);
+            grpDoctorLastVisit.Controls.Add(lblDoctorLastVisitNotesCaption);
+            grpDoctorLastVisit.Controls.Add(lblDoctorLastVisitReasonValue);
+            grpDoctorLastVisit.Controls.Add(lblDoctorLastVisitReasonCaption);
+            grpDoctorLastVisit.Controls.Add(lblDoctorLastVisitStatusValue);
+            grpDoctorLastVisit.Controls.Add(lblDoctorLastVisitStatusCaption);
+            grpDoctorLastVisit.Controls.Add(lblDoctorLastVisitPatientValue);
+            grpDoctorLastVisit.Controls.Add(lblDoctorLastVisitPatientCaption);
+            grpDoctorLastVisit.Controls.Add(lblDoctorLastVisitTimeValue);
+            grpDoctorLastVisit.Controls.Add(lblDoctorLastVisitTimeCaption);
+            grpDoctorLastVisit.Controls.Add(lblDoctorLastVisitDateValue);
+            grpDoctorLastVisit.Controls.Add(lblDoctorLastVisitDateCaption);
+            grpDoctorLastVisit.Controls.Add(pnlDoctorLastVisitStatus);
+            grpDoctorLastVisit.Location = new System.Drawing.Point(20, 242);
+            grpDoctorLastVisit.Margin = new System.Windows.Forms.Padding(4);
+            grpDoctorLastVisit.Name = "grpDoctorLastVisit";
+            grpDoctorLastVisit.Padding = new System.Windows.Forms.Padding(4);
+            grpDoctorLastVisit.Size = new System.Drawing.Size(646, 210);
+            grpDoctorLastVisit.TabIndex = 0;
+            grpDoctorLastVisit.TabStop = false;
+            grpDoctorLastVisit.Text = "Last Completed Visit";
+            // 
+            // btnTextLastVisitPatient
+            // 
+            btnTextLastVisitPatient.Enabled = false;
+            btnTextLastVisitPatient.Location = new System.Drawing.Point(34, 162);
+            btnTextLastVisitPatient.Margin = new System.Windows.Forms.Padding(4);
+            btnTextLastVisitPatient.Name = "btnTextLastVisitPatient";
+            btnTextLastVisitPatient.Size = new System.Drawing.Size(130, 28);
+            btnTextLastVisitPatient.TabIndex = 14;
+            btnTextLastVisitPatient.Text = "Text Patient";
+            btnTextLastVisitPatient.UseVisualStyleBackColor = true;
+            btnTextLastVisitPatient.Click += btnTextVisitPatient_Click;
+            // 
+            // lblDoctorLastVisitPlaceholder
+            // 
+            lblDoctorLastVisitPlaceholder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblDoctorLastVisitPlaceholder.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic);
+            lblDoctorLastVisitPlaceholder.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblDoctorLastVisitPlaceholder.Location = new System.Drawing.Point(110, 25);
+            lblDoctorLastVisitPlaceholder.Name = "lblDoctorLastVisitPlaceholder";
+            lblDoctorLastVisitPlaceholder.Size = new System.Drawing.Size(529, 34);
+            lblDoctorLastVisitPlaceholder.TabIndex = 13;
+            lblDoctorLastVisitPlaceholder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            lblDoctorLastVisitPlaceholder.Visible = false;
+            // 
+            // lblDoctorLastVisitNotesValue
+            // 
+            lblDoctorLastVisitNotesValue.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblDoctorLastVisitNotesValue.Location = new System.Drawing.Point(111, 137);
+            lblDoctorLastVisitNotesValue.Name = "lblDoctorLastVisitNotesValue";
+            lblDoctorLastVisitNotesValue.Size = new System.Drawing.Size(521, 20);
+            lblDoctorLastVisitNotesValue.TabIndex = 12;
+            // 
+            // lblDoctorLastVisitNotesCaption
+            // 
+            lblDoctorLastVisitNotesCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblDoctorLastVisitNotesCaption.Location = new System.Drawing.Point(34, 136);
+            lblDoctorLastVisitNotesCaption.Name = "lblDoctorLastVisitNotesCaption";
+            lblDoctorLastVisitNotesCaption.Size = new System.Drawing.Size(70, 20);
+            lblDoctorLastVisitNotesCaption.TabIndex = 11;
+            lblDoctorLastVisitNotesCaption.Text = "Notes";
+            // 
+            // lblDoctorLastVisitReasonValue
+            // 
+            lblDoctorLastVisitReasonValue.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblDoctorLastVisitReasonValue.Location = new System.Drawing.Point(111, 115);
+            lblDoctorLastVisitReasonValue.Name = "lblDoctorLastVisitReasonValue";
+            lblDoctorLastVisitReasonValue.Size = new System.Drawing.Size(521, 20);
+            lblDoctorLastVisitReasonValue.TabIndex = 10;
+            // 
+            // lblDoctorLastVisitReasonCaption
+            // 
+            lblDoctorLastVisitReasonCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblDoctorLastVisitReasonCaption.Location = new System.Drawing.Point(34, 114);
+            lblDoctorLastVisitReasonCaption.Name = "lblDoctorLastVisitReasonCaption";
+            lblDoctorLastVisitReasonCaption.Size = new System.Drawing.Size(70, 20);
+            lblDoctorLastVisitReasonCaption.TabIndex = 9;
+            lblDoctorLastVisitReasonCaption.Text = "Reason";
+            // 
+            // lblDoctorLastVisitStatusValue
+            // 
+            lblDoctorLastVisitStatusValue.Location = new System.Drawing.Point(110, 92);
+            lblDoctorLastVisitStatusValue.Name = "lblDoctorLastVisitStatusValue";
+            lblDoctorLastVisitStatusValue.Size = new System.Drawing.Size(521, 20);
+            lblDoctorLastVisitStatusValue.TabIndex = 8;
+            // 
+            // lblDoctorLastVisitStatusCaption
+            // 
+            lblDoctorLastVisitStatusCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblDoctorLastVisitStatusCaption.Location = new System.Drawing.Point(34, 92);
+            lblDoctorLastVisitStatusCaption.Name = "lblDoctorLastVisitStatusCaption";
+            lblDoctorLastVisitStatusCaption.Size = new System.Drawing.Size(70, 20);
+            lblDoctorLastVisitStatusCaption.TabIndex = 7;
+            lblDoctorLastVisitStatusCaption.Text = "Status";
+            // 
+            // lblDoctorLastVisitPatientValue
+            // 
+            lblDoctorLastVisitPatientValue.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblDoctorLastVisitPatientValue.Location = new System.Drawing.Point(111, 71);
+            lblDoctorLastVisitPatientValue.Name = "lblDoctorLastVisitPatientValue";
+            lblDoctorLastVisitPatientValue.Size = new System.Drawing.Size(521, 20);
+            lblDoctorLastVisitPatientValue.TabIndex = 6;
+            // 
+            // lblDoctorLastVisitPatientCaption
+            // 
+            lblDoctorLastVisitPatientCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblDoctorLastVisitPatientCaption.Location = new System.Drawing.Point(34, 70);
+            lblDoctorLastVisitPatientCaption.Name = "lblDoctorLastVisitPatientCaption";
+            lblDoctorLastVisitPatientCaption.Size = new System.Drawing.Size(70, 20);
+            lblDoctorLastVisitPatientCaption.TabIndex = 5;
+            lblDoctorLastVisitPatientCaption.Text = "Patient";
+            // 
+            // lblDoctorLastVisitTimeValue
+            // 
+            lblDoctorLastVisitTimeValue.Location = new System.Drawing.Point(110, 48);
+            lblDoctorLastVisitTimeValue.Name = "lblDoctorLastVisitTimeValue";
+            lblDoctorLastVisitTimeValue.Size = new System.Drawing.Size(521, 20);
+            lblDoctorLastVisitTimeValue.TabIndex = 4;
+            // 
+            // lblDoctorLastVisitTimeCaption
+            // 
+            lblDoctorLastVisitTimeCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblDoctorLastVisitTimeCaption.Location = new System.Drawing.Point(34, 48);
+            lblDoctorLastVisitTimeCaption.Name = "lblDoctorLastVisitTimeCaption";
+            lblDoctorLastVisitTimeCaption.Size = new System.Drawing.Size(70, 20);
+            lblDoctorLastVisitTimeCaption.TabIndex = 3;
+            lblDoctorLastVisitTimeCaption.Text = "Time";
+            // 
+            // lblDoctorLastVisitDateValue
+            // 
+            lblDoctorLastVisitDateValue.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblDoctorLastVisitDateValue.Location = new System.Drawing.Point(111, 27);
+            lblDoctorLastVisitDateValue.Name = "lblDoctorLastVisitDateValue";
+            lblDoctorLastVisitDateValue.Size = new System.Drawing.Size(521, 20);
+            lblDoctorLastVisitDateValue.TabIndex = 2;
+            // 
+            // lblDoctorLastVisitDateCaption
+            // 
+            lblDoctorLastVisitDateCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblDoctorLastVisitDateCaption.Location = new System.Drawing.Point(34, 26);
+            lblDoctorLastVisitDateCaption.Name = "lblDoctorLastVisitDateCaption";
+            lblDoctorLastVisitDateCaption.Size = new System.Drawing.Size(70, 20);
+            lblDoctorLastVisitDateCaption.TabIndex = 1;
+            lblDoctorLastVisitDateCaption.Text = "Date";
+            // 
+            // pnlDoctorLastVisitStatus
+            // 
+            pnlDoctorLastVisitStatus.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            pnlDoctorLastVisitStatus.BackColor = System.Drawing.SystemColors.ControlDark;
+            pnlDoctorLastVisitStatus.Location = new System.Drawing.Point(19, 25);
+            pnlDoctorLastVisitStatus.Name = "pnlDoctorLastVisitStatus";
+            pnlDoctorLastVisitStatus.Size = new System.Drawing.Size(6, 128);
+            pnlDoctorLastVisitStatus.TabIndex = 0;
+            // 
+            // patientCareTab
+            // 
+            patientCareTab.Controls.Add(grpPatientLatestVitals);
+            patientCareTab.Controls.Add(grpPatientNextAppointment);
+            patientCareTab.Location = new System.Drawing.Point(4, 24);
+            patientCareTab.Margin = new System.Windows.Forms.Padding(4);
+            patientCareTab.Name = "patientCareTab";
+            patientCareTab.Padding = new System.Windows.Forms.Padding(4);
+            patientCareTab.Size = new System.Drawing.Size(1374, 756);
+            patientCareTab.TabIndex = 9;
+            patientCareTab.Text = "My Care";
+            patientCareTab.UseVisualStyleBackColor = true;
+            // 
+            // grpPatientLatestVitals
+            // 
+            grpPatientLatestVitals.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            grpPatientLatestVitals.Controls.Add(lblPatientVitalsPlaceholder);
+            grpPatientLatestVitals.Controls.Add(lblVitalNotes);
+            grpPatientLatestVitals.Controls.Add(pnlVitalUpdated);
+            grpPatientLatestVitals.Controls.Add(pnlVitalStatus);
+            grpPatientLatestVitals.Controls.Add(pnlVitalTemperature);
+            grpPatientLatestVitals.Controls.Add(pnlVitalOxygen);
+            grpPatientLatestVitals.Controls.Add(pnlVitalBloodPressure);
+            grpPatientLatestVitals.Controls.Add(pnlVitalHeartRate);
+            grpPatientLatestVitals.Location = new System.Drawing.Point(24, 230);
+            grpPatientLatestVitals.Margin = new System.Windows.Forms.Padding(4);
+            grpPatientLatestVitals.Name = "grpPatientLatestVitals";
+            grpPatientLatestVitals.Padding = new System.Windows.Forms.Padding(4);
+            grpPatientLatestVitals.Size = new System.Drawing.Size(2500, 1136);
+            grpPatientLatestVitals.TabIndex = 1;
+            grpPatientLatestVitals.TabStop = false;
+            grpPatientLatestVitals.Text = "Latest Vitals";
+            grpPatientLatestVitals.Enter += grpPatientLatestVitals_Enter;
+            // 
+            // lblPatientVitalsPlaceholder
+            // 
+            lblPatientVitalsPlaceholder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblPatientVitalsPlaceholder.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic);
+            lblPatientVitalsPlaceholder.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblPatientVitalsPlaceholder.Location = new System.Drawing.Point(14, 20);
+            lblPatientVitalsPlaceholder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblPatientVitalsPlaceholder.Name = "lblPatientVitalsPlaceholder";
+            lblPatientVitalsPlaceholder.Size = new System.Drawing.Size(430, 28);
+            lblPatientVitalsPlaceholder.TabIndex = 0;
+            lblPatientVitalsPlaceholder.Text = "No vitals recorded yet.";
+            lblPatientVitalsPlaceholder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            lblPatientVitalsPlaceholder.Visible = false;
+            lblPatientVitalsPlaceholder.Click += lblPatientVitalsPlaceholder_Click;
+            // 
+            // lblVitalNotes
+            // 
+            lblVitalNotes.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblVitalNotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            lblVitalNotes.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            lblVitalNotes.Location = new System.Drawing.Point(472, 52);
+            lblVitalNotes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblVitalNotes.Name = "lblVitalNotes";
+            lblVitalNotes.Padding = new System.Windows.Forms.Padding(8);
+            lblVitalNotes.Size = new System.Drawing.Size(854, 400);
+            lblVitalNotes.TabIndex = 7;
+            lblVitalNotes.Text = "Notes: --";
+            lblVitalNotes.Click += lblVitalNotes_Click;
+            // 
+            // pnlVitalUpdated
+            // 
+            pnlVitalUpdated.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            pnlVitalUpdated.BackColor = System.Drawing.SystemColors.Window;
+            pnlVitalUpdated.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            pnlVitalUpdated.Controls.Add(lblVitalUpdated);
+            pnlVitalUpdated.Controls.Add(lblVitalUpdatedCaption);
+            pnlVitalUpdated.Location = new System.Drawing.Point(14, 392);
+            pnlVitalUpdated.Margin = new System.Windows.Forms.Padding(4);
+            pnlVitalUpdated.Name = "pnlVitalUpdated";
+            pnlVitalUpdated.Size = new System.Drawing.Size(430, 60);
+            pnlVitalUpdated.TabIndex = 6;
+            // 
+            // lblVitalUpdated
+            // 
+            lblVitalUpdated.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblVitalUpdated.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            lblVitalUpdated.Location = new System.Drawing.Point(10, 32);
+            lblVitalUpdated.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblVitalUpdated.Name = "lblVitalUpdated";
+            lblVitalUpdated.Size = new System.Drawing.Size(637, 28);
+            lblVitalUpdated.TabIndex = 1;
+            lblVitalUpdated.Text = "--";
+            // 
+            // lblVitalUpdatedCaption
+            // 
+            lblVitalUpdatedCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblVitalUpdatedCaption.Location = new System.Drawing.Point(10, 10);
+            lblVitalUpdatedCaption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblVitalUpdatedCaption.Name = "lblVitalUpdatedCaption";
+            lblVitalUpdatedCaption.Size = new System.Drawing.Size(220, 20);
+            lblVitalUpdatedCaption.TabIndex = 0;
+            lblVitalUpdatedCaption.Text = "Updated";
+            // 
+            // pnlVitalStatus
+            // 
+            pnlVitalStatus.BackColor = System.Drawing.SystemColors.Window;
+            pnlVitalStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            pnlVitalStatus.Controls.Add(lblVitalStatus);
+            pnlVitalStatus.Controls.Add(lblVitalStatusCaption);
+            pnlVitalStatus.Location = new System.Drawing.Point(14, 324);
+            pnlVitalStatus.Margin = new System.Windows.Forms.Padding(4);
+            pnlVitalStatus.Name = "pnlVitalStatus";
+            pnlVitalStatus.Size = new System.Drawing.Size(430, 60);
+            pnlVitalStatus.TabIndex = 5;
+            // 
+            // lblVitalStatus
+            // 
+            lblVitalStatus.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblVitalStatus.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            lblVitalStatus.Location = new System.Drawing.Point(10, 32);
+            lblVitalStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblVitalStatus.Name = "lblVitalStatus";
+            lblVitalStatus.Size = new System.Drawing.Size(413, 28);
+            lblVitalStatus.TabIndex = 1;
+            lblVitalStatus.Text = "--";
+            // 
+            // lblVitalStatusCaption
+            // 
+            lblVitalStatusCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblVitalStatusCaption.Location = new System.Drawing.Point(10, 10);
+            lblVitalStatusCaption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblVitalStatusCaption.Name = "lblVitalStatusCaption";
+            lblVitalStatusCaption.Size = new System.Drawing.Size(220, 20);
+            lblVitalStatusCaption.TabIndex = 0;
+            lblVitalStatusCaption.Text = "Status";
+            // 
+            // pnlVitalTemperature
+            // 
+            pnlVitalTemperature.BackColor = System.Drawing.SystemColors.Window;
+            pnlVitalTemperature.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            pnlVitalTemperature.Controls.Add(lblVitalTemperature);
+            pnlVitalTemperature.Controls.Add(lblVitalTemperatureCaption);
+            pnlVitalTemperature.Location = new System.Drawing.Point(14, 120);
+            pnlVitalTemperature.Margin = new System.Windows.Forms.Padding(4);
+            pnlVitalTemperature.Name = "pnlVitalTemperature";
+            pnlVitalTemperature.Size = new System.Drawing.Size(430, 60);
+            pnlVitalTemperature.TabIndex = 4;
+            // 
+            // lblVitalTemperature
+            // 
+            lblVitalTemperature.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblVitalTemperature.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            lblVitalTemperature.Location = new System.Drawing.Point(10, 32);
+            lblVitalTemperature.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblVitalTemperature.Name = "lblVitalTemperature";
+            lblVitalTemperature.Size = new System.Drawing.Size(414, 28);
+            lblVitalTemperature.TabIndex = 1;
+            lblVitalTemperature.Text = "--";
+            // 
+            // lblVitalTemperatureCaption
+            // 
+            lblVitalTemperatureCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblVitalTemperatureCaption.Location = new System.Drawing.Point(10, 10);
+            lblVitalTemperatureCaption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblVitalTemperatureCaption.Name = "lblVitalTemperatureCaption";
+            lblVitalTemperatureCaption.Size = new System.Drawing.Size(220, 20);
+            lblVitalTemperatureCaption.TabIndex = 0;
+            lblVitalTemperatureCaption.Text = "Temperature";
+            // 
+            // pnlVitalOxygen
+            // 
+            pnlVitalOxygen.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            pnlVitalOxygen.BackColor = System.Drawing.SystemColors.Window;
+            pnlVitalOxygen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            pnlVitalOxygen.Controls.Add(lblVitalOxygen);
+            pnlVitalOxygen.Controls.Add(lblVitalOxygenCaption);
+            pnlVitalOxygen.Location = new System.Drawing.Point(14, 256);
+            pnlVitalOxygen.Margin = new System.Windows.Forms.Padding(4);
+            pnlVitalOxygen.Name = "pnlVitalOxygen";
+            pnlVitalOxygen.Size = new System.Drawing.Size(430, 60);
+            pnlVitalOxygen.TabIndex = 3;
+            // 
+            // lblVitalOxygen
+            // 
+            lblVitalOxygen.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblVitalOxygen.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            lblVitalOxygen.Location = new System.Drawing.Point(10, 32);
+            lblVitalOxygen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblVitalOxygen.Name = "lblVitalOxygen";
+            lblVitalOxygen.Size = new System.Drawing.Size(413, 28);
+            lblVitalOxygen.TabIndex = 1;
+            lblVitalOxygen.Text = "--";
+            // 
+            // lblVitalOxygenCaption
+            // 
+            lblVitalOxygenCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblVitalOxygenCaption.Location = new System.Drawing.Point(10, 10);
+            lblVitalOxygenCaption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblVitalOxygenCaption.Name = "lblVitalOxygenCaption";
+            lblVitalOxygenCaption.Size = new System.Drawing.Size(220, 20);
+            lblVitalOxygenCaption.TabIndex = 0;
+            lblVitalOxygenCaption.Text = "Oxygen";
+            // 
+            // pnlVitalBloodPressure
+            // 
+            pnlVitalBloodPressure.BackColor = System.Drawing.SystemColors.Window;
+            pnlVitalBloodPressure.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            pnlVitalBloodPressure.Controls.Add(lblVitalBloodPressure);
+            pnlVitalBloodPressure.Controls.Add(lblVitalBloodPressureCaption);
+            pnlVitalBloodPressure.Location = new System.Drawing.Point(14, 188);
+            pnlVitalBloodPressure.Margin = new System.Windows.Forms.Padding(4);
+            pnlVitalBloodPressure.Name = "pnlVitalBloodPressure";
+            pnlVitalBloodPressure.Size = new System.Drawing.Size(430, 60);
+            pnlVitalBloodPressure.TabIndex = 2;
+            // 
+            // lblVitalBloodPressure
+            // 
+            lblVitalBloodPressure.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblVitalBloodPressure.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            lblVitalBloodPressure.Location = new System.Drawing.Point(10, 32);
+            lblVitalBloodPressure.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblVitalBloodPressure.Name = "lblVitalBloodPressure";
+            lblVitalBloodPressure.Size = new System.Drawing.Size(413, 28);
+            lblVitalBloodPressure.TabIndex = 1;
+            lblVitalBloodPressure.Text = "--";
+            // 
+            // lblVitalBloodPressureCaption
+            // 
+            lblVitalBloodPressureCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblVitalBloodPressureCaption.Location = new System.Drawing.Point(10, 10);
+            lblVitalBloodPressureCaption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblVitalBloodPressureCaption.Name = "lblVitalBloodPressureCaption";
+            lblVitalBloodPressureCaption.Size = new System.Drawing.Size(220, 20);
+            lblVitalBloodPressureCaption.TabIndex = 0;
+            lblVitalBloodPressureCaption.Text = "Blood Pressure";
+            lblVitalBloodPressureCaption.Click += lblVitalBloodPressureCaption_Click;
+            // 
+            // pnlVitalHeartRate
+            // 
+            pnlVitalHeartRate.BackColor = System.Drawing.SystemColors.Window;
+            pnlVitalHeartRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            pnlVitalHeartRate.Controls.Add(lblVitalHeartRate);
+            pnlVitalHeartRate.Controls.Add(lblVitalHeartRateCaption);
+            pnlVitalHeartRate.Location = new System.Drawing.Point(14, 52);
+            pnlVitalHeartRate.Margin = new System.Windows.Forms.Padding(4);
+            pnlVitalHeartRate.Name = "pnlVitalHeartRate";
+            pnlVitalHeartRate.Size = new System.Drawing.Size(430, 60);
+            pnlVitalHeartRate.TabIndex = 1;
+            // 
+            // lblVitalHeartRate
+            // 
+            lblVitalHeartRate.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblVitalHeartRate.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            lblVitalHeartRate.Location = new System.Drawing.Point(10, 32);
+            lblVitalHeartRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblVitalHeartRate.Name = "lblVitalHeartRate";
+            lblVitalHeartRate.Size = new System.Drawing.Size(414, 28);
+            lblVitalHeartRate.TabIndex = 1;
+            lblVitalHeartRate.Text = "--";
+            // 
+            // lblVitalHeartRateCaption
+            // 
+            lblVitalHeartRateCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblVitalHeartRateCaption.Location = new System.Drawing.Point(10, 10);
+            lblVitalHeartRateCaption.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblVitalHeartRateCaption.Name = "lblVitalHeartRateCaption";
+            lblVitalHeartRateCaption.Size = new System.Drawing.Size(220, 20);
+            lblVitalHeartRateCaption.TabIndex = 0;
+            lblVitalHeartRateCaption.Text = "Heart Rate";
+            // 
+            // grpPatientNextAppointment
+            // 
+            grpPatientNextAppointment.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            grpPatientNextAppointment.Controls.Add(lblPatientAppointmentPlaceholder);
+            grpPatientNextAppointment.Controls.Add(lblPatientAppointmentNotesValue);
+            grpPatientNextAppointment.Controls.Add(lblPatientAppointmentNotesCaption);
+            grpPatientNextAppointment.Controls.Add(lblPatientAppointmentReasonValue);
+            grpPatientNextAppointment.Controls.Add(lblPatientAppointmentReasonCaption);
+            grpPatientNextAppointment.Controls.Add(lblPatientAppointmentStatusValue);
+            grpPatientNextAppointment.Controls.Add(lblPatientAppointmentStatusCaption);
+            grpPatientNextAppointment.Controls.Add(lblPatientAppointmentDoctorValue);
+            grpPatientNextAppointment.Controls.Add(lblPatientAppointmentDoctorCaption);
+            grpPatientNextAppointment.Controls.Add(lblPatientAppointmentTimeValue);
+            grpPatientNextAppointment.Controls.Add(lblPatientAppointmentTimeCaption);
+            grpPatientNextAppointment.Controls.Add(lblPatientAppointmentDateValue);
+            grpPatientNextAppointment.Controls.Add(lblPatientAppointmentDateCaption);
+            grpPatientNextAppointment.Controls.Add(pnlPatientAppointmentStatus);
+            grpPatientNextAppointment.Location = new System.Drawing.Point(20, 20);
+            grpPatientNextAppointment.Margin = new System.Windows.Forms.Padding(4);
+            grpPatientNextAppointment.Name = "grpPatientNextAppointment";
+            grpPatientNextAppointment.Padding = new System.Windows.Forms.Padding(4);
+            grpPatientNextAppointment.Size = new System.Drawing.Size(646, 210);
+            grpPatientNextAppointment.TabIndex = 0;
+            grpPatientNextAppointment.TabStop = false;
+            grpPatientNextAppointment.Text = "Next Appointment";
+            // 
+            // lblPatientAppointmentPlaceholder
+            // 
+            lblPatientAppointmentPlaceholder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblPatientAppointmentPlaceholder.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic);
+            lblPatientAppointmentPlaceholder.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblPatientAppointmentPlaceholder.Location = new System.Drawing.Point(8, 174);
+            lblPatientAppointmentPlaceholder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lblPatientAppointmentPlaceholder.Name = "lblPatientAppointmentPlaceholder";
+            lblPatientAppointmentPlaceholder.Size = new System.Drawing.Size(527, 32);
+            lblPatientAppointmentPlaceholder.TabIndex = 13;
+            lblPatientAppointmentPlaceholder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            lblPatientAppointmentPlaceholder.Visible = false;
+            // 
+            // lblPatientAppointmentNotesValue
+            // 
+            lblPatientAppointmentNotesValue.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblPatientAppointmentNotesValue.Location = new System.Drawing.Point(121, 137);
+            lblPatientAppointmentNotesValue.Name = "lblPatientAppointmentNotesValue";
+            lblPatientAppointmentNotesValue.Size = new System.Drawing.Size(521, 20);
+            lblPatientAppointmentNotesValue.TabIndex = 12;
+            // 
+            // lblPatientAppointmentNotesCaption
+            // 
+            lblPatientAppointmentNotesCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblPatientAppointmentNotesCaption.Location = new System.Drawing.Point(34, 136);
+            lblPatientAppointmentNotesCaption.Name = "lblPatientAppointmentNotesCaption";
+            lblPatientAppointmentNotesCaption.Size = new System.Drawing.Size(70, 20);
+            lblPatientAppointmentNotesCaption.TabIndex = 11;
+            lblPatientAppointmentNotesCaption.Text = "Notes";
+            // 
+            // lblPatientAppointmentReasonValue
+            // 
+            lblPatientAppointmentReasonValue.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblPatientAppointmentReasonValue.Location = new System.Drawing.Point(121, 115);
+            lblPatientAppointmentReasonValue.Name = "lblPatientAppointmentReasonValue";
+            lblPatientAppointmentReasonValue.Size = new System.Drawing.Size(521, 20);
+            lblPatientAppointmentReasonValue.TabIndex = 10;
+            // 
+            // lblPatientAppointmentReasonCaption
+            // 
+            lblPatientAppointmentReasonCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblPatientAppointmentReasonCaption.Location = new System.Drawing.Point(34, 114);
+            lblPatientAppointmentReasonCaption.Name = "lblPatientAppointmentReasonCaption";
+            lblPatientAppointmentReasonCaption.Size = new System.Drawing.Size(70, 20);
+            lblPatientAppointmentReasonCaption.TabIndex = 9;
+            lblPatientAppointmentReasonCaption.Text = "Reason";
+            // 
+            // lblPatientAppointmentStatusValue
+            // 
+            lblPatientAppointmentStatusValue.Location = new System.Drawing.Point(120, 92);
+            lblPatientAppointmentStatusValue.Name = "lblPatientAppointmentStatusValue";
+            lblPatientAppointmentStatusValue.Size = new System.Drawing.Size(521, 20);
+            lblPatientAppointmentStatusValue.TabIndex = 8;
+            // 
+            // lblPatientAppointmentStatusCaption
+            // 
+            lblPatientAppointmentStatusCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblPatientAppointmentStatusCaption.Location = new System.Drawing.Point(34, 92);
+            lblPatientAppointmentStatusCaption.Name = "lblPatientAppointmentStatusCaption";
+            lblPatientAppointmentStatusCaption.Size = new System.Drawing.Size(70, 20);
+            lblPatientAppointmentStatusCaption.TabIndex = 7;
+            lblPatientAppointmentStatusCaption.Text = "Status";
+            // 
+            // lblPatientAppointmentDoctorValue
+            // 
+            lblPatientAppointmentDoctorValue.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblPatientAppointmentDoctorValue.Location = new System.Drawing.Point(121, 71);
+            lblPatientAppointmentDoctorValue.Name = "lblPatientAppointmentDoctorValue";
+            lblPatientAppointmentDoctorValue.Size = new System.Drawing.Size(521, 20);
+            lblPatientAppointmentDoctorValue.TabIndex = 6;
+            // 
+            // lblPatientAppointmentDoctorCaption
+            // 
+            lblPatientAppointmentDoctorCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblPatientAppointmentDoctorCaption.Location = new System.Drawing.Point(34, 70);
+            lblPatientAppointmentDoctorCaption.Name = "lblPatientAppointmentDoctorCaption";
+            lblPatientAppointmentDoctorCaption.Size = new System.Drawing.Size(70, 20);
+            lblPatientAppointmentDoctorCaption.TabIndex = 5;
+            lblPatientAppointmentDoctorCaption.Text = "Doctor";
+            // 
+            // lblPatientAppointmentTimeValue
+            // 
+            lblPatientAppointmentTimeValue.Location = new System.Drawing.Point(120, 48);
+            lblPatientAppointmentTimeValue.Name = "lblPatientAppointmentTimeValue";
+            lblPatientAppointmentTimeValue.Size = new System.Drawing.Size(521, 20);
+            lblPatientAppointmentTimeValue.TabIndex = 4;
+            // 
+            // lblPatientAppointmentTimeCaption
+            // 
+            lblPatientAppointmentTimeCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblPatientAppointmentTimeCaption.Location = new System.Drawing.Point(34, 48);
+            lblPatientAppointmentTimeCaption.Name = "lblPatientAppointmentTimeCaption";
+            lblPatientAppointmentTimeCaption.Size = new System.Drawing.Size(70, 20);
+            lblPatientAppointmentTimeCaption.TabIndex = 3;
+            lblPatientAppointmentTimeCaption.Text = "Time";
+            // 
+            // lblPatientAppointmentDateValue
+            // 
+            lblPatientAppointmentDateValue.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lblPatientAppointmentDateValue.Location = new System.Drawing.Point(121, 27);
+            lblPatientAppointmentDateValue.Name = "lblPatientAppointmentDateValue";
+            lblPatientAppointmentDateValue.Size = new System.Drawing.Size(521, 20);
+            lblPatientAppointmentDateValue.TabIndex = 2;
+            // 
+            // lblPatientAppointmentDateCaption
+            // 
+            lblPatientAppointmentDateCaption.ForeColor = System.Drawing.SystemColors.GrayText;
+            lblPatientAppointmentDateCaption.Location = new System.Drawing.Point(34, 26);
+            lblPatientAppointmentDateCaption.Name = "lblPatientAppointmentDateCaption";
+            lblPatientAppointmentDateCaption.Size = new System.Drawing.Size(70, 20);
+            lblPatientAppointmentDateCaption.TabIndex = 1;
+            lblPatientAppointmentDateCaption.Text = "Date";
+            // 
+            // pnlPatientAppointmentStatus
+            // 
+            pnlPatientAppointmentStatus.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            pnlPatientAppointmentStatus.BackColor = System.Drawing.SystemColors.ControlDark;
+            pnlPatientAppointmentStatus.Location = new System.Drawing.Point(19, 25);
+            pnlPatientAppointmentStatus.Name = "pnlPatientAppointmentStatus";
+            pnlPatientAppointmentStatus.Size = new System.Drawing.Size(6, 128);
+            pnlPatientAppointmentStatus.TabIndex = 0;
             // 
             // patientsTab
             // 
             patientsTab.Controls.Add(grpPatientDetails);
             patientsTab.Controls.Add(patientGrid);
             patientsTab.Controls.Add(grpPatientSearch);
-            patientsTab.Location = new System.Drawing.Point(4, 29);
-            patientsTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            patientsTab.Location = new System.Drawing.Point(4, 24);
+            patientsTab.Margin = new System.Windows.Forms.Padding(4);
             patientsTab.Name = "patientsTab";
-            patientsTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            patientsTab.Size = new System.Drawing.Size(1571, 1001);
+            patientsTab.Padding = new System.Windows.Forms.Padding(4);
+            patientsTab.Size = new System.Drawing.Size(1374, 756);
             patientsTab.TabIndex = 1;
             patientsTab.Text = "Patients";
             patientsTab.UseVisualStyleBackColor = true;
@@ -587,32 +1551,32 @@ namespace HospitalManagement.Client
             grpPatientDetails.Controls.Add(lblPatientName);
             grpPatientDetails.Controls.Add(txtPatientId);
             grpPatientDetails.Controls.Add(lblPatientId);
-            grpPatientDetails.Location = new System.Drawing.Point(1109, 148);
-            grpPatientDetails.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            grpPatientDetails.Location = new System.Drawing.Point(970, 111);
+            grpPatientDetails.Margin = new System.Windows.Forms.Padding(4);
             grpPatientDetails.Name = "grpPatientDetails";
-            grpPatientDetails.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpPatientDetails.Size = new System.Drawing.Size(427, 808);
+            grpPatientDetails.Padding = new System.Windows.Forms.Padding(4);
+            grpPatientDetails.Size = new System.Drawing.Size(374, 603);
             grpPatientDetails.TabIndex = 2;
             grpPatientDetails.TabStop = false;
-            grpPatientDetails.Text = "Patient Details";
+            grpPatientDetails.Text = "Add / Edit Patient";
             // 
             // btnClearPatient
             // 
-            btnClearPatient.Location = new System.Drawing.Point(224, 720);
-            btnClearPatient.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnClearPatient.Location = new System.Drawing.Point(196, 540);
+            btnClearPatient.Margin = new System.Windows.Forms.Padding(4);
             btnClearPatient.Name = "btnClearPatient";
-            btnClearPatient.Size = new System.Drawing.Size(171, 43);
+            btnClearPatient.Size = new System.Drawing.Size(150, 32);
             btnClearPatient.TabIndex = 18;
-            btnClearPatient.Text = "Clear";
+            btnClearPatient.Text = "Clear Form";
             btnClearPatient.UseVisualStyleBackColor = true;
             btnClearPatient.Click += btnClearPatient_Click;
             // 
             // btnDeletePatient
             // 
-            btnDeletePatient.Location = new System.Drawing.Point(32, 720);
-            btnDeletePatient.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnDeletePatient.Location = new System.Drawing.Point(28, 540);
+            btnDeletePatient.Margin = new System.Windows.Forms.Padding(4);
             btnDeletePatient.Name = "btnDeletePatient";
-            btnDeletePatient.Size = new System.Drawing.Size(171, 43);
+            btnDeletePatient.Size = new System.Drawing.Size(150, 32);
             btnDeletePatient.TabIndex = 17;
             btnDeletePatient.Text = "Delete Patient";
             btnDeletePatient.UseVisualStyleBackColor = true;
@@ -620,21 +1584,21 @@ namespace HospitalManagement.Client
             // 
             // btnUpdatePatient
             // 
-            btnUpdatePatient.Location = new System.Drawing.Point(224, 665);
-            btnUpdatePatient.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnUpdatePatient.Location = new System.Drawing.Point(196, 499);
+            btnUpdatePatient.Margin = new System.Windows.Forms.Padding(4);
             btnUpdatePatient.Name = "btnUpdatePatient";
-            btnUpdatePatient.Size = new System.Drawing.Size(171, 43);
+            btnUpdatePatient.Size = new System.Drawing.Size(150, 32);
             btnUpdatePatient.TabIndex = 16;
-            btnUpdatePatient.Text = "Update";
+            btnUpdatePatient.Text = "Save Changes";
             btnUpdatePatient.UseVisualStyleBackColor = true;
             btnUpdatePatient.Click += btnUpdatePatient_Click;
             // 
             // btnAddPatient
             // 
-            btnAddPatient.Location = new System.Drawing.Point(32, 665);
-            btnAddPatient.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnAddPatient.Location = new System.Drawing.Point(28, 499);
+            btnAddPatient.Margin = new System.Windows.Forms.Padding(4);
             btnAddPatient.Name = "btnAddPatient";
-            btnAddPatient.Size = new System.Drawing.Size(171, 43);
+            btnAddPatient.Size = new System.Drawing.Size(150, 32);
             btnAddPatient.TabIndex = 15;
             btnAddPatient.Text = "Add Patient";
             btnAddPatient.UseVisualStyleBackColor = true;
@@ -643,10 +1607,10 @@ namespace HospitalManagement.Client
             // chkPatientAdmitted
             // 
             chkPatientAdmitted.AutoSize = true;
-            chkPatientAdmitted.Location = new System.Drawing.Point(32, 535);
-            chkPatientAdmitted.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            chkPatientAdmitted.Location = new System.Drawing.Point(28, 401);
+            chkPatientAdmitted.Margin = new System.Windows.Forms.Padding(4);
             chkPatientAdmitted.Name = "chkPatientAdmitted";
-            chkPatientAdmitted.Size = new System.Drawing.Size(157, 24);
+            chkPatientAdmitted.Size = new System.Drawing.Size(128, 19);
             chkPatientAdmitted.TabIndex = 14;
             chkPatientAdmitted.Text = "Currently Admitted";
             chkPatientAdmitted.UseVisualStyleBackColor = true;
@@ -656,75 +1620,75 @@ namespace HospitalManagement.Client
             cmbPatientDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cmbPatientDepartment.FormattingEnabled = true;
             cmbPatientDepartment.Items.AddRange(new object[] { "Emergency", "General Medicine", "ICU", "Pediatrics", "Surgery", "Radiology" });
-            cmbPatientDepartment.Location = new System.Drawing.Point(32, 480);
-            cmbPatientDepartment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cmbPatientDepartment.Location = new System.Drawing.Point(28, 360);
+            cmbPatientDepartment.Margin = new System.Windows.Forms.Padding(4);
             cmbPatientDepartment.Name = "cmbPatientDepartment";
-            cmbPatientDepartment.Size = new System.Drawing.Size(361, 28);
+            cmbPatientDepartment.Size = new System.Drawing.Size(316, 23);
             cmbPatientDepartment.TabIndex = 13;
             // 
             // lblPatientDepartment
             // 
             lblPatientDepartment.AutoSize = true;
-            lblPatientDepartment.Location = new System.Drawing.Point(32, 455);
+            lblPatientDepartment.Location = new System.Drawing.Point(28, 341);
             lblPatientDepartment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblPatientDepartment.Name = "lblPatientDepartment";
-            lblPatientDepartment.Size = new System.Drawing.Size(89, 20);
+            lblPatientDepartment.Size = new System.Drawing.Size(70, 15);
             lblPatientDepartment.TabIndex = 12;
             lblPatientDepartment.Text = "Department";
             // 
             // txtPatientNotes
             // 
-            txtPatientNotes.Location = new System.Drawing.Point(32, 591);
-            txtPatientNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtPatientNotes.Location = new System.Drawing.Point(28, 443);
+            txtPatientNotes.Margin = new System.Windows.Forms.Padding(4);
             txtPatientNotes.Multiline = true;
             txtPatientNotes.Name = "txtPatientNotes";
-            txtPatientNotes.Size = new System.Drawing.Size(361, 47);
+            txtPatientNotes.Size = new System.Drawing.Size(316, 36);
             txtPatientNotes.TabIndex = 11;
             // 
             // lblPatientNotes
             // 
             lblPatientNotes.AutoSize = true;
-            lblPatientNotes.Location = new System.Drawing.Point(32, 566);
+            lblPatientNotes.Location = new System.Drawing.Point(28, 424);
             lblPatientNotes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblPatientNotes.Name = "lblPatientNotes";
-            lblPatientNotes.Size = new System.Drawing.Size(105, 20);
+            lblPatientNotes.Size = new System.Drawing.Size(83, 15);
             lblPatientNotes.TabIndex = 10;
             lblPatientNotes.Text = "Medical Notes";
             // 
             // txtPatientPhone
             // 
-            txtPatientPhone.Location = new System.Drawing.Point(32, 406);
-            txtPatientPhone.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtPatientPhone.Location = new System.Drawing.Point(28, 304);
+            txtPatientPhone.Margin = new System.Windows.Forms.Padding(4);
             txtPatientPhone.Name = "txtPatientPhone";
-            txtPatientPhone.Size = new System.Drawing.Size(361, 27);
+            txtPatientPhone.Size = new System.Drawing.Size(316, 23);
             txtPatientPhone.TabIndex = 9;
             // 
             // lblPatientPhone
             // 
             lblPatientPhone.AutoSize = true;
-            lblPatientPhone.Location = new System.Drawing.Point(32, 382);
+            lblPatientPhone.Location = new System.Drawing.Point(28, 286);
             lblPatientPhone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblPatientPhone.Name = "lblPatientPhone";
-            lblPatientPhone.Size = new System.Drawing.Size(108, 20);
+            lblPatientPhone.Size = new System.Drawing.Size(88, 15);
             lblPatientPhone.TabIndex = 8;
             lblPatientPhone.Text = "Phone Number";
             // 
             // dtpPatientDob
             // 
             dtpPatientDob.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            dtpPatientDob.Location = new System.Drawing.Point(32, 332);
-            dtpPatientDob.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dtpPatientDob.Location = new System.Drawing.Point(28, 249);
+            dtpPatientDob.Margin = new System.Windows.Forms.Padding(4);
             dtpPatientDob.Name = "dtpPatientDob";
-            dtpPatientDob.Size = new System.Drawing.Size(361, 27);
+            dtpPatientDob.Size = new System.Drawing.Size(316, 23);
             dtpPatientDob.TabIndex = 7;
             // 
             // lblPatientDob
             // 
             lblPatientDob.AutoSize = true;
-            lblPatientDob.Location = new System.Drawing.Point(32, 308);
+            lblPatientDob.Location = new System.Drawing.Point(28, 231);
             lblPatientDob.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblPatientDob.Name = "lblPatientDob";
-            lblPatientDob.Size = new System.Drawing.Size(94, 20);
+            lblPatientDob.Size = new System.Drawing.Size(73, 15);
             lblPatientDob.TabIndex = 6;
             lblPatientDob.Text = "Date of Birth";
             // 
@@ -733,57 +1697,59 @@ namespace HospitalManagement.Client
             cmbPatientGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cmbPatientGender.FormattingEnabled = true;
             cmbPatientGender.Items.AddRange(new object[] { "Female", "Male", "Other", "Prefer not to say" });
-            cmbPatientGender.Location = new System.Drawing.Point(32, 258);
-            cmbPatientGender.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cmbPatientGender.Location = new System.Drawing.Point(28, 194);
+            cmbPatientGender.Margin = new System.Windows.Forms.Padding(4);
             cmbPatientGender.Name = "cmbPatientGender";
-            cmbPatientGender.Size = new System.Drawing.Size(361, 28);
+            cmbPatientGender.Size = new System.Drawing.Size(316, 23);
             cmbPatientGender.TabIndex = 5;
             // 
             // lblPatientGender
             // 
             lblPatientGender.AutoSize = true;
-            lblPatientGender.Location = new System.Drawing.Point(32, 234);
+            lblPatientGender.Location = new System.Drawing.Point(28, 176);
             lblPatientGender.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblPatientGender.Name = "lblPatientGender";
-            lblPatientGender.Size = new System.Drawing.Size(57, 20);
+            lblPatientGender.Size = new System.Drawing.Size(45, 15);
             lblPatientGender.TabIndex = 4;
             lblPatientGender.Text = "Gender";
             // 
             // txtPatientName
             // 
-            txtPatientName.Location = new System.Drawing.Point(32, 185);
-            txtPatientName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtPatientName.Location = new System.Drawing.Point(28, 139);
+            txtPatientName.Margin = new System.Windows.Forms.Padding(4);
             txtPatientName.Name = "txtPatientName";
-            txtPatientName.Size = new System.Drawing.Size(361, 27);
+            txtPatientName.Size = new System.Drawing.Size(316, 23);
             txtPatientName.TabIndex = 3;
             // 
             // lblPatientName
             // 
             lblPatientName.AutoSize = true;
-            lblPatientName.Location = new System.Drawing.Point(32, 160);
+            lblPatientName.Location = new System.Drawing.Point(28, 120);
             lblPatientName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblPatientName.Name = "lblPatientName";
-            lblPatientName.Size = new System.Drawing.Size(98, 20);
+            lblPatientName.Size = new System.Drawing.Size(79, 15);
             lblPatientName.TabIndex = 2;
             lblPatientName.Text = "Patient Name";
             // 
             // txtPatientId
             // 
-            txtPatientId.Location = new System.Drawing.Point(32, 111);
-            txtPatientId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtPatientId.Location = new System.Drawing.Point(28, 83);
+            txtPatientId.Margin = new System.Windows.Forms.Padding(4);
             txtPatientId.Name = "txtPatientId";
-            txtPatientId.Size = new System.Drawing.Size(361, 27);
+            txtPatientId.ReadOnly = true;
+            txtPatientId.Size = new System.Drawing.Size(316, 23);
             txtPatientId.TabIndex = 1;
+            txtPatientId.TabStop = false;
             // 
             // lblPatientId
             // 
             lblPatientId.AutoSize = true;
-            lblPatientId.Location = new System.Drawing.Point(32, 86);
+            lblPatientId.Location = new System.Drawing.Point(28, 64);
             lblPatientId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblPatientId.Name = "lblPatientId";
-            lblPatientId.Size = new System.Drawing.Size(73, 20);
+            lblPatientId.Size = new System.Drawing.Size(95, 15);
             lblPatientId.TabIndex = 0;
-            lblPatientId.Text = "Patient ID";
+            lblPatientId.Text = "Patient ID (Auto)";
             // 
             // patientGrid
             // 
@@ -792,13 +1758,14 @@ namespace HospitalManagement.Client
             patientGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             patientGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             patientGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { patientIdColumn, patientNameColumn, patientDepartmentColumn, patientStatusColumn, patientDoctorColumn });
-            patientGrid.Location = new System.Drawing.Point(32, 148);
-            patientGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            patientGrid.Location = new System.Drawing.Point(28, 111);
+            patientGrid.Margin = new System.Windows.Forms.Padding(4);
             patientGrid.Name = "patientGrid";
             patientGrid.ReadOnly = true;
             patientGrid.RowHeadersWidth = 51;
-            patientGrid.Size = new System.Drawing.Size(1045, 808);
+            patientGrid.Size = new System.Drawing.Size(914, 603);
             patientGrid.TabIndex = 1;
+            patientGrid.CellContentClick += patientGrid_CellContentClick;
             patientGrid.CellDoubleClick += patientGrid_CellDoubleClick;
             // 
             // patientIdColumn
@@ -807,7 +1774,7 @@ namespace HospitalManagement.Client
             patientIdColumn.MinimumWidth = 6;
             patientIdColumn.Name = "patientIdColumn";
             patientIdColumn.ReadOnly = true;
-            patientIdColumn.Width = 125;
+            patientIdColumn.Width = 85;
             // 
             // patientNameColumn
             // 
@@ -850,11 +1817,11 @@ namespace HospitalManagement.Client
             grpPatientSearch.Controls.Add(lblPatientFilter);
             grpPatientSearch.Controls.Add(txtPatientSearch);
             grpPatientSearch.Controls.Add(lblPatientSearch);
-            grpPatientSearch.Location = new System.Drawing.Point(32, 31);
-            grpPatientSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            grpPatientSearch.Location = new System.Drawing.Point(28, 23);
+            grpPatientSearch.Margin = new System.Windows.Forms.Padding(4);
             grpPatientSearch.Name = "grpPatientSearch";
-            grpPatientSearch.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpPatientSearch.Size = new System.Drawing.Size(1504, 92);
+            grpPatientSearch.Padding = new System.Windows.Forms.Padding(4);
+            grpPatientSearch.Size = new System.Drawing.Size(1316, 69);
             grpPatientSearch.TabIndex = 0;
             grpPatientSearch.TabStop = false;
             grpPatientSearch.Text = "Patient Search";
@@ -862,22 +1829,22 @@ namespace HospitalManagement.Client
             // btnPatientRefresh
             // 
             btnPatientRefresh.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnPatientRefresh.Location = new System.Drawing.Point(1355, 31);
-            btnPatientRefresh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnPatientRefresh.Location = new System.Drawing.Point(1186, 23);
+            btnPatientRefresh.Margin = new System.Windows.Forms.Padding(4);
             btnPatientRefresh.Name = "btnPatientRefresh";
-            btnPatientRefresh.Size = new System.Drawing.Size(117, 37);
+            btnPatientRefresh.Size = new System.Drawing.Size(102, 28);
             btnPatientRefresh.TabIndex = 5;
-            btnPatientRefresh.Text = "Refresh";
+            btnPatientRefresh.Text = "Refresh List";
             btnPatientRefresh.UseVisualStyleBackColor = true;
             btnPatientRefresh.Click += btnPatientRefresh_Click;
             // 
             // btnPatientSearch
             // 
             btnPatientSearch.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnPatientSearch.Location = new System.Drawing.Point(1227, 31);
-            btnPatientSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnPatientSearch.Location = new System.Drawing.Point(1074, 23);
+            btnPatientSearch.Margin = new System.Windows.Forms.Padding(4);
             btnPatientSearch.Name = "btnPatientSearch";
-            btnPatientSearch.Size = new System.Drawing.Size(117, 37);
+            btnPatientSearch.Size = new System.Drawing.Size(102, 28);
             btnPatientSearch.TabIndex = 4;
             btnPatientSearch.Text = "Search";
             btnPatientSearch.UseVisualStyleBackColor = true;
@@ -888,49 +1855,49 @@ namespace HospitalManagement.Client
             cmbPatientFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cmbPatientFilter.FormattingEnabled = true;
             cmbPatientFilter.Items.AddRange(new object[] { "All Patients", "Admitted", "Outpatient", "Critical Care", "Discharged" });
-            cmbPatientFilter.Location = new System.Drawing.Point(651, 34);
-            cmbPatientFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cmbPatientFilter.Location = new System.Drawing.Point(443, 27);
+            cmbPatientFilter.Margin = new System.Windows.Forms.Padding(4);
             cmbPatientFilter.Name = "cmbPatientFilter";
-            cmbPatientFilter.Size = new System.Drawing.Size(244, 28);
+            cmbPatientFilter.Size = new System.Drawing.Size(214, 23);
             cmbPatientFilter.TabIndex = 3;
             // 
             // lblPatientFilter
             // 
             lblPatientFilter.AutoSize = true;
-            lblPatientFilter.Location = new System.Drawing.Point(576, 40);
+            lblPatientFilter.Location = new System.Drawing.Point(402, 30);
             lblPatientFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblPatientFilter.Name = "lblPatientFilter";
-            lblPatientFilter.Size = new System.Drawing.Size(42, 20);
+            lblPatientFilter.Size = new System.Drawing.Size(33, 15);
             lblPatientFilter.TabIndex = 2;
             lblPatientFilter.Text = "Filter";
             // 
             // txtPatientSearch
             // 
-            txtPatientSearch.Location = new System.Drawing.Point(139, 34);
-            txtPatientSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtPatientSearch.Location = new System.Drawing.Point(68, 27);
+            txtPatientSearch.Margin = new System.Windows.Forms.Padding(4);
             txtPatientSearch.Name = "txtPatientSearch";
-            txtPatientSearch.Size = new System.Drawing.Size(372, 27);
+            txtPatientSearch.Size = new System.Drawing.Size(326, 23);
             txtPatientSearch.TabIndex = 1;
             // 
             // lblPatientSearch
             // 
             lblPatientSearch.AutoSize = true;
-            lblPatientSearch.Location = new System.Drawing.Point(21, 40);
+            lblPatientSearch.Location = new System.Drawing.Point(18, 30);
             lblPatientSearch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblPatientSearch.Name = "lblPatientSearch";
-            lblPatientSearch.Size = new System.Drawing.Size(86, 20);
+            lblPatientSearch.Size = new System.Drawing.Size(42, 15);
             lblPatientSearch.TabIndex = 0;
-            lblPatientSearch.Text = "Name or ID";
+            lblPatientSearch.Text = "Search";
             // 
             // appointmentsTab
             // 
             appointmentsTab.Controls.Add(appointmentGrid);
             appointmentsTab.Controls.Add(grpAppointmentDetails);
-            appointmentsTab.Location = new System.Drawing.Point(4, 29);
-            appointmentsTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            appointmentsTab.Location = new System.Drawing.Point(4, 24);
+            appointmentsTab.Margin = new System.Windows.Forms.Padding(4);
             appointmentsTab.Name = "appointmentsTab";
-            appointmentsTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            appointmentsTab.Size = new System.Drawing.Size(1571, 1001);
+            appointmentsTab.Padding = new System.Windows.Forms.Padding(4);
+            appointmentsTab.Size = new System.Drawing.Size(1374, 756);
             appointmentsTab.TabIndex = 2;
             appointmentsTab.Text = "Appointments";
             appointmentsTab.UseVisualStyleBackColor = true;
@@ -942,13 +1909,14 @@ namespace HospitalManagement.Client
             appointmentGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             appointmentGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             appointmentGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { appointmentTimeColumn, appointmentPatientColumn, appointmentDoctorColumn, appointmentReasonColumn, appointmentStatusColumn });
-            appointmentGrid.Location = new System.Drawing.Point(501, 37);
-            appointmentGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            appointmentGrid.Location = new System.Drawing.Point(438, 28);
+            appointmentGrid.Margin = new System.Windows.Forms.Padding(4);
             appointmentGrid.Name = "appointmentGrid";
             appointmentGrid.ReadOnly = true;
             appointmentGrid.RowHeadersWidth = 51;
-            appointmentGrid.Size = new System.Drawing.Size(1035, 919);
+            appointmentGrid.Size = new System.Drawing.Size(906, 650);
             appointmentGrid.TabIndex = 1;
+            appointmentGrid.CellDoubleClick += appointmentGrid_CellDoubleClick;
             // 
             // appointmentTimeColumn
             // 
@@ -993,8 +1961,8 @@ namespace HospitalManagement.Client
             // grpAppointmentDetails
             // 
             grpAppointmentDetails.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            grpAppointmentDetails.Controls.Add(btnClearAppointment);
             grpAppointmentDetails.Controls.Add(btnAppointmentRefresh);
-            grpAppointmentDetails.Controls.Add(btnCancelAppointment);
             grpAppointmentDetails.Controls.Add(btnUpdateAppointment);
             grpAppointmentDetails.Controls.Add(btnAddAppointment);
             grpAppointmentDetails.Controls.Add(txtAppointmentNotes);
@@ -1009,73 +1977,77 @@ namespace HospitalManagement.Client
             grpAppointmentDetails.Controls.Add(lblAppointmentReason);
             grpAppointmentDetails.Controls.Add(cmbAppointmentDoctor);
             grpAppointmentDetails.Controls.Add(lblAppointmentDoctor);
-            grpAppointmentDetails.Controls.Add(txtAppointmentPatient);
+            grpAppointmentDetails.Controls.Add(cmbAppointmentPatientPicker);
             grpAppointmentDetails.Controls.Add(lblAppointmentPatient);
-            grpAppointmentDetails.Location = new System.Drawing.Point(32, 37);
-            grpAppointmentDetails.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            grpAppointmentDetails.Location = new System.Drawing.Point(28, 28);
+            grpAppointmentDetails.Margin = new System.Windows.Forms.Padding(4);
             grpAppointmentDetails.Name = "grpAppointmentDetails";
-            grpAppointmentDetails.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpAppointmentDetails.Size = new System.Drawing.Size(437, 919);
+            grpAppointmentDetails.Padding = new System.Windows.Forms.Padding(4);
+            grpAppointmentDetails.Size = new System.Drawing.Size(382, 650);
             grpAppointmentDetails.TabIndex = 0;
             grpAppointmentDetails.TabStop = false;
-            grpAppointmentDetails.Text = "Schedule Appointment";
+            grpAppointmentDetails.Text = "Add / Edit Appointment";
+            // 
+            // btnClearAppointment
+            // 
+            btnClearAppointment.Location = new System.Drawing.Point(38, 539);
+            btnClearAppointment.Margin = new System.Windows.Forms.Padding(4);
+            btnClearAppointment.Name = "btnClearAppointment";
+            btnClearAppointment.Size = new System.Drawing.Size(150, 30);
+            btnClearAppointment.TabIndex = 18;
+            btnClearAppointment.Text = "Clear Form";
+            btnClearAppointment.UseVisualStyleBackColor = true;
+            btnClearAppointment.Click += btnClearAppointment_Click;
             // 
             // btnAppointmentRefresh
             // 
-            btnAppointmentRefresh.Location = new System.Drawing.Point(235, 806);
-            btnAppointmentRefresh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnAppointmentRefresh.Location = new System.Drawing.Point(204, 539);
+            btnAppointmentRefresh.Margin = new System.Windows.Forms.Padding(4);
             btnAppointmentRefresh.Name = "btnAppointmentRefresh";
-            btnAppointmentRefresh.Size = new System.Drawing.Size(171, 43);
+            btnAppointmentRefresh.Size = new System.Drawing.Size(150, 30);
             btnAppointmentRefresh.TabIndex = 17;
-            btnAppointmentRefresh.Text = "Refresh";
+            btnAppointmentRefresh.Text = "Refresh List";
             btnAppointmentRefresh.UseVisualStyleBackColor = true;
-            // 
-            // btnCancelAppointment
-            // 
-            btnCancelAppointment.Location = new System.Drawing.Point(43, 806);
-            btnCancelAppointment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            btnCancelAppointment.Name = "btnCancelAppointment";
-            btnCancelAppointment.Size = new System.Drawing.Size(171, 43);
-            btnCancelAppointment.TabIndex = 16;
-            btnCancelAppointment.Text = "Cancel Appointment";
-            btnCancelAppointment.UseVisualStyleBackColor = true;
+            btnAppointmentRefresh.Click += btnAppointmentRefresh_Click;
             // 
             // btnUpdateAppointment
             // 
-            btnUpdateAppointment.Location = new System.Drawing.Point(235, 751);
-            btnUpdateAppointment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnUpdateAppointment.Location = new System.Drawing.Point(204, 577);
+            btnUpdateAppointment.Margin = new System.Windows.Forms.Padding(4);
             btnUpdateAppointment.Name = "btnUpdateAppointment";
-            btnUpdateAppointment.Size = new System.Drawing.Size(171, 43);
+            btnUpdateAppointment.Size = new System.Drawing.Size(150, 30);
             btnUpdateAppointment.TabIndex = 15;
-            btnUpdateAppointment.Text = "Update";
+            btnUpdateAppointment.Text = "Save Changes";
             btnUpdateAppointment.UseVisualStyleBackColor = true;
+            btnUpdateAppointment.Click += btnUpdateAppointment_Click;
             // 
             // btnAddAppointment
             // 
-            btnAddAppointment.Location = new System.Drawing.Point(43, 751);
-            btnAddAppointment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnAddAppointment.Location = new System.Drawing.Point(38, 577);
+            btnAddAppointment.Margin = new System.Windows.Forms.Padding(4);
             btnAddAppointment.Name = "btnAddAppointment";
-            btnAddAppointment.Size = new System.Drawing.Size(171, 43);
+            btnAddAppointment.Size = new System.Drawing.Size(150, 30);
             btnAddAppointment.TabIndex = 14;
             btnAddAppointment.Text = "Add Appointment";
             btnAddAppointment.UseVisualStyleBackColor = true;
+            btnAddAppointment.Click += btnAddAppointment_Click;
             // 
             // txtAppointmentNotes
             // 
-            txtAppointmentNotes.Location = new System.Drawing.Point(43, 578);
-            txtAppointmentNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtAppointmentNotes.Location = new System.Drawing.Point(38, 434);
+            txtAppointmentNotes.Margin = new System.Windows.Forms.Padding(4);
             txtAppointmentNotes.Multiline = true;
             txtAppointmentNotes.Name = "txtAppointmentNotes";
-            txtAppointmentNotes.Size = new System.Drawing.Size(361, 133);
+            txtAppointmentNotes.Size = new System.Drawing.Size(316, 82);
             txtAppointmentNotes.TabIndex = 13;
             // 
             // lblAppointmentNotes
             // 
             lblAppointmentNotes.AutoSize = true;
-            lblAppointmentNotes.Location = new System.Drawing.Point(43, 554);
+            lblAppointmentNotes.Location = new System.Drawing.Point(38, 416);
             lblAppointmentNotes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblAppointmentNotes.Name = "lblAppointmentNotes";
-            lblAppointmentNotes.Size = new System.Drawing.Size(48, 20);
+            lblAppointmentNotes.Size = new System.Drawing.Size(38, 15);
             lblAppointmentNotes.TabIndex = 12;
             lblAppointmentNotes.Text = "Notes";
             // 
@@ -1084,76 +2056,76 @@ namespace HospitalManagement.Client
             cmbAppointmentStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cmbAppointmentStatus.FormattingEnabled = true;
             cmbAppointmentStatus.Items.AddRange(new object[] { "Scheduled", "Checked In", "Completed", "Cancelled", "Rescheduled" });
-            cmbAppointmentStatus.Location = new System.Drawing.Point(43, 492);
-            cmbAppointmentStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cmbAppointmentStatus.Location = new System.Drawing.Point(38, 369);
+            cmbAppointmentStatus.Margin = new System.Windows.Forms.Padding(4);
             cmbAppointmentStatus.Name = "cmbAppointmentStatus";
-            cmbAppointmentStatus.Size = new System.Drawing.Size(361, 28);
+            cmbAppointmentStatus.Size = new System.Drawing.Size(316, 23);
             cmbAppointmentStatus.TabIndex = 11;
             // 
             // lblAppointmentStatus
             // 
             lblAppointmentStatus.AutoSize = true;
-            lblAppointmentStatus.Location = new System.Drawing.Point(43, 468);
+            lblAppointmentStatus.Location = new System.Drawing.Point(38, 351);
             lblAppointmentStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblAppointmentStatus.Name = "lblAppointmentStatus";
-            lblAppointmentStatus.Size = new System.Drawing.Size(49, 20);
+            lblAppointmentStatus.Size = new System.Drawing.Size(39, 15);
             lblAppointmentStatus.TabIndex = 10;
             lblAppointmentStatus.Text = "Status";
             // 
             // dtpAppointmentTime
             // 
             dtpAppointmentTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            dtpAppointmentTime.Location = new System.Drawing.Point(43, 406);
-            dtpAppointmentTime.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dtpAppointmentTime.Location = new System.Drawing.Point(38, 304);
+            dtpAppointmentTime.Margin = new System.Windows.Forms.Padding(4);
             dtpAppointmentTime.Name = "dtpAppointmentTime";
             dtpAppointmentTime.ShowUpDown = true;
-            dtpAppointmentTime.Size = new System.Drawing.Size(361, 27);
+            dtpAppointmentTime.Size = new System.Drawing.Size(316, 23);
             dtpAppointmentTime.TabIndex = 9;
             // 
             // lblAppointmentTime
             // 
             lblAppointmentTime.AutoSize = true;
-            lblAppointmentTime.Location = new System.Drawing.Point(43, 382);
+            lblAppointmentTime.Location = new System.Drawing.Point(38, 286);
             lblAppointmentTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblAppointmentTime.Name = "lblAppointmentTime";
-            lblAppointmentTime.Size = new System.Drawing.Size(42, 20);
+            lblAppointmentTime.Size = new System.Drawing.Size(34, 15);
             lblAppointmentTime.TabIndex = 8;
             lblAppointmentTime.Text = "Time";
             // 
             // dtpAppointmentDate
             // 
             dtpAppointmentDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            dtpAppointmentDate.Location = new System.Drawing.Point(43, 320);
-            dtpAppointmentDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dtpAppointmentDate.Location = new System.Drawing.Point(38, 240);
+            dtpAppointmentDate.Margin = new System.Windows.Forms.Padding(4);
             dtpAppointmentDate.Name = "dtpAppointmentDate";
-            dtpAppointmentDate.Size = new System.Drawing.Size(361, 27);
+            dtpAppointmentDate.Size = new System.Drawing.Size(316, 23);
             dtpAppointmentDate.TabIndex = 7;
             // 
             // lblAppointmentDate
             // 
             lblAppointmentDate.AutoSize = true;
-            lblAppointmentDate.Location = new System.Drawing.Point(43, 295);
+            lblAppointmentDate.Location = new System.Drawing.Point(38, 221);
             lblAppointmentDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblAppointmentDate.Name = "lblAppointmentDate";
-            lblAppointmentDate.Size = new System.Drawing.Size(41, 20);
+            lblAppointmentDate.Size = new System.Drawing.Size(31, 15);
             lblAppointmentDate.TabIndex = 6;
             lblAppointmentDate.Text = "Date";
             // 
             // txtAppointmentReason
             // 
-            txtAppointmentReason.Location = new System.Drawing.Point(43, 234);
-            txtAppointmentReason.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtAppointmentReason.Location = new System.Drawing.Point(38, 176);
+            txtAppointmentReason.Margin = new System.Windows.Forms.Padding(4);
             txtAppointmentReason.Name = "txtAppointmentReason";
-            txtAppointmentReason.Size = new System.Drawing.Size(361, 27);
+            txtAppointmentReason.Size = new System.Drawing.Size(316, 23);
             txtAppointmentReason.TabIndex = 5;
             // 
             // lblAppointmentReason
             // 
             lblAppointmentReason.AutoSize = true;
-            lblAppointmentReason.Location = new System.Drawing.Point(43, 209);
+            lblAppointmentReason.Location = new System.Drawing.Point(38, 157);
             lblAppointmentReason.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblAppointmentReason.Name = "lblAppointmentReason";
-            lblAppointmentReason.Size = new System.Drawing.Size(89, 20);
+            lblAppointmentReason.Size = new System.Drawing.Size(70, 15);
             lblAppointmentReason.TabIndex = 4;
             lblAppointmentReason.Text = "Visit Reason";
             // 
@@ -1162,50 +2134,52 @@ namespace HospitalManagement.Client
             cmbAppointmentDoctor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cmbAppointmentDoctor.FormattingEnabled = true;
             cmbAppointmentDoctor.Items.AddRange(new object[] { "Dr. Adams", "Dr. Chen", "Dr. Patel", "Dr. Rivera", "Nurse Station" });
-            cmbAppointmentDoctor.Location = new System.Drawing.Point(43, 148);
-            cmbAppointmentDoctor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cmbAppointmentDoctor.Location = new System.Drawing.Point(38, 111);
+            cmbAppointmentDoctor.Margin = new System.Windows.Forms.Padding(4);
             cmbAppointmentDoctor.Name = "cmbAppointmentDoctor";
-            cmbAppointmentDoctor.Size = new System.Drawing.Size(361, 28);
+            cmbAppointmentDoctor.Size = new System.Drawing.Size(316, 23);
             cmbAppointmentDoctor.TabIndex = 3;
             // 
             // lblAppointmentDoctor
             // 
             lblAppointmentDoctor.AutoSize = true;
-            lblAppointmentDoctor.Location = new System.Drawing.Point(43, 123);
+            lblAppointmentDoctor.Location = new System.Drawing.Point(38, 92);
             lblAppointmentDoctor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblAppointmentDoctor.Name = "lblAppointmentDoctor";
-            lblAppointmentDoctor.Size = new System.Drawing.Size(55, 20);
+            lblAppointmentDoctor.Size = new System.Drawing.Size(43, 15);
             lblAppointmentDoctor.TabIndex = 2;
             lblAppointmentDoctor.Text = "Doctor";
             // 
-            // txtAppointmentPatient
+            // cmbAppointmentPatientPicker
             // 
-            txtAppointmentPatient.Location = new System.Drawing.Point(43, 62);
-            txtAppointmentPatient.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            txtAppointmentPatient.Name = "txtAppointmentPatient";
-            txtAppointmentPatient.Size = new System.Drawing.Size(361, 27);
-            txtAppointmentPatient.TabIndex = 1;
+            cmbAppointmentPatientPicker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            cmbAppointmentPatientPicker.FormattingEnabled = true;
+            cmbAppointmentPatientPicker.Location = new System.Drawing.Point(38, 46);
+            cmbAppointmentPatientPicker.Margin = new System.Windows.Forms.Padding(4);
+            cmbAppointmentPatientPicker.Name = "cmbAppointmentPatientPicker";
+            cmbAppointmentPatientPicker.Size = new System.Drawing.Size(316, 23);
+            cmbAppointmentPatientPicker.TabIndex = 1;
             // 
             // lblAppointmentPatient
             // 
             lblAppointmentPatient.AutoSize = true;
-            lblAppointmentPatient.Location = new System.Drawing.Point(43, 37);
+            lblAppointmentPatient.Location = new System.Drawing.Point(38, 28);
             lblAppointmentPatient.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblAppointmentPatient.Name = "lblAppointmentPatient";
-            lblAppointmentPatient.Size = new System.Drawing.Size(54, 20);
+            lblAppointmentPatient.Size = new System.Drawing.Size(79, 15);
             lblAppointmentPatient.TabIndex = 0;
-            lblAppointmentPatient.Text = "Patient";
+            lblAppointmentPatient.Text = "Patient Name";
             // 
             // inventoryTab
             // 
             inventoryTab.Controls.Add(grpLowStock);
             inventoryTab.Controls.Add(inventoryGrid);
             inventoryTab.Controls.Add(grpInventoryDetails);
-            inventoryTab.Location = new System.Drawing.Point(4, 29);
-            inventoryTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            inventoryTab.Location = new System.Drawing.Point(4, 24);
+            inventoryTab.Margin = new System.Windows.Forms.Padding(4);
             inventoryTab.Name = "inventoryTab";
-            inventoryTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            inventoryTab.Size = new System.Drawing.Size(1571, 1001);
+            inventoryTab.Padding = new System.Windows.Forms.Padding(4);
+            inventoryTab.Size = new System.Drawing.Size(1374, 756);
             inventoryTab.TabIndex = 3;
             inventoryTab.Text = "Inventory";
             inventoryTab.UseVisualStyleBackColor = true;
@@ -1214,11 +2188,11 @@ namespace HospitalManagement.Client
             // 
             grpLowStock.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             grpLowStock.Controls.Add(lstLowStock);
-            grpLowStock.Location = new System.Drawing.Point(501, 710);
-            grpLowStock.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            grpLowStock.Location = new System.Drawing.Point(438, 529);
+            grpLowStock.Margin = new System.Windows.Forms.Padding(4);
             grpLowStock.Name = "grpLowStock";
-            grpLowStock.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpLowStock.Size = new System.Drawing.Size(1035, 246);
+            grpLowStock.Padding = new System.Windows.Forms.Padding(4);
+            grpLowStock.Size = new System.Drawing.Size(906, 184);
             grpLowStock.TabIndex = 2;
             grpLowStock.TabStop = false;
             grpLowStock.Text = "Low Stock Alerts";
@@ -1226,12 +2200,14 @@ namespace HospitalManagement.Client
             // lstLowStock
             // 
             lstLowStock.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lstLowStock.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             lstLowStock.FormattingEnabled = true;
+            lstLowStock.ItemHeight = 21;
             lstLowStock.Items.AddRange(new object[] { "Insulin pens below reorder level", "IV saline bags below reorder level", "Sterile gloves below reorder level" });
-            lstLowStock.Location = new System.Drawing.Point(21, 37);
-            lstLowStock.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            lstLowStock.Location = new System.Drawing.Point(18, 28);
+            lstLowStock.Margin = new System.Windows.Forms.Padding(4);
             lstLowStock.Name = "lstLowStock";
-            lstLowStock.Size = new System.Drawing.Size(991, 184);
+            lstLowStock.Size = new System.Drawing.Size(868, 130);
             lstLowStock.TabIndex = 0;
             // 
             // inventoryGrid
@@ -1241,13 +2217,14 @@ namespace HospitalManagement.Client
             inventoryGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             inventoryGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             inventoryGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { inventoryItemColumn, inventoryCategoryColumn, inventoryQuantityColumn, inventoryReorderColumn, inventoryLocationColumn });
-            inventoryGrid.Location = new System.Drawing.Point(501, 37);
-            inventoryGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            inventoryGrid.Location = new System.Drawing.Point(438, 28);
+            inventoryGrid.Margin = new System.Windows.Forms.Padding(4);
             inventoryGrid.Name = "inventoryGrid";
             inventoryGrid.ReadOnly = true;
             inventoryGrid.RowHeadersWidth = 51;
-            inventoryGrid.Size = new System.Drawing.Size(1035, 648);
+            inventoryGrid.Size = new System.Drawing.Size(906, 483);
             inventoryGrid.TabIndex = 1;
+            inventoryGrid.CellDoubleClick += inventoryGrid_CellDoubleClick;
             // 
             // inventoryItemColumn
             // 
@@ -1306,108 +2283,112 @@ namespace HospitalManagement.Client
             grpInventoryDetails.Controls.Add(lblInventoryCategory);
             grpInventoryDetails.Controls.Add(txtInventoryItem);
             grpInventoryDetails.Controls.Add(lblInventoryItem);
-            grpInventoryDetails.Location = new System.Drawing.Point(32, 37);
-            grpInventoryDetails.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            grpInventoryDetails.Location = new System.Drawing.Point(28, 28);
+            grpInventoryDetails.Margin = new System.Windows.Forms.Padding(4);
             grpInventoryDetails.Name = "grpInventoryDetails";
-            grpInventoryDetails.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpInventoryDetails.Size = new System.Drawing.Size(437, 919);
+            grpInventoryDetails.Padding = new System.Windows.Forms.Padding(4);
+            grpInventoryDetails.Size = new System.Drawing.Size(382, 686);
             grpInventoryDetails.TabIndex = 0;
             grpInventoryDetails.TabStop = false;
-            grpInventoryDetails.Text = "Medication and Supply Details";
+            grpInventoryDetails.Text = "Add / Edit Inventory Item";
             // 
             // btnInventoryRefresh
             // 
-            btnInventoryRefresh.Location = new System.Drawing.Point(235, 628);
-            btnInventoryRefresh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnInventoryRefresh.Location = new System.Drawing.Point(206, 471);
+            btnInventoryRefresh.Margin = new System.Windows.Forms.Padding(4);
             btnInventoryRefresh.Name = "btnInventoryRefresh";
-            btnInventoryRefresh.Size = new System.Drawing.Size(171, 43);
+            btnInventoryRefresh.Size = new System.Drawing.Size(150, 32);
             btnInventoryRefresh.TabIndex = 13;
-            btnInventoryRefresh.Text = "Refresh";
+            btnInventoryRefresh.Text = "Refresh List";
             btnInventoryRefresh.UseVisualStyleBackColor = true;
+            btnInventoryRefresh.Click += btnInventoryRefresh_Click;
             // 
             // btnInventoryRemove
             // 
-            btnInventoryRemove.Location = new System.Drawing.Point(43, 628);
-            btnInventoryRemove.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnInventoryRemove.Location = new System.Drawing.Point(38, 471);
+            btnInventoryRemove.Margin = new System.Windows.Forms.Padding(4);
             btnInventoryRemove.Name = "btnInventoryRemove";
-            btnInventoryRemove.Size = new System.Drawing.Size(171, 43);
+            btnInventoryRemove.Size = new System.Drawing.Size(150, 32);
             btnInventoryRemove.TabIndex = 12;
             btnInventoryRemove.Text = "Remove Item";
             btnInventoryRemove.UseVisualStyleBackColor = true;
+            btnInventoryRemove.Click += btnInventoryRemove_Click;
             // 
             // btnInventoryUpdate
             // 
-            btnInventoryUpdate.Location = new System.Drawing.Point(235, 572);
-            btnInventoryUpdate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnInventoryUpdate.Location = new System.Drawing.Point(206, 429);
+            btnInventoryUpdate.Margin = new System.Windows.Forms.Padding(4);
             btnInventoryUpdate.Name = "btnInventoryUpdate";
-            btnInventoryUpdate.Size = new System.Drawing.Size(171, 43);
+            btnInventoryUpdate.Size = new System.Drawing.Size(150, 32);
             btnInventoryUpdate.TabIndex = 11;
-            btnInventoryUpdate.Text = "Update Stock";
+            btnInventoryUpdate.Text = "Save Stock Changes";
             btnInventoryUpdate.UseVisualStyleBackColor = true;
+            btnInventoryUpdate.Click += btnInventoryUpdate_Click;
             // 
             // btnInventoryAdd
             // 
-            btnInventoryAdd.Location = new System.Drawing.Point(43, 572);
-            btnInventoryAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnInventoryAdd.Location = new System.Drawing.Point(38, 429);
+            btnInventoryAdd.Margin = new System.Windows.Forms.Padding(4);
             btnInventoryAdd.Name = "btnInventoryAdd";
-            btnInventoryAdd.Size = new System.Drawing.Size(171, 43);
+            btnInventoryAdd.Size = new System.Drawing.Size(150, 32);
             btnInventoryAdd.TabIndex = 10;
             btnInventoryAdd.Text = "Add Item";
             btnInventoryAdd.UseVisualStyleBackColor = true;
+            btnInventoryAdd.Click += btnInventoryAdd_Click;
             // 
             // numInventoryReorder
             // 
-            numInventoryReorder.Location = new System.Drawing.Point(43, 468);
-            numInventoryReorder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            numInventoryReorder.Location = new System.Drawing.Point(38, 351);
+            numInventoryReorder.Margin = new System.Windows.Forms.Padding(4);
             numInventoryReorder.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             numInventoryReorder.Name = "numInventoryReorder";
-            numInventoryReorder.Size = new System.Drawing.Size(363, 27);
+            numInventoryReorder.Size = new System.Drawing.Size(318, 23);
             numInventoryReorder.TabIndex = 9;
             // 
             // lblInventoryReorder
             // 
             lblInventoryReorder.AutoSize = true;
-            lblInventoryReorder.Location = new System.Drawing.Point(43, 443);
+            lblInventoryReorder.Location = new System.Drawing.Point(38, 332);
             lblInventoryReorder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblInventoryReorder.Name = "lblInventoryReorder";
-            lblInventoryReorder.Size = new System.Drawing.Size(100, 20);
+            lblInventoryReorder.Size = new System.Drawing.Size(78, 15);
             lblInventoryReorder.TabIndex = 8;
             lblInventoryReorder.Text = "Reorder Level";
             // 
             // numInventoryQuantity
             // 
-            numInventoryQuantity.Location = new System.Drawing.Point(43, 382);
-            numInventoryQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            numInventoryQuantity.Location = new System.Drawing.Point(38, 286);
+            numInventoryQuantity.Margin = new System.Windows.Forms.Padding(4);
             numInventoryQuantity.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             numInventoryQuantity.Name = "numInventoryQuantity";
-            numInventoryQuantity.Size = new System.Drawing.Size(363, 27);
+            numInventoryQuantity.Size = new System.Drawing.Size(318, 23);
             numInventoryQuantity.TabIndex = 7;
             // 
             // lblInventoryQuantity
             // 
             lblInventoryQuantity.AutoSize = true;
-            lblInventoryQuantity.Location = new System.Drawing.Point(43, 357);
+            lblInventoryQuantity.Location = new System.Drawing.Point(38, 268);
             lblInventoryQuantity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblInventoryQuantity.Name = "lblInventoryQuantity";
-            lblInventoryQuantity.Size = new System.Drawing.Size(65, 20);
+            lblInventoryQuantity.Size = new System.Drawing.Size(53, 15);
             lblInventoryQuantity.TabIndex = 6;
             lblInventoryQuantity.Text = "Quantity";
             // 
             // txtInventoryLocation
             // 
-            txtInventoryLocation.Location = new System.Drawing.Point(43, 295);
-            txtInventoryLocation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtInventoryLocation.Location = new System.Drawing.Point(38, 221);
+            txtInventoryLocation.Margin = new System.Windows.Forms.Padding(4);
             txtInventoryLocation.Name = "txtInventoryLocation";
-            txtInventoryLocation.Size = new System.Drawing.Size(361, 27);
+            txtInventoryLocation.Size = new System.Drawing.Size(316, 23);
             txtInventoryLocation.TabIndex = 5;
             // 
             // lblInventoryLocation
             // 
             lblInventoryLocation.AutoSize = true;
-            lblInventoryLocation.Location = new System.Drawing.Point(43, 271);
+            lblInventoryLocation.Location = new System.Drawing.Point(38, 203);
             lblInventoryLocation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblInventoryLocation.Name = "lblInventoryLocation";
-            lblInventoryLocation.Size = new System.Drawing.Size(122, 20);
+            lblInventoryLocation.Size = new System.Drawing.Size(96, 15);
             lblInventoryLocation.TabIndex = 4;
             lblInventoryLocation.Text = "Storage Location";
             // 
@@ -1416,37 +2397,37 @@ namespace HospitalManagement.Client
             cmbInventoryCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cmbInventoryCategory.FormattingEnabled = true;
             cmbInventoryCategory.Items.AddRange(new object[] { "Medication", "Surgical Supply", "Lab Supply", "General Supply", "Equipment" });
-            cmbInventoryCategory.Location = new System.Drawing.Point(43, 209);
-            cmbInventoryCategory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cmbInventoryCategory.Location = new System.Drawing.Point(38, 157);
+            cmbInventoryCategory.Margin = new System.Windows.Forms.Padding(4);
             cmbInventoryCategory.Name = "cmbInventoryCategory";
-            cmbInventoryCategory.Size = new System.Drawing.Size(361, 28);
+            cmbInventoryCategory.Size = new System.Drawing.Size(316, 23);
             cmbInventoryCategory.TabIndex = 3;
             // 
             // lblInventoryCategory
             // 
             lblInventoryCategory.AutoSize = true;
-            lblInventoryCategory.Location = new System.Drawing.Point(43, 185);
+            lblInventoryCategory.Location = new System.Drawing.Point(38, 139);
             lblInventoryCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblInventoryCategory.Name = "lblInventoryCategory";
-            lblInventoryCategory.Size = new System.Drawing.Size(69, 20);
+            lblInventoryCategory.Size = new System.Drawing.Size(55, 15);
             lblInventoryCategory.TabIndex = 2;
             lblInventoryCategory.Text = "Category";
             // 
             // txtInventoryItem
             // 
-            txtInventoryItem.Location = new System.Drawing.Point(43, 123);
-            txtInventoryItem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtInventoryItem.Location = new System.Drawing.Point(38, 92);
+            txtInventoryItem.Margin = new System.Windows.Forms.Padding(4);
             txtInventoryItem.Name = "txtInventoryItem";
-            txtInventoryItem.Size = new System.Drawing.Size(361, 27);
+            txtInventoryItem.Size = new System.Drawing.Size(316, 23);
             txtInventoryItem.TabIndex = 1;
             // 
             // lblInventoryItem
             // 
             lblInventoryItem.AutoSize = true;
-            lblInventoryItem.Location = new System.Drawing.Point(43, 98);
+            lblInventoryItem.Location = new System.Drawing.Point(38, 74);
             lblInventoryItem.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblInventoryItem.Name = "lblInventoryItem";
-            lblInventoryItem.Size = new System.Drawing.Size(83, 20);
+            lblInventoryItem.Size = new System.Drawing.Size(66, 15);
             lblInventoryItem.TabIndex = 0;
             lblInventoryItem.Text = "Item Name";
             // 
@@ -1456,13 +2437,13 @@ namespace HospitalManagement.Client
             analyticsTab.Controls.Add(grpReportOutput);
             analyticsTab.Controls.Add(grpAnalyticsSummary);
             analyticsTab.Controls.Add(grpAnalyticsFilters);
-            analyticsTab.Location = new System.Drawing.Point(4, 29);
-            analyticsTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            analyticsTab.Location = new System.Drawing.Point(4, 24);
+            analyticsTab.Margin = new System.Windows.Forms.Padding(4);
             analyticsTab.Name = "analyticsTab";
-            analyticsTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            analyticsTab.Size = new System.Drawing.Size(1571, 1001);
+            analyticsTab.Padding = new System.Windows.Forms.Padding(4);
+            analyticsTab.Size = new System.Drawing.Size(1374, 756);
             analyticsTab.TabIndex = 4;
-            analyticsTab.Text = "Analytics";
+            analyticsTab.Text = "Reports";
             analyticsTab.UseVisualStyleBackColor = true;
             // 
             // reportGrid
@@ -1472,12 +2453,12 @@ namespace HospitalManagement.Client
             reportGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             reportGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             reportGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { reportMetricColumn, reportCurrentColumn, reportPreviousColumn, reportChangeColumn });
-            reportGrid.Location = new System.Drawing.Point(512, 172);
-            reportGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            reportGrid.Location = new System.Drawing.Point(448, 129);
+            reportGrid.Margin = new System.Windows.Forms.Padding(4);
             reportGrid.Name = "reportGrid";
             reportGrid.ReadOnly = true;
             reportGrid.RowHeadersWidth = 51;
-            reportGrid.Size = new System.Drawing.Size(1024, 525);
+            reportGrid.Size = new System.Drawing.Size(896, 391);
             reportGrid.TabIndex = 2;
             // 
             // reportMetricColumn
@@ -1516,11 +2497,11 @@ namespace HospitalManagement.Client
             // 
             grpReportOutput.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             grpReportOutput.Controls.Add(lstReportOutput);
-            grpReportOutput.Location = new System.Drawing.Point(32, 722);
-            grpReportOutput.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            grpReportOutput.Location = new System.Drawing.Point(28, 539);
+            grpReportOutput.Margin = new System.Windows.Forms.Padding(4);
             grpReportOutput.Name = "grpReportOutput";
-            grpReportOutput.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpReportOutput.Size = new System.Drawing.Size(1504, 234);
+            grpReportOutput.Padding = new System.Windows.Forms.Padding(4);
+            grpReportOutput.Size = new System.Drawing.Size(1316, 176);
             grpReportOutput.TabIndex = 3;
             grpReportOutput.TabStop = false;
             grpReportOutput.Text = "Report Notes";
@@ -1528,12 +2509,14 @@ namespace HospitalManagement.Client
             // lstReportOutput
             // 
             lstReportOutput.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lstReportOutput.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             lstReportOutput.FormattingEnabled = true;
+            lstReportOutput.ItemHeight = 21;
             lstReportOutput.Items.AddRange(new object[] { "Generated report highlights will appear here.", "Trends for patient visits, common ailments, and medication usage will appear here." });
-            lstReportOutput.Location = new System.Drawing.Point(21, 37);
-            lstReportOutput.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            lstReportOutput.Location = new System.Drawing.Point(18, 28);
+            lstReportOutput.Margin = new System.Windows.Forms.Padding(4);
             lstReportOutput.Name = "lstReportOutput";
-            lstReportOutput.Size = new System.Drawing.Size(1460, 164);
+            lstReportOutput.Size = new System.Drawing.Size(1278, 109);
             lstReportOutput.TabIndex = 0;
             // 
             // grpAnalyticsSummary
@@ -1544,72 +2527,72 @@ namespace HospitalManagement.Client
             grpAnalyticsSummary.Controls.Add(lblAnalyticsCommonAilment);
             grpAnalyticsSummary.Controls.Add(txtAnalyticsVisits);
             grpAnalyticsSummary.Controls.Add(lblAnalyticsVisits);
-            grpAnalyticsSummary.Location = new System.Drawing.Point(32, 172);
-            grpAnalyticsSummary.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            grpAnalyticsSummary.Location = new System.Drawing.Point(28, 129);
+            grpAnalyticsSummary.Margin = new System.Windows.Forms.Padding(4);
             grpAnalyticsSummary.Name = "grpAnalyticsSummary";
-            grpAnalyticsSummary.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpAnalyticsSummary.Size = new System.Drawing.Size(448, 517);
+            grpAnalyticsSummary.Padding = new System.Windows.Forms.Padding(4);
+            grpAnalyticsSummary.Size = new System.Drawing.Size(392, 388);
             grpAnalyticsSummary.TabIndex = 1;
             grpAnalyticsSummary.TabStop = false;
-            grpAnalyticsSummary.Text = "Summary";
+            grpAnalyticsSummary.Text = "Report Summary";
             // 
             // txtAnalyticsMedicationUsage
             // 
-            txtAnalyticsMedicationUsage.Location = new System.Drawing.Point(43, 357);
-            txtAnalyticsMedicationUsage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtAnalyticsMedicationUsage.Location = new System.Drawing.Point(38, 268);
+            txtAnalyticsMedicationUsage.Margin = new System.Windows.Forms.Padding(4);
             txtAnalyticsMedicationUsage.Name = "txtAnalyticsMedicationUsage";
             txtAnalyticsMedicationUsage.ReadOnly = true;
-            txtAnalyticsMedicationUsage.Size = new System.Drawing.Size(361, 27);
+            txtAnalyticsMedicationUsage.Size = new System.Drawing.Size(316, 23);
             txtAnalyticsMedicationUsage.TabIndex = 5;
             txtAnalyticsMedicationUsage.Text = "Antibiotics";
             // 
             // lblAnalyticsMedicationUsage
             // 
             lblAnalyticsMedicationUsage.AutoSize = true;
-            lblAnalyticsMedicationUsage.Location = new System.Drawing.Point(43, 332);
+            lblAnalyticsMedicationUsage.Location = new System.Drawing.Point(38, 249);
             lblAnalyticsMedicationUsage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblAnalyticsMedicationUsage.Name = "lblAnalyticsMedicationUsage";
-            lblAnalyticsMedicationUsage.Size = new System.Drawing.Size(158, 20);
+            lblAnalyticsMedicationUsage.Size = new System.Drawing.Size(125, 15);
             lblAnalyticsMedicationUsage.TabIndex = 4;
             lblAnalyticsMedicationUsage.Text = "Top Medication Usage";
             // 
             // txtAnalyticsCommonAilment
             // 
-            txtAnalyticsCommonAilment.Location = new System.Drawing.Point(43, 234);
-            txtAnalyticsCommonAilment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtAnalyticsCommonAilment.Location = new System.Drawing.Point(38, 176);
+            txtAnalyticsCommonAilment.Margin = new System.Windows.Forms.Padding(4);
             txtAnalyticsCommonAilment.Name = "txtAnalyticsCommonAilment";
             txtAnalyticsCommonAilment.ReadOnly = true;
-            txtAnalyticsCommonAilment.Size = new System.Drawing.Size(361, 27);
+            txtAnalyticsCommonAilment.Size = new System.Drawing.Size(316, 23);
             txtAnalyticsCommonAilment.TabIndex = 3;
             txtAnalyticsCommonAilment.Text = "Respiratory Infection";
             // 
             // lblAnalyticsCommonAilment
             // 
             lblAnalyticsCommonAilment.AutoSize = true;
-            lblAnalyticsCommonAilment.Location = new System.Drawing.Point(43, 209);
+            lblAnalyticsCommonAilment.Location = new System.Drawing.Point(38, 157);
             lblAnalyticsCommonAilment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblAnalyticsCommonAilment.Name = "lblAnalyticsCommonAilment";
-            lblAnalyticsCommonAilment.Size = new System.Drawing.Size(126, 20);
+            lblAnalyticsCommonAilment.Size = new System.Drawing.Size(103, 15);
             lblAnalyticsCommonAilment.TabIndex = 2;
             lblAnalyticsCommonAilment.Text = "Common Ailment";
             // 
             // txtAnalyticsVisits
             // 
-            txtAnalyticsVisits.Location = new System.Drawing.Point(43, 111);
-            txtAnalyticsVisits.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtAnalyticsVisits.Location = new System.Drawing.Point(38, 83);
+            txtAnalyticsVisits.Margin = new System.Windows.Forms.Padding(4);
             txtAnalyticsVisits.Name = "txtAnalyticsVisits";
             txtAnalyticsVisits.ReadOnly = true;
-            txtAnalyticsVisits.Size = new System.Drawing.Size(361, 27);
+            txtAnalyticsVisits.Size = new System.Drawing.Size(316, 23);
             txtAnalyticsVisits.TabIndex = 1;
             txtAnalyticsVisits.Text = "284 visits";
             // 
             // lblAnalyticsVisits
             // 
             lblAnalyticsVisits.AutoSize = true;
-            lblAnalyticsVisits.Location = new System.Drawing.Point(43, 86);
+            lblAnalyticsVisits.Location = new System.Drawing.Point(38, 64);
             lblAnalyticsVisits.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblAnalyticsVisits.Name = "lblAnalyticsVisits";
-            lblAnalyticsVisits.Size = new System.Drawing.Size(92, 20);
+            lblAnalyticsVisits.Size = new System.Drawing.Size(74, 15);
             lblAnalyticsVisits.TabIndex = 0;
             lblAnalyticsVisits.Text = "Patient Visits";
             // 
@@ -1623,11 +2606,11 @@ namespace HospitalManagement.Client
             grpAnalyticsFilters.Controls.Add(lblReportEnd);
             grpAnalyticsFilters.Controls.Add(dtpReportStart);
             grpAnalyticsFilters.Controls.Add(lblReportStart);
-            grpAnalyticsFilters.Location = new System.Drawing.Point(32, 37);
-            grpAnalyticsFilters.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            grpAnalyticsFilters.Location = new System.Drawing.Point(28, 28);
+            grpAnalyticsFilters.Margin = new System.Windows.Forms.Padding(4);
             grpAnalyticsFilters.Name = "grpAnalyticsFilters";
-            grpAnalyticsFilters.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpAnalyticsFilters.Size = new System.Drawing.Size(1504, 111);
+            grpAnalyticsFilters.Padding = new System.Windows.Forms.Padding(4);
+            grpAnalyticsFilters.Size = new System.Drawing.Size(1316, 83);
             grpAnalyticsFilters.TabIndex = 0;
             grpAnalyticsFilters.TabStop = false;
             grpAnalyticsFilters.Text = "Report Filters";
@@ -1635,216 +2618,262 @@ namespace HospitalManagement.Client
             // btnGenerateReport
             // 
             btnGenerateReport.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnGenerateReport.Location = new System.Drawing.Point(1301, 43);
-            btnGenerateReport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnGenerateReport.Location = new System.Drawing.Point(1138, 32);
+            btnGenerateReport.Margin = new System.Windows.Forms.Padding(4);
             btnGenerateReport.Name = "btnGenerateReport";
-            btnGenerateReport.Size = new System.Drawing.Size(171, 43);
+            btnGenerateReport.Size = new System.Drawing.Size(150, 32);
             btnGenerateReport.TabIndex = 6;
-            btnGenerateReport.Text = "Generate Report";
+            btnGenerateReport.Text = "Run Report";
             btnGenerateReport.UseVisualStyleBackColor = true;
+            btnGenerateReport.Click += btnGenerateReport_Click;
             // 
             // cmbReportType
             // 
             cmbReportType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cmbReportType.FormattingEnabled = true;
             cmbReportType.Items.AddRange(new object[] { "Patient Visits", "Common Ailments", "Medication Usage", "Department Load" });
-            cmbReportType.Location = new System.Drawing.Point(875, 49);
-            cmbReportType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cmbReportType.Location = new System.Drawing.Point(766, 37);
+            cmbReportType.Margin = new System.Windows.Forms.Padding(4);
             cmbReportType.Name = "cmbReportType";
-            cmbReportType.Size = new System.Drawing.Size(265, 28);
+            cmbReportType.Size = new System.Drawing.Size(232, 23);
             cmbReportType.TabIndex = 5;
             // 
             // lblReportType
             // 
             lblReportType.AutoSize = true;
-            lblReportType.Location = new System.Drawing.Point(779, 55);
+            lblReportType.Location = new System.Drawing.Point(682, 41);
             lblReportType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblReportType.Name = "lblReportType";
-            lblReportType.Size = new System.Drawing.Size(89, 20);
+            lblReportType.Size = new System.Drawing.Size(70, 15);
             lblReportType.TabIndex = 4;
             lblReportType.Text = "Report Type";
             // 
             // dtpReportEnd
             // 
             dtpReportEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            dtpReportEnd.Location = new System.Drawing.Point(480, 49);
-            dtpReportEnd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dtpReportEnd.Location = new System.Drawing.Point(420, 37);
+            dtpReportEnd.Margin = new System.Windows.Forms.Padding(4);
             dtpReportEnd.Name = "dtpReportEnd";
-            dtpReportEnd.Size = new System.Drawing.Size(212, 27);
+            dtpReportEnd.Size = new System.Drawing.Size(186, 23);
             dtpReportEnd.TabIndex = 3;
             // 
             // lblReportEnd
             // 
             lblReportEnd.AutoSize = true;
-            lblReportEnd.Location = new System.Drawing.Point(384, 55);
+            lblReportEnd.Location = new System.Drawing.Point(336, 41);
             lblReportEnd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblReportEnd.Name = "lblReportEnd";
-            lblReportEnd.Size = new System.Drawing.Size(70, 20);
+            lblReportEnd.Size = new System.Drawing.Size(54, 15);
             lblReportEnd.TabIndex = 2;
             lblReportEnd.Text = "End Date";
             // 
             // dtpReportStart
             // 
             dtpReportStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            dtpReportStart.Location = new System.Drawing.Point(128, 49);
-            dtpReportStart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dtpReportStart.Location = new System.Drawing.Point(112, 37);
+            dtpReportStart.Margin = new System.Windows.Forms.Padding(4);
             dtpReportStart.Name = "dtpReportStart";
-            dtpReportStart.Size = new System.Drawing.Size(212, 27);
+            dtpReportStart.Size = new System.Drawing.Size(186, 23);
             dtpReportStart.TabIndex = 1;
             // 
             // lblReportStart
             // 
             lblReportStart.AutoSize = true;
-            lblReportStart.Location = new System.Drawing.Point(21, 55);
+            lblReportStart.Location = new System.Drawing.Point(18, 41);
             lblReportStart.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblReportStart.Name = "lblReportStart";
-            lblReportStart.Size = new System.Drawing.Size(76, 20);
+            lblReportStart.Size = new System.Drawing.Size(58, 15);
             lblReportStart.TabIndex = 0;
             lblReportStart.Text = "Start Date";
             // 
             // communicationTab
             // 
-            communicationTab.Controls.Add(grpNotifications);
             communicationTab.Controls.Add(grpMessageHistory);
             communicationTab.Controls.Add(grpConversations);
-            communicationTab.Location = new System.Drawing.Point(4, 29);
-            communicationTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            communicationTab.Location = new System.Drawing.Point(4, 24);
+            communicationTab.Margin = new System.Windows.Forms.Padding(4);
             communicationTab.Name = "communicationTab";
-            communicationTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            communicationTab.Size = new System.Drawing.Size(1571, 1001);
+            communicationTab.Padding = new System.Windows.Forms.Padding(4);
+            communicationTab.Size = new System.Drawing.Size(1374, 756);
             communicationTab.TabIndex = 5;
-            communicationTab.Text = "Communication";
+            communicationTab.Text = "Messages";
             communicationTab.UseVisualStyleBackColor = true;
-            // 
-            // grpNotifications
-            // 
-            grpNotifications.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
-            grpNotifications.Controls.Add(lstNotifications);
-            grpNotifications.Location = new System.Drawing.Point(1152, 37);
-            grpNotifications.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpNotifications.Name = "grpNotifications";
-            grpNotifications.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpNotifications.Size = new System.Drawing.Size(384, 919);
-            grpNotifications.TabIndex = 2;
-            grpNotifications.TabStop = false;
-            grpNotifications.Text = "Notifications";
-            // 
-            // lstNotifications
-            // 
-            lstNotifications.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            lstNotifications.FormattingEnabled = true;
-            lstNotifications.Items.AddRange(new object[] { "Appointment rescheduled", "Emergency broadcast", "Medication stock update", "Patient vitals changed" });
-            lstNotifications.Location = new System.Drawing.Point(21, 37);
-            lstNotifications.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            lstNotifications.Name = "lstNotifications";
-            lstNotifications.Size = new System.Drawing.Size(340, 844);
-            lstNotifications.TabIndex = 0;
             // 
             // grpMessageHistory
             // 
             grpMessageHistory.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             grpMessageHistory.Controls.Add(txtMessageInput);
             grpMessageHistory.Controls.Add(btnSendMessage);
-            grpMessageHistory.Controls.Add(lstMessageHistory);
-            grpMessageHistory.Location = new System.Drawing.Point(427, 37);
-            grpMessageHistory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            grpMessageHistory.Controls.Add(messageHistoryFlowPanel);
+            grpMessageHistory.Location = new System.Drawing.Point(374, 28);
+            grpMessageHistory.Margin = new System.Windows.Forms.Padding(4);
             grpMessageHistory.Name = "grpMessageHistory";
-            grpMessageHistory.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpMessageHistory.Size = new System.Drawing.Size(693, 919);
+            grpMessageHistory.Padding = new System.Windows.Forms.Padding(4);
+            grpMessageHistory.Size = new System.Drawing.Size(970, 686);
             grpMessageHistory.TabIndex = 1;
             grpMessageHistory.TabStop = false;
-            grpMessageHistory.Text = "Message History";
+            grpMessageHistory.Text = "Selected Conversation";
             // 
             // txtMessageInput
             // 
             txtMessageInput.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            txtMessageInput.Location = new System.Drawing.Point(21, 826);
-            txtMessageInput.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtMessageInput.Location = new System.Drawing.Point(18, 617);
+            txtMessageInput.Margin = new System.Windows.Forms.Padding(4);
             txtMessageInput.Name = "txtMessageInput";
-            txtMessageInput.Size = new System.Drawing.Size(500, 27);
+            txtMessageInput.Size = new System.Drawing.Size(802, 23);
             txtMessageInput.TabIndex = 1;
             // 
             // btnSendMessage
             // 
             btnSendMessage.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
-            btnSendMessage.Location = new System.Drawing.Point(544, 820);
-            btnSendMessage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnSendMessage.Location = new System.Drawing.Point(840, 612);
+            btnSendMessage.Margin = new System.Windows.Forms.Padding(4);
             btnSendMessage.Name = "btnSendMessage";
-            btnSendMessage.Size = new System.Drawing.Size(117, 43);
+            btnSendMessage.Size = new System.Drawing.Size(102, 32);
             btnSendMessage.TabIndex = 2;
-            btnSendMessage.Text = "Send";
+            btnSendMessage.Text = "Send Message";
             btnSendMessage.UseVisualStyleBackColor = true;
+            btnSendMessage.Click += btnSendMessage_Click;
             // 
-            // lstMessageHistory
+            // messageHistoryFlowPanel
             // 
-            lstMessageHistory.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            lstMessageHistory.FormattingEnabled = true;
-            lstMessageHistory.Items.AddRange(new object[] { "Selected conversation messages will appear here." });
-            lstMessageHistory.Location = new System.Drawing.Point(21, 37);
-            lstMessageHistory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            lstMessageHistory.Name = "lstMessageHistory";
-            lstMessageHistory.Size = new System.Drawing.Size(639, 744);
-            lstMessageHistory.TabIndex = 0;
+            messageHistoryFlowPanel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            messageHistoryFlowPanel.AutoScroll = true;
+            messageHistoryFlowPanel.BackColor = System.Drawing.SystemColors.Window;
+            messageHistoryFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            messageHistoryFlowPanel.Location = new System.Drawing.Point(18, 28);
+            messageHistoryFlowPanel.Margin = new System.Windows.Forms.Padding(4);
+            messageHistoryFlowPanel.Name = "messageHistoryFlowPanel";
+            messageHistoryFlowPanel.Padding = new System.Windows.Forms.Padding(8);
+            messageHistoryFlowPanel.Size = new System.Drawing.Size(924, 544);
+            messageHistoryFlowPanel.TabIndex = 0;
+            messageHistoryFlowPanel.WrapContents = false;
             // 
             // grpConversations
             // 
             grpConversations.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             grpConversations.Controls.Add(btnNewConversation);
             grpConversations.Controls.Add(lstConversations);
-            grpConversations.Location = new System.Drawing.Point(32, 37);
-            grpConversations.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            grpConversations.Location = new System.Drawing.Point(28, 28);
+            grpConversations.Margin = new System.Windows.Forms.Padding(4);
             grpConversations.Name = "grpConversations";
-            grpConversations.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpConversations.Size = new System.Drawing.Size(363, 919);
+            grpConversations.Padding = new System.Windows.Forms.Padding(4);
+            grpConversations.Size = new System.Drawing.Size(318, 686);
             grpConversations.TabIndex = 0;
             grpConversations.TabStop = false;
-            grpConversations.Text = "Conversations";
+            grpConversations.Text = "Patient Conversations";
             // 
             // btnNewConversation
             // 
             btnNewConversation.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            btnNewConversation.Location = new System.Drawing.Point(21, 820);
-            btnNewConversation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnNewConversation.Location = new System.Drawing.Point(18, 612);
+            btnNewConversation.Margin = new System.Windows.Forms.Padding(4);
             btnNewConversation.Name = "btnNewConversation";
-            btnNewConversation.Size = new System.Drawing.Size(320, 43);
+            btnNewConversation.Size = new System.Drawing.Size(280, 32);
             btnNewConversation.TabIndex = 1;
-            btnNewConversation.Text = "New Conversation";
+            btnNewConversation.Text = "Start Patient Chat";
             btnNewConversation.UseVisualStyleBackColor = true;
+            btnNewConversation.Click += btnNewConversation_Click;
             // 
             // lstConversations
             // 
             lstConversations.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lstConversations.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             lstConversations.FormattingEnabled = true;
-            lstConversations.Items.AddRange(new object[] { "Nurse Station", "Dr. Adams", "Patient Support", "Emergency Team" });
-            lstConversations.Location = new System.Drawing.Point(21, 37);
-            lstConversations.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            lstConversations.ItemHeight = 17;
+            lstConversations.Items.AddRange(new object[] { "Patient chats will appear here." });
+            lstConversations.Location = new System.Drawing.Point(18, 28);
+            lstConversations.Margin = new System.Windows.Forms.Padding(4);
             lstConversations.Name = "lstConversations";
-            lstConversations.Size = new System.Drawing.Size(319, 744);
+            lstConversations.Size = new System.Drawing.Size(280, 531);
             lstConversations.TabIndex = 0;
+            lstConversations.SelectedIndexChanged += lstConversations_SelectedIndexChanged;
+            // 
+            // patientMessagesTab
+            // 
+            patientMessagesTab.Controls.Add(grpPatientMessageHistory);
+            patientMessagesTab.Location = new System.Drawing.Point(4, 24);
+            patientMessagesTab.Margin = new System.Windows.Forms.Padding(4);
+            patientMessagesTab.Name = "patientMessagesTab";
+            patientMessagesTab.Padding = new System.Windows.Forms.Padding(4);
+            patientMessagesTab.Size = new System.Drawing.Size(1374, 756);
+            patientMessagesTab.TabIndex = 6;
+            patientMessagesTab.Text = "My Messages";
+            patientMessagesTab.UseVisualStyleBackColor = true;
+            // 
+            // grpPatientMessageHistory
+            // 
+            grpPatientMessageHistory.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            grpPatientMessageHistory.Controls.Add(txtPatientMessageInput);
+            grpPatientMessageHistory.Controls.Add(btnSendPatientMessage);
+            grpPatientMessageHistory.Controls.Add(patientMessageHistoryFlowPanel);
+            grpPatientMessageHistory.Location = new System.Drawing.Point(28, 28);
+            grpPatientMessageHistory.Margin = new System.Windows.Forms.Padding(4);
+            grpPatientMessageHistory.Name = "grpPatientMessageHistory";
+            grpPatientMessageHistory.Padding = new System.Windows.Forms.Padding(4);
+            grpPatientMessageHistory.Size = new System.Drawing.Size(1316, 686);
+            grpPatientMessageHistory.TabIndex = 0;
+            grpPatientMessageHistory.TabStop = false;
+            grpPatientMessageHistory.Text = "My Patient Chat";
+            // 
+            // txtPatientMessageInput
+            // 
+            txtPatientMessageInput.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            txtPatientMessageInput.Location = new System.Drawing.Point(18, 617);
+            txtPatientMessageInput.Margin = new System.Windows.Forms.Padding(4);
+            txtPatientMessageInput.Name = "txtPatientMessageInput";
+            txtPatientMessageInput.Size = new System.Drawing.Size(1158, 23);
+            txtPatientMessageInput.TabIndex = 1;
+            // 
+            // btnSendPatientMessage
+            // 
+            btnSendPatientMessage.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            btnSendPatientMessage.Location = new System.Drawing.Point(1196, 612);
+            btnSendPatientMessage.Margin = new System.Windows.Forms.Padding(4);
+            btnSendPatientMessage.Name = "btnSendPatientMessage";
+            btnSendPatientMessage.Size = new System.Drawing.Size(102, 32);
+            btnSendPatientMessage.TabIndex = 2;
+            btnSendPatientMessage.Text = "Send Message";
+            btnSendPatientMessage.UseVisualStyleBackColor = true;
+            btnSendPatientMessage.Click += btnSendPatientMessage_Click;
+            // 
+            // patientMessageHistoryFlowPanel
+            // 
+            patientMessageHistoryFlowPanel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            patientMessageHistoryFlowPanel.AutoScroll = true;
+            patientMessageHistoryFlowPanel.BackColor = System.Drawing.SystemColors.Window;
+            patientMessageHistoryFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            patientMessageHistoryFlowPanel.Location = new System.Drawing.Point(18, 28);
+            patientMessageHistoryFlowPanel.Margin = new System.Windows.Forms.Padding(4);
+            patientMessageHistoryFlowPanel.Name = "patientMessageHistoryFlowPanel";
+            patientMessageHistoryFlowPanel.Padding = new System.Windows.Forms.Padding(8);
+            patientMessageHistoryFlowPanel.Size = new System.Drawing.Size(1278, 544);
+            patientMessageHistoryFlowPanel.TabIndex = 0;
+            patientMessageHistoryFlowPanel.WrapContents = false;
             // 
             // monitoringTab
             // 
             monitoringTab.Controls.Add(grpMonitoringAlerts);
             monitoringTab.Controls.Add(grpVitalsEntry);
             monitoringTab.Controls.Add(vitalsGrid);
-            monitoringTab.Location = new System.Drawing.Point(4, 29);
-            monitoringTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            monitoringTab.Location = new System.Drawing.Point(4, 24);
+            monitoringTab.Margin = new System.Windows.Forms.Padding(4);
             monitoringTab.Name = "monitoringTab";
-            monitoringTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            monitoringTab.Size = new System.Drawing.Size(1571, 1001);
-            monitoringTab.TabIndex = 6;
-            monitoringTab.Text = "Monitoring";
+            monitoringTab.Padding = new System.Windows.Forms.Padding(4);
+            monitoringTab.Size = new System.Drawing.Size(1374, 756);
+            monitoringTab.TabIndex = 8;
+            monitoringTab.Text = "Vitals";
             monitoringTab.UseVisualStyleBackColor = true;
             // 
             // grpMonitoringAlerts
             // 
             grpMonitoringAlerts.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             grpMonitoringAlerts.Controls.Add(lstMonitoringAlerts);
-            grpMonitoringAlerts.Location = new System.Drawing.Point(32, 722);
-            grpMonitoringAlerts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            grpMonitoringAlerts.Location = new System.Drawing.Point(28, 542);
+            grpMonitoringAlerts.Margin = new System.Windows.Forms.Padding(4);
             grpMonitoringAlerts.Name = "grpMonitoringAlerts";
-            grpMonitoringAlerts.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpMonitoringAlerts.Size = new System.Drawing.Size(1067, 234);
+            grpMonitoringAlerts.Padding = new System.Windows.Forms.Padding(4);
+            grpMonitoringAlerts.Size = new System.Drawing.Size(934, 176);
             grpMonitoringAlerts.TabIndex = 1;
             grpMonitoringAlerts.TabStop = false;
             grpMonitoringAlerts.Text = "Critical Care Alerts";
@@ -1852,12 +2881,14 @@ namespace HospitalManagement.Client
             // lstMonitoringAlerts
             // 
             lstMonitoringAlerts.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lstMonitoringAlerts.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             lstMonitoringAlerts.FormattingEnabled = true;
+            lstMonitoringAlerts.ItemHeight = 21;
             lstMonitoringAlerts.Items.AddRange(new object[] { "Vitals outside normal range will appear here.", "Critical care patient updates will appear here." });
-            lstMonitoringAlerts.Location = new System.Drawing.Point(21, 37);
-            lstMonitoringAlerts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            lstMonitoringAlerts.Location = new System.Drawing.Point(18, 28);
+            lstMonitoringAlerts.Margin = new System.Windows.Forms.Padding(4);
             lstMonitoringAlerts.Name = "lstMonitoringAlerts";
-            lstMonitoringAlerts.Size = new System.Drawing.Size(1023, 164);
+            lstMonitoringAlerts.Size = new System.Drawing.Size(896, 109);
             lstMonitoringAlerts.TabIndex = 0;
             // 
             // grpVitalsEntry
@@ -1875,148 +2906,152 @@ namespace HospitalManagement.Client
             grpVitalsEntry.Controls.Add(lblBloodPressure);
             grpVitalsEntry.Controls.Add(numHeartRate);
             grpVitalsEntry.Controls.Add(lblHeartRate);
-            grpVitalsEntry.Controls.Add(txtMonitoringPatient);
+            grpVitalsEntry.Controls.Add(cmbMonitoringPatientPicker);
             grpVitalsEntry.Controls.Add(lblMonitoringPatient);
-            grpVitalsEntry.Location = new System.Drawing.Point(1131, 37);
-            grpVitalsEntry.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            grpVitalsEntry.Location = new System.Drawing.Point(990, 28);
+            grpVitalsEntry.Margin = new System.Windows.Forms.Padding(4);
             grpVitalsEntry.Name = "grpVitalsEntry";
-            grpVitalsEntry.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            grpVitalsEntry.Size = new System.Drawing.Size(405, 919);
+            grpVitalsEntry.Padding = new System.Windows.Forms.Padding(4);
+            grpVitalsEntry.Size = new System.Drawing.Size(354, 689);
             grpVitalsEntry.TabIndex = 2;
             grpVitalsEntry.TabStop = false;
-            grpVitalsEntry.Text = "Patient Vitals";
+            grpVitalsEntry.Text = "Update Patient Vitals";
             // 
             // btnMonitoringRefresh
             // 
-            btnMonitoringRefresh.Location = new System.Drawing.Point(213, 726);
-            btnMonitoringRefresh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnMonitoringRefresh.Location = new System.Drawing.Point(186, 544);
+            btnMonitoringRefresh.Margin = new System.Windows.Forms.Padding(4);
             btnMonitoringRefresh.Name = "btnMonitoringRefresh";
-            btnMonitoringRefresh.Size = new System.Drawing.Size(160, 43);
+            btnMonitoringRefresh.Size = new System.Drawing.Size(140, 32);
             btnMonitoringRefresh.TabIndex = 13;
-            btnMonitoringRefresh.Text = "Refresh";
+            btnMonitoringRefresh.Text = "Refresh List";
             btnMonitoringRefresh.UseVisualStyleBackColor = true;
+            btnMonitoringRefresh.Click += btnMonitoringRefresh_Click;
             // 
             // btnUpdateVitals
             // 
-            btnUpdateVitals.Location = new System.Drawing.Point(32, 726);
-            btnUpdateVitals.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            btnUpdateVitals.Location = new System.Drawing.Point(28, 544);
+            btnUpdateVitals.Margin = new System.Windows.Forms.Padding(4);
             btnUpdateVitals.Name = "btnUpdateVitals";
-            btnUpdateVitals.Size = new System.Drawing.Size(160, 43);
+            btnUpdateVitals.Size = new System.Drawing.Size(140, 32);
             btnUpdateVitals.TabIndex = 12;
-            btnUpdateVitals.Text = "Update Vitals";
+            btnUpdateVitals.Text = "Save Vitals";
             btnUpdateVitals.UseVisualStyleBackColor = true;
+            btnUpdateVitals.Click += btnUpdateVitals_Click;
             // 
             // txtMonitoringNotes
             // 
-            txtMonitoringNotes.Location = new System.Drawing.Point(32, 542);
-            txtMonitoringNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtMonitoringNotes.Location = new System.Drawing.Point(28, 406);
+            txtMonitoringNotes.Margin = new System.Windows.Forms.Padding(4);
             txtMonitoringNotes.Multiline = true;
             txtMonitoringNotes.Name = "txtMonitoringNotes";
-            txtMonitoringNotes.Size = new System.Drawing.Size(340, 133);
+            txtMonitoringNotes.Size = new System.Drawing.Size(298, 101);
             txtMonitoringNotes.TabIndex = 11;
             // 
             // lblMonitoringNotes
             // 
             lblMonitoringNotes.AutoSize = true;
-            lblMonitoringNotes.Location = new System.Drawing.Point(32, 517);
+            lblMonitoringNotes.Location = new System.Drawing.Point(28, 388);
             lblMonitoringNotes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblMonitoringNotes.Name = "lblMonitoringNotes";
-            lblMonitoringNotes.Size = new System.Drawing.Size(126, 20);
+            lblMonitoringNotes.Size = new System.Drawing.Size(101, 15);
             lblMonitoringNotes.TabIndex = 10;
             lblMonitoringNotes.Text = "Monitoring Notes";
             // 
             // numOxygenLevel
             // 
-            numOxygenLevel.Location = new System.Drawing.Point(32, 455);
-            numOxygenLevel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            numOxygenLevel.Location = new System.Drawing.Point(28, 341);
+            numOxygenLevel.Margin = new System.Windows.Forms.Padding(4);
             numOxygenLevel.Name = "numOxygenLevel";
-            numOxygenLevel.Size = new System.Drawing.Size(341, 27);
+            numOxygenLevel.Size = new System.Drawing.Size(298, 23);
             numOxygenLevel.TabIndex = 9;
             // 
             // lblOxygenLevel
             // 
             lblOxygenLevel.AutoSize = true;
-            lblOxygenLevel.Location = new System.Drawing.Point(32, 431);
+            lblOxygenLevel.Location = new System.Drawing.Point(28, 323);
             lblOxygenLevel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblOxygenLevel.Name = "lblOxygenLevel";
-            lblOxygenLevel.Size = new System.Drawing.Size(97, 20);
+            lblOxygenLevel.Size = new System.Drawing.Size(98, 15);
             lblOxygenLevel.TabIndex = 8;
-            lblOxygenLevel.Text = "Oxygen Level";
+            lblOxygenLevel.Text = "Oxygen Level (%)";
             // 
             // numTemperature
             // 
             numTemperature.DecimalPlaces = 1;
-            numTemperature.Location = new System.Drawing.Point(32, 369);
-            numTemperature.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            numTemperature.Location = new System.Drawing.Point(28, 277);
+            numTemperature.Margin = new System.Windows.Forms.Padding(4);
             numTemperature.Maximum = new decimal(new int[] { 120, 0, 0, 0 });
             numTemperature.Name = "numTemperature";
-            numTemperature.Size = new System.Drawing.Size(341, 27);
+            numTemperature.Size = new System.Drawing.Size(298, 23);
             numTemperature.TabIndex = 7;
             // 
             // lblTemperature
             // 
             lblTemperature.AutoSize = true;
-            lblTemperature.Location = new System.Drawing.Point(32, 345);
+            lblTemperature.Location = new System.Drawing.Point(28, 259);
             lblTemperature.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblTemperature.Name = "lblTemperature";
-            lblTemperature.Size = new System.Drawing.Size(93, 20);
+            lblTemperature.Size = new System.Drawing.Size(91, 15);
             lblTemperature.TabIndex = 6;
-            lblTemperature.Text = "Temperature";
+            lblTemperature.Text = "Temperature (F)";
             // 
             // txtBloodPressure
             // 
-            txtBloodPressure.Location = new System.Drawing.Point(32, 283);
-            txtBloodPressure.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            txtBloodPressure.Location = new System.Drawing.Point(28, 212);
+            txtBloodPressure.Margin = new System.Windows.Forms.Padding(4);
             txtBloodPressure.Name = "txtBloodPressure";
-            txtBloodPressure.Size = new System.Drawing.Size(340, 27);
+            txtBloodPressure.Size = new System.Drawing.Size(298, 23);
             txtBloodPressure.TabIndex = 5;
             // 
             // lblBloodPressure
             // 
             lblBloodPressure.AutoSize = true;
-            lblBloodPressure.Location = new System.Drawing.Point(32, 258);
+            lblBloodPressure.Location = new System.Drawing.Point(28, 194);
             lblBloodPressure.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblBloodPressure.Name = "lblBloodPressure";
-            lblBloodPressure.Size = new System.Drawing.Size(107, 20);
+            lblBloodPressure.Size = new System.Drawing.Size(85, 15);
             lblBloodPressure.TabIndex = 4;
             lblBloodPressure.Text = "Blood Pressure";
             // 
             // numHeartRate
             // 
-            numHeartRate.Location = new System.Drawing.Point(32, 197);
-            numHeartRate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            numHeartRate.Location = new System.Drawing.Point(28, 148);
+            numHeartRate.Margin = new System.Windows.Forms.Padding(4);
             numHeartRate.Maximum = new decimal(new int[] { 250, 0, 0, 0 });
             numHeartRate.Name = "numHeartRate";
-            numHeartRate.Size = new System.Drawing.Size(341, 27);
+            numHeartRate.Size = new System.Drawing.Size(298, 23);
             numHeartRate.TabIndex = 3;
             // 
             // lblHeartRate
             // 
             lblHeartRate.AutoSize = true;
-            lblHeartRate.Location = new System.Drawing.Point(32, 172);
+            lblHeartRate.Location = new System.Drawing.Point(28, 129);
             lblHeartRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblHeartRate.Name = "lblHeartRate";
-            lblHeartRate.Size = new System.Drawing.Size(80, 20);
+            lblHeartRate.Size = new System.Drawing.Size(98, 15);
             lblHeartRate.TabIndex = 2;
-            lblHeartRate.Text = "Heart Rate";
+            lblHeartRate.Text = "Heart Rate (bpm)";
             // 
-            // txtMonitoringPatient
+            // cmbMonitoringPatientPicker
             // 
-            txtMonitoringPatient.Location = new System.Drawing.Point(32, 111);
-            txtMonitoringPatient.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            txtMonitoringPatient.Name = "txtMonitoringPatient";
-            txtMonitoringPatient.Size = new System.Drawing.Size(340, 27);
-            txtMonitoringPatient.TabIndex = 1;
+            cmbMonitoringPatientPicker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            cmbMonitoringPatientPicker.FormattingEnabled = true;
+            cmbMonitoringPatientPicker.Location = new System.Drawing.Point(28, 83);
+            cmbMonitoringPatientPicker.Margin = new System.Windows.Forms.Padding(4);
+            cmbMonitoringPatientPicker.Name = "cmbMonitoringPatientPicker";
+            cmbMonitoringPatientPicker.Size = new System.Drawing.Size(298, 23);
+            cmbMonitoringPatientPicker.TabIndex = 1;
             // 
             // lblMonitoringPatient
             // 
             lblMonitoringPatient.AutoSize = true;
-            lblMonitoringPatient.Location = new System.Drawing.Point(32, 86);
+            lblMonitoringPatient.Location = new System.Drawing.Point(28, 64);
             lblMonitoringPatient.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblMonitoringPatient.Name = "lblMonitoringPatient";
-            lblMonitoringPatient.Size = new System.Drawing.Size(54, 20);
+            lblMonitoringPatient.Size = new System.Drawing.Size(79, 15);
             lblMonitoringPatient.TabIndex = 0;
-            lblMonitoringPatient.Text = "Patient";
+            lblMonitoringPatient.Text = "Patient Name";
             // 
             // vitalsGrid
             // 
@@ -2025,13 +3060,14 @@ namespace HospitalManagement.Client
             vitalsGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             vitalsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             vitalsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { vitalsPatientColumn, vitalsRoomColumn, vitalsHeartRateColumn, vitalsBloodPressureColumn, vitalsOxygenColumn, vitalsStatusColumn });
-            vitalsGrid.Location = new System.Drawing.Point(32, 37);
-            vitalsGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            vitalsGrid.Location = new System.Drawing.Point(28, 28);
+            vitalsGrid.Margin = new System.Windows.Forms.Padding(4);
             vitalsGrid.Name = "vitalsGrid";
             vitalsGrid.ReadOnly = true;
             vitalsGrid.RowHeadersWidth = 51;
-            vitalsGrid.Size = new System.Drawing.Size(1067, 660);
+            vitalsGrid.Size = new System.Drawing.Size(934, 495);
             vitalsGrid.TabIndex = 0;
+            vitalsGrid.CellDoubleClick += vitalsGrid_CellDoubleClick;
             // 
             // vitalsPatientColumn
             // 
@@ -2083,14 +3119,14 @@ namespace HospitalManagement.Client
             // 
             // Form1
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(1579, 1171);
+            ClientSize = new System.Drawing.Size(1382, 878);
             Controls.Add(mainTabs);
             Controls.Add(statusStrip);
             Controls.Add(headerPanel);
-            Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            MinimumSize = new System.Drawing.Size(1327, 975);
+            Margin = new System.Windows.Forms.Padding(4);
+            MinimumSize = new System.Drawing.Size(1163, 741);
             Name = "Form1";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Hospital Management System";
@@ -2101,10 +3137,25 @@ namespace HospitalManagement.Client
             mainTabs.ResumeLayout(false);
             dashboardTab.ResumeLayout(false);
             grpCriticalStatus.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)currentAlertsGrid).EndInit();
             grpBedStatus.ResumeLayout(false);
-            grpRealTimeUpdates.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)bedStatusGrid).EndInit();
             grpQuickCounts.ResumeLayout(false);
             grpQuickCounts.PerformLayout();
+            doctorVisitsTab.ResumeLayout(false);
+            grpDoctorTodayVisits.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)doctorVisitsGrid).EndInit();
+            grpDoctorTodayVisit.ResumeLayout(false);
+            grpDoctorLastVisit.ResumeLayout(false);
+            patientCareTab.ResumeLayout(false);
+            grpPatientLatestVitals.ResumeLayout(false);
+            pnlVitalUpdated.ResumeLayout(false);
+            pnlVitalStatus.ResumeLayout(false);
+            pnlVitalTemperature.ResumeLayout(false);
+            pnlVitalOxygen.ResumeLayout(false);
+            pnlVitalBloodPressure.ResumeLayout(false);
+            pnlVitalHeartRate.ResumeLayout(false);
+            grpPatientNextAppointment.ResumeLayout(false);
             patientsTab.ResumeLayout(false);
             grpPatientDetails.ResumeLayout(false);
             grpPatientDetails.PerformLayout();
@@ -2130,10 +3181,12 @@ namespace HospitalManagement.Client
             grpAnalyticsFilters.ResumeLayout(false);
             grpAnalyticsFilters.PerformLayout();
             communicationTab.ResumeLayout(false);
-            grpNotifications.ResumeLayout(false);
             grpMessageHistory.ResumeLayout(false);
             grpMessageHistory.PerformLayout();
             grpConversations.ResumeLayout(false);
+            patientMessagesTab.ResumeLayout(false);
+            grpPatientMessageHistory.ResumeLayout(false);
+            grpPatientMessageHistory.PerformLayout();
             monitoringTab.ResumeLayout(false);
             grpMonitoringAlerts.ResumeLayout(false);
             grpVitalsEntry.ResumeLayout(false);
@@ -2150,21 +3203,26 @@ namespace HospitalManagement.Client
         #endregion
 
         private System.Windows.Forms.Panel headerPanel;
-        private System.Windows.Forms.Label lblNotifications;
-        private System.Windows.Forms.Label lblConnection;
+        private System.Windows.Forms.Button btnNotifications;
         private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.Label lblLoggedInUser;
-        private System.Windows.Forms.Label lblSystemTitle;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel statusText;
+        private System.Windows.Forms.ToolStripStatusLabel connectionStatusText;
         private System.Windows.Forms.TabControl mainTabs;
         private System.Windows.Forms.TabPage dashboardTab;
         private System.Windows.Forms.GroupBox grpCriticalStatus;
-        private System.Windows.Forms.ListBox lstCriticalStatus;
+        private System.Windows.Forms.DataGridView currentAlertsGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alertTypeColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alertSubjectColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alertDetailsColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alertUpdatedColumn;
         private System.Windows.Forms.GroupBox grpBedStatus;
-        private System.Windows.Forms.ListBox lstBedStatus;
-        private System.Windows.Forms.GroupBox grpRealTimeUpdates;
-        private System.Windows.Forms.ListBox lstRealTimeUpdates;
+        private System.Windows.Forms.DataGridView bedStatusGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bedDepartmentColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bedOpenColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bedTotalColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bedUpdatedColumn;
         private System.Windows.Forms.GroupBox grpQuickCounts;
         private System.Windows.Forms.TextBox txtDashboardEmergencies;
         private System.Windows.Forms.Label lblDashboardEmergencies;
@@ -2176,6 +3234,78 @@ namespace HospitalManagement.Client
         private System.Windows.Forms.Label lblDashboardAppointments;
         private System.Windows.Forms.TextBox txtDashboardPatients;
         private System.Windows.Forms.Label lblDashboardPatients;
+        private System.Windows.Forms.TabPage patientCareTab;
+        private System.Windows.Forms.GroupBox grpPatientLatestVitals;
+        private System.Windows.Forms.Label lblPatientVitalsPlaceholder;
+        private System.Windows.Forms.Label lblVitalNotes;
+        private System.Windows.Forms.Panel pnlVitalUpdated;
+        private System.Windows.Forms.Label lblVitalUpdated;
+        private System.Windows.Forms.Label lblVitalUpdatedCaption;
+        private System.Windows.Forms.Panel pnlVitalStatus;
+        private System.Windows.Forms.Label lblVitalStatus;
+        private System.Windows.Forms.Label lblVitalStatusCaption;
+        private System.Windows.Forms.Panel pnlVitalTemperature;
+        private System.Windows.Forms.Label lblVitalTemperature;
+        private System.Windows.Forms.Label lblVitalTemperatureCaption;
+        private System.Windows.Forms.Panel pnlVitalOxygen;
+        private System.Windows.Forms.Label lblVitalOxygen;
+        private System.Windows.Forms.Label lblVitalOxygenCaption;
+        private System.Windows.Forms.Panel pnlVitalBloodPressure;
+        private System.Windows.Forms.Label lblVitalBloodPressure;
+        private System.Windows.Forms.Label lblVitalBloodPressureCaption;
+        private System.Windows.Forms.Panel pnlVitalHeartRate;
+        private System.Windows.Forms.Label lblVitalHeartRate;
+        private System.Windows.Forms.Label lblVitalHeartRateCaption;
+        private System.Windows.Forms.GroupBox grpPatientNextAppointment;
+        private System.Windows.Forms.Label lblPatientAppointmentPlaceholder;
+        private System.Windows.Forms.Label lblPatientAppointmentNotesValue;
+        private System.Windows.Forms.Label lblPatientAppointmentNotesCaption;
+        private System.Windows.Forms.Label lblPatientAppointmentReasonValue;
+        private System.Windows.Forms.Label lblPatientAppointmentReasonCaption;
+        private System.Windows.Forms.Label lblPatientAppointmentStatusValue;
+        private System.Windows.Forms.Label lblPatientAppointmentStatusCaption;
+        private System.Windows.Forms.Label lblPatientAppointmentDoctorValue;
+        private System.Windows.Forms.Label lblPatientAppointmentDoctorCaption;
+        private System.Windows.Forms.Label lblPatientAppointmentTimeValue;
+        private System.Windows.Forms.Label lblPatientAppointmentTimeCaption;
+        private System.Windows.Forms.Label lblPatientAppointmentDateValue;
+        private System.Windows.Forms.Label lblPatientAppointmentDateCaption;
+        private System.Windows.Forms.Panel pnlPatientAppointmentStatus;
+        private System.Windows.Forms.TabPage doctorVisitsTab;
+        private System.Windows.Forms.GroupBox grpDoctorTodayVisits;
+        private System.Windows.Forms.DataGridView doctorVisitsGrid;
+        private System.Windows.Forms.GroupBox grpDoctorTodayVisit;
+        private System.Windows.Forms.Button btnTextNextVisitPatient;
+        private System.Windows.Forms.Label lblDoctorTodayVisitPlaceholder;
+        private System.Windows.Forms.Label lblDoctorTodayVisitNotesValue;
+        private System.Windows.Forms.Label lblDoctorTodayVisitNotesCaption;
+        private System.Windows.Forms.Label lblDoctorTodayVisitReasonValue;
+        private System.Windows.Forms.Label lblDoctorTodayVisitReasonCaption;
+        private System.Windows.Forms.Label lblDoctorTodayVisitStatusValue;
+        private System.Windows.Forms.Label lblDoctorTodayVisitStatusCaption;
+        private System.Windows.Forms.Label lblDoctorTodayVisitPatientValue;
+        private System.Windows.Forms.Label lblDoctorTodayVisitPatientCaption;
+        private System.Windows.Forms.Label lblDoctorTodayVisitTimeValue;
+        private System.Windows.Forms.Label lblDoctorTodayVisitTimeCaption;
+        private System.Windows.Forms.Label lblDoctorTodayVisitDateValue;
+        private System.Windows.Forms.Label lblDoctorTodayVisitDateCaption;
+        private System.Windows.Forms.Panel pnlDoctorTodayVisitStatus;
+        private System.Windows.Forms.GroupBox grpDoctorLastVisit;
+        private System.Windows.Forms.Button btnTextLastVisitPatient;
+        private System.Windows.Forms.Label lblDoctorLastVisitPlaceholder;
+        private System.Windows.Forms.Label lblDoctorLastVisitNotesValue;
+        private System.Windows.Forms.Label lblDoctorLastVisitNotesCaption;
+        private System.Windows.Forms.Label lblDoctorLastVisitReasonValue;
+        private System.Windows.Forms.Label lblDoctorLastVisitReasonCaption;
+        private System.Windows.Forms.Label lblDoctorLastVisitStatusValue;
+        private System.Windows.Forms.Label lblDoctorLastVisitStatusCaption;
+        private System.Windows.Forms.Label lblDoctorLastVisitPatientValue;
+        private System.Windows.Forms.Label lblDoctorLastVisitPatientCaption;
+        private System.Windows.Forms.Label lblDoctorLastVisitTimeValue;
+        private System.Windows.Forms.Label lblDoctorLastVisitTimeCaption;
+        private System.Windows.Forms.Label lblDoctorLastVisitDateValue;
+        private System.Windows.Forms.Label lblDoctorLastVisitDateCaption;
+        private System.Windows.Forms.Panel pnlDoctorLastVisitStatus;
         private System.Windows.Forms.TabPage patientsTab;
         private System.Windows.Forms.GroupBox grpPatientDetails;
         private System.Windows.Forms.Button btnClearPatient;
@@ -2198,11 +3328,6 @@ namespace HospitalManagement.Client
         private System.Windows.Forms.TextBox txtPatientId;
         private System.Windows.Forms.Label lblPatientId;
         private System.Windows.Forms.DataGridView patientGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn patientIdColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn patientNameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn patientDepartmentColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn patientStatusColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn patientDoctorColumn;
         private System.Windows.Forms.GroupBox grpPatientSearch;
         private System.Windows.Forms.Button btnPatientRefresh;
         private System.Windows.Forms.Button btnPatientSearch;
@@ -2218,8 +3343,8 @@ namespace HospitalManagement.Client
         private System.Windows.Forms.DataGridViewTextBoxColumn appointmentReasonColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn appointmentStatusColumn;
         private System.Windows.Forms.GroupBox grpAppointmentDetails;
+        private System.Windows.Forms.Button btnClearAppointment;
         private System.Windows.Forms.Button btnAppointmentRefresh;
-        private System.Windows.Forms.Button btnCancelAppointment;
         private System.Windows.Forms.Button btnUpdateAppointment;
         private System.Windows.Forms.Button btnAddAppointment;
         private System.Windows.Forms.TextBox txtAppointmentNotes;
@@ -2234,7 +3359,7 @@ namespace HospitalManagement.Client
         private System.Windows.Forms.Label lblAppointmentReason;
         private System.Windows.Forms.ComboBox cmbAppointmentDoctor;
         private System.Windows.Forms.Label lblAppointmentDoctor;
-        private System.Windows.Forms.TextBox txtAppointmentPatient;
+        private System.Windows.Forms.ComboBox cmbAppointmentPatientPicker;
         private System.Windows.Forms.Label lblAppointmentPatient;
         private System.Windows.Forms.TabPage inventoryTab;
         private System.Windows.Forms.GroupBox grpLowStock;
@@ -2284,15 +3409,18 @@ namespace HospitalManagement.Client
         private System.Windows.Forms.DateTimePicker dtpReportStart;
         private System.Windows.Forms.Label lblReportStart;
         private System.Windows.Forms.TabPage communicationTab;
-        private System.Windows.Forms.GroupBox grpNotifications;
-        private System.Windows.Forms.ListBox lstNotifications;
         private System.Windows.Forms.GroupBox grpMessageHistory;
         private System.Windows.Forms.TextBox txtMessageInput;
         private System.Windows.Forms.Button btnSendMessage;
-        private System.Windows.Forms.ListBox lstMessageHistory;
+        private System.Windows.Forms.FlowLayoutPanel messageHistoryFlowPanel;
         private System.Windows.Forms.GroupBox grpConversations;
         private System.Windows.Forms.Button btnNewConversation;
         private System.Windows.Forms.ListBox lstConversations;
+        private System.Windows.Forms.TabPage patientMessagesTab;
+        private System.Windows.Forms.GroupBox grpPatientMessageHistory;
+        private System.Windows.Forms.TextBox txtPatientMessageInput;
+        private System.Windows.Forms.Button btnSendPatientMessage;
+        private System.Windows.Forms.FlowLayoutPanel patientMessageHistoryFlowPanel;
         private System.Windows.Forms.TabPage monitoringTab;
         private System.Windows.Forms.GroupBox grpMonitoringAlerts;
         private System.Windows.Forms.ListBox lstMonitoringAlerts;
@@ -2309,7 +3437,7 @@ namespace HospitalManagement.Client
         private System.Windows.Forms.Label lblBloodPressure;
         private System.Windows.Forms.NumericUpDown numHeartRate;
         private System.Windows.Forms.Label lblHeartRate;
-        private System.Windows.Forms.TextBox txtMonitoringPatient;
+        private System.Windows.Forms.ComboBox cmbMonitoringPatientPicker;
         private System.Windows.Forms.Label lblMonitoringPatient;
         private System.Windows.Forms.DataGridView vitalsGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn vitalsPatientColumn;
@@ -2319,5 +3447,14 @@ namespace HospitalManagement.Client
         private System.Windows.Forms.DataGridViewTextBoxColumn vitalsOxygenColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn vitalsStatusColumn;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.DataGridViewTextBoxColumn patientIdColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn patientNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn patientDepartmentColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn patientStatusColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn patientDoctorColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn doctorVisitTimeColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn doctorVisitPatientColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn doctorVisitStatusColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn doctorVisitReasonColumn;
     }
 }
