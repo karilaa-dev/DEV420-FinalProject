@@ -1214,7 +1214,7 @@ namespace HospitalManagement.Client
             lblVitalUpdated.Location = new System.Drawing.Point(10, 32);
             lblVitalUpdated.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblVitalUpdated.Name = "lblVitalUpdated";
-            lblVitalUpdated.Size = new System.Drawing.Size(637, 28);
+            lblVitalUpdated.Size = new System.Drawing.Size(414, 26);
             lblVitalUpdated.TabIndex = 1;
             lblVitalUpdated.Text = "--";
             // 
@@ -1247,7 +1247,7 @@ namespace HospitalManagement.Client
             lblVitalStatus.Location = new System.Drawing.Point(10, 32);
             lblVitalStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblVitalStatus.Name = "lblVitalStatus";
-            lblVitalStatus.Size = new System.Drawing.Size(413, 28);
+            lblVitalStatus.Size = new System.Drawing.Size(413, 26);
             lblVitalStatus.TabIndex = 1;
             lblVitalStatus.Text = "--";
             // 
@@ -1280,7 +1280,7 @@ namespace HospitalManagement.Client
             lblVitalTemperature.Location = new System.Drawing.Point(10, 32);
             lblVitalTemperature.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblVitalTemperature.Name = "lblVitalTemperature";
-            lblVitalTemperature.Size = new System.Drawing.Size(414, 28);
+            lblVitalTemperature.Size = new System.Drawing.Size(414, 26);
             lblVitalTemperature.TabIndex = 1;
             lblVitalTemperature.Text = "--";
             // 
@@ -1314,7 +1314,7 @@ namespace HospitalManagement.Client
             lblVitalOxygen.Location = new System.Drawing.Point(10, 32);
             lblVitalOxygen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblVitalOxygen.Name = "lblVitalOxygen";
-            lblVitalOxygen.Size = new System.Drawing.Size(413, 28);
+            lblVitalOxygen.Size = new System.Drawing.Size(413, 26);
             lblVitalOxygen.TabIndex = 1;
             lblVitalOxygen.Text = "--";
             // 
@@ -1347,7 +1347,7 @@ namespace HospitalManagement.Client
             lblVitalBloodPressure.Location = new System.Drawing.Point(10, 32);
             lblVitalBloodPressure.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblVitalBloodPressure.Name = "lblVitalBloodPressure";
-            lblVitalBloodPressure.Size = new System.Drawing.Size(413, 28);
+            lblVitalBloodPressure.Size = new System.Drawing.Size(413, 26);
             lblVitalBloodPressure.TabIndex = 1;
             lblVitalBloodPressure.Text = "--";
             // 
@@ -1380,7 +1380,7 @@ namespace HospitalManagement.Client
             lblVitalHeartRate.Location = new System.Drawing.Point(10, 32);
             lblVitalHeartRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblVitalHeartRate.Name = "lblVitalHeartRate";
-            lblVitalHeartRate.Size = new System.Drawing.Size(414, 28);
+            lblVitalHeartRate.Size = new System.Drawing.Size(414, 26);
             lblVitalHeartRate.TabIndex = 1;
             lblVitalHeartRate.Text = "--";
             // 
