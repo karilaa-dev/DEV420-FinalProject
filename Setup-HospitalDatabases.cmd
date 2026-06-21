@@ -63,7 +63,7 @@ call :RequireCommand powershell "Install Windows PowerShell or run this script o
 if errorlevel 1 exit /b 1
 
 set "CONFIG_OUTPUT=%TEMP%\hospital-config-%RANDOM%-%RANDOM%.tmp"
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference = 'Stop'; $config = Get-Content -Raw -Path $env:HOSPITAL_APP_SETTINGS | ConvertFrom-Json; $sqlConnection = $config.ConnectionStrings.HospitalSqlConnection; if ([string]::IsNullOrWhiteSpace($sqlConnection)) { throw 'ConnectionStrings:HospitalSqlConnection is required.' }; $sql = New-Object -TypeName System.Data.SqlClient.SqlConnectionStringBuilder -ArgumentList $sqlConnection; $mongoConnection = $config.ConnectionStrings.MongoConnection; if ([string]::IsNullOrWhiteSpace($mongoConnection)) { $mongoConnection = $config.MongoAccount.ConnectionString }; if ([string]::IsNullOrWhiteSpace($mongoConnection)) { throw 'ConnectionStrings:MongoConnection is required.' }; $mongoDatabase = $config.MongoAccount.DatabaseName; if ([string]::IsNullOrWhiteSpace($mongoDatabase)) { $withoutQuery = $mongoConnection.Split('?')[0]; $lastSlash = $withoutQuery.LastIndexOf('/'); if ($lastSlash -ge 0 -and $lastSlash -lt ($withoutQuery.Length - 1)) { $mongoDatabase = $withoutQuery.Substring($lastSlash + 1) } }; if ([string]::IsNullOrWhiteSpace($mongoDatabase)) { throw 'MongoAccount:DatabaseName is required when the Mongo connection string does not include a database.' }; 'SQL_SERVER=' + $sql.DataSource; 'SQL_DATABASE=' + $sql.InitialCatalog; if ($sql.IntegratedSecurity) { 'SQL_USER='; 'SQL_PASSWORD=' } else { 'SQL_USER=' + $sql.UserID; 'SQL_PASSWORD=' + $sql.Password }; 'MONGO_CONNECTION_STRING=' + $mongoConnection; 'MONGO_DATABASE=' + $mongoDatabase" > "%CONFIG_OUTPUT%"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference = 'Stop'; $config = Get-Content -Raw -Path $env:HOSPITAL_APP_SETTINGS | ConvertFrom-Json; $sqlConnection = $config.ConnectionStrings.HospitalSqlConnection; if ([string]::IsNullOrWhiteSpace($sqlConnection)) { throw 'ConnectionStrings:HospitalSqlConnection is required.' }; $sql = New-Object -TypeName System.Data.SqlClient.SqlConnectionStringBuilder -ArgumentList $sqlConnection; $mongoConnection = $config.ConnectionStrings.MongoConnection; if ([string]::IsNullOrWhiteSpace($mongoConnection)) { $mongoConnection = $config.MongoAccount.ConnectionString }; if ([string]::IsNullOrWhiteSpace($mongoConnection)) { throw 'ConnectionStrings:MongoConnection is required.' }; $mongoDatabase = $config.MongoAccount.DatabaseName; if ([string]::IsNullOrWhiteSpace($mongoDatabase)) { $withoutQuery = $mongoConnection.Split('?')[0]; $lastSlash = $withoutQuery.LastIndexOf('/'); if ($lastSlash -ge 0 -and $lastSlash -lt ($withoutQuery.Length - 1)) { $mongoDatabase = $withoutQuery.Substring($lastSlash + 1) } }; if ([string]::IsNullOrWhiteSpace($mongoDatabase)) { throw 'MongoAccount:DatabaseName is required when the Mongo connection string does not include a database.' }; 'SQL_SERVER=' + $sql.DataSource; 'SQL_DATABASE=' + $sql.InitialCatalog; 'SQL_TRUST_SERVER_CERTIFICATE=' + $sql.TrustServerCertificate; if ($sql.IntegratedSecurity) { 'SQL_USER='; 'SQL_PASSWORD=' } else { 'SQL_USER=' + $sql.UserID; 'SQL_PASSWORD=' + $sql.Password }; 'MONGO_CONNECTION_STRING=' + $mongoConnection; 'MONGO_DATABASE=' + $mongoDatabase" > "%CONFIG_OUTPUT%"
 if errorlevel 1 (
     if exist "%CONFIG_OUTPUT%" del "%CONFIG_OUTPUT%" >nul 2>nul
     echo Error: Could not read connection settings from appsettings.json.
@@ -89,6 +89,7 @@ exit /b 0
 echo Current settings
 echo SQL Server:      %SQL_SERVER%
 echo SQL Database:    %SQL_DATABASE%
+echo SQL Trust Cert:  %SQL_TRUST_SERVER_CERTIFICATE%
 if "%SQL_USER%"=="" (
     echo SQL Auth:        Windows authentication
 ) else (
@@ -119,6 +120,12 @@ if "%SQL_USER%"=="" (
 )
 exit /b 0
 
+:BuildSqlcmdArgs
+call :BuildSqlAuthArgs
+set "SQL_CERT_ARGS="
+if /i "%SQL_TRUST_SERVER_CERTIFICATE%"=="True" set "SQL_CERT_ARGS=-C"
+exit /b 0
+
 :ResetDatabases
 call :ResetSqlDatabase
 if errorlevel 1 exit /b 1
@@ -136,8 +143,8 @@ call :RequireCommand sqlcmd "Install Microsoft sqlcmd or run this script on the 
 if errorlevel 1 exit /b 1
 
 echo Setting up SQL schema in '%SQL_DATABASE%'...
-call :BuildSqlAuthArgs
-sqlcmd -S "%SQL_SERVER%" -d master -b %SQL_AUTH_ARGS% -v DatabaseName="%SQL_DATABASE%" -i "%SQL_SETUP_SCRIPT%"
+call :BuildSqlcmdArgs
+sqlcmd -S "%SQL_SERVER%" -d master -b %SQL_AUTH_ARGS% %SQL_CERT_ARGS% -v DatabaseName="%SQL_DATABASE%" -i "%SQL_SETUP_SCRIPT%"
 if errorlevel 1 (
     echo Error: sqlcmd failed while setting up the SQL schema.
     exit /b 1
@@ -158,8 +165,8 @@ call :RequireCommand sqlcmd "Install Microsoft sqlcmd or run this script on the 
 if errorlevel 1 exit /b 1
 
 echo Resetting SQL database '%SQL_DATABASE%' on '%SQL_SERVER%'...
-call :BuildSqlAuthArgs
-sqlcmd -S "%SQL_SERVER%" -d master -b %SQL_AUTH_ARGS% -Q "DECLARE @DatabaseName sysname = N'%SQL_DATABASE%'; IF DB_ID(@DatabaseName) IS NOT NULL BEGIN DECLARE @Sql nvarchar(max); SET @Sql = N'ALTER DATABASE ' + QUOTENAME(@DatabaseName) + N' SET SINGLE_USER WITH ROLLBACK IMMEDIATE;'; EXEC(@Sql); SET @Sql = N'DROP DATABASE ' + QUOTENAME(@DatabaseName) + N';'; EXEC(@Sql); END;"
+call :BuildSqlcmdArgs
+sqlcmd -S "%SQL_SERVER%" -d master -b %SQL_AUTH_ARGS% %SQL_CERT_ARGS% -Q "DECLARE @DatabaseName sysname = N'%SQL_DATABASE%'; IF DB_ID(@DatabaseName) IS NOT NULL BEGIN DECLARE @Sql nvarchar(max); SET @Sql = N'ALTER DATABASE ' + QUOTENAME(@DatabaseName) + N' SET SINGLE_USER WITH ROLLBACK IMMEDIATE;'; EXEC(@Sql); SET @Sql = N'DROP DATABASE ' + QUOTENAME(@DatabaseName) + N';'; EXEC(@Sql); END;"
 if errorlevel 1 (
     echo Error: sqlcmd failed while resetting the SQL database.
     exit /b 1
@@ -178,8 +185,8 @@ call :RequireCommand sqlcmd "Install Microsoft sqlcmd or run this script on the 
 if errorlevel 1 exit /b 1
 
 echo Loading SQL demo data into '%SQL_DATABASE%'...
-call :BuildSqlAuthArgs
-sqlcmd -S "%SQL_SERVER%" -d master -b %SQL_AUTH_ARGS% -v DatabaseName="%SQL_DATABASE%" -i "%SQL_DEMO_SCRIPT%"
+call :BuildSqlcmdArgs
+sqlcmd -S "%SQL_SERVER%" -d master -b %SQL_AUTH_ARGS% %SQL_CERT_ARGS% -v DatabaseName="%SQL_DATABASE%" -i "%SQL_DEMO_SCRIPT%"
 if errorlevel 1 (
     echo Error: sqlcmd failed while loading SQL demo data.
     exit /b 1
