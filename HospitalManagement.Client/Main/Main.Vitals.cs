@@ -68,7 +68,6 @@ namespace HospitalManagement.Client
                         string status = vital.VitalsStatus;
                         int rowIndex = vitalsGrid.Rows.Add(
                             vital.Patient.Name,
-                            vital.Room,
                             vital.HeartRate.ToString(),
                             vital.BloodPressure,
                             vital.OxygenLevel.ToString() + "%",
@@ -105,7 +104,7 @@ namespace HospitalManagement.Client
 
                 if (lstMonitoringAlerts.Items.Count == 0)
                 {
-                    lstMonitoringAlerts.Items.Add("No active critical care alerts.");
+                    lstMonitoringAlerts.Items.Add("No active vitals alerts.");
                 }
 
                 statusText.Text = "Vitals loaded.";
@@ -145,21 +144,6 @@ namespace HospitalManagement.Client
             {
                 MessageBox.Show("Vitals details could not be loaded.\n\n" + ex.Message);
             }
-        }
-
-        private string GetPatientRoomLabel(HospitalDbContext db, int patientId)
-        {
-            string department = db.Patients
-                .Where(patient => patient.PatientId == patientId)
-                .Select(patient => patient.Department)
-                .FirstOrDefault();
-
-            if (String.IsNullOrWhiteSpace(department))
-            {
-                return "Unassigned";
-            }
-
-            return department + " Monitoring";
         }
 
         private string EvaluateVitalsStatus(int heartRate, string bloodPressure, int oxygenLevel, decimal temperature)
@@ -302,7 +286,6 @@ namespace HospitalManagement.Client
                     db.PatientVitals.Add(new PatientVitals
                     {
                         PatientId = patientId,
-                        Room = GetPatientRoomLabel(db, patientId),
                         HeartRate = heartRate,
                         BloodPressure = bloodPressure,
                         OxygenLevel = oxygenLevel,
@@ -380,7 +363,6 @@ namespace HospitalManagement.Client
                     message = "Vitals updated for " + patientName + " (" + status + ").";
 
                     vitals.PatientId = patientId;
-                    vitals.Room = GetPatientRoomLabel(db, patientId);
                     vitals.HeartRate = heartRate;
                     vitals.BloodPressure = bloodPressure;
                     vitals.OxygenLevel = oxygenLevel;

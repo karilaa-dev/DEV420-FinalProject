@@ -55,11 +55,11 @@ MongoDB remains the login source required by the final project. SQL Server store
 - Appointment scheduling with SQL foreign keys to patients and doctor-user profiles.
 - Doctor-side appointment flow for assigned patients, including status/notes updates and vitals entry.
 - Administrative-only medical inventory management with low-stock alerts and stock transaction history.
-- Administrative-only analytics reports for patient visits, appointment statuses, doctor workload, common appointment reasons, medication usage, and department load.
+- Administrative-only analytics reports for patient visits, appointment statuses, doctor workload, common appointment reasons, and medication usage.
 - Real-time staff-patient communication through patient-specific chat conversations linked by `PatientId`.
 - Automated patient follow-up chat message when an appointment is marked completed.
 - Patient vitals monitoring with warning/critical status calculation and role-scoped visibility.
-- Dashboard counts, bed availability, critical alerts, notifications, and real-time update feed with client-side role filtering plus server-side SignalR account-type checks.
+- Dashboard counts, critical alerts, notifications, and real-time update feed with client-side role filtering plus server-side SignalR account-type checks.
 
 ## Role Permissions
 

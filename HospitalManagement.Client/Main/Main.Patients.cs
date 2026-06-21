@@ -25,11 +25,6 @@ namespace HospitalManagement.Client
                 cmbPatientGender.SelectedIndex = 0;
             }
 
-            if (cmbPatientDepartment.Items.Count > 0 && cmbPatientDepartment.SelectedIndex == -1)
-            {
-                cmbPatientDepartment.SelectedIndex = 0;
-            }
-
             if (cmbPatientFilter.Items.Count > 0 && cmbPatientFilter.SelectedIndex == -1)
             {
                 cmbPatientFilter.SelectedIndex = 0;
@@ -57,7 +52,6 @@ namespace HospitalManagement.Client
             txtPatientNotes.ReadOnly = !canEditPatientFields;
             cmbPatientGender.Enabled = canEditPatientFields;
             dtpPatientDob.Enabled = canEditPatientFields;
-            cmbPatientDepartment.Enabled = canManagePatients;
             chkPatientAdmitted.Enabled = canManagePatients;
         }
 
@@ -76,7 +70,6 @@ namespace HospitalManagement.Client
                         {
                             patient.PatientId,
                             patient.Name,
-                            patient.Department,
                             patient.IsAdmitted,
                             AssignedDoctor = patient.Appointments
                                 .OrderByDescending(appointment => appointment.AppointmentDateTime)
@@ -92,7 +85,6 @@ namespace HospitalManagement.Client
                         patientGrid.Rows.Add(
                             patient.PatientId.ToString(),
                             patient.Name,
-                            patient.Department,
                             admittedText,
                             patient.AssignedDoctor ?? "Not assigned"
                         );
@@ -139,10 +131,6 @@ namespace HospitalManagement.Client
                     {
                         patients = patients.Where(patient => !patient.IsAdmitted);
                     }
-                    else if (filter == "Critical Care")
-                    {
-                        patients = patients.Where(patient => patient.Department == "ICU");
-                    }
                     else if (filter == "Discharged")
                     {
                         patients = patients.Where(patient => patient.Notes != null && patient.Notes.Contains("discharged"));
@@ -154,7 +142,6 @@ namespace HospitalManagement.Client
                         {
                             patient.PatientId,
                             patient.Name,
-                            patient.Department,
                             patient.IsAdmitted,
                             AssignedDoctor = patient.Appointments
                                 .OrderByDescending(appointment => appointment.AppointmentDateTime)
@@ -170,7 +157,6 @@ namespace HospitalManagement.Client
                         patientGrid.Rows.Add(
                             patient.PatientId.ToString(),
                             patient.Name,
-                            patient.Department,
                             admittedText,
                             patient.AssignedDoctor ?? "Not assigned"
                         );
@@ -204,7 +190,6 @@ namespace HospitalManagement.Client
                         cmbPatientGender.Text = patient.Gender ?? "";
                         dtpPatientDob.Value = patient.DateOfBirth ?? DateTime.Today;
                         txtPatientPhone.Text = patient.Phone ?? "";
-                        cmbPatientDepartment.Text = patient.Department ?? "";
                         chkPatientAdmitted.Checked = patient.IsAdmitted;
                         txtPatientNotes.Text = patient.Notes ?? "";
                     }
@@ -235,42 +220,11 @@ namespace HospitalManagement.Client
                 cmbPatientGender.SelectedIndex = 0;
             }
 
-            if (cmbPatientDepartment.Items.Count > 0)
-            {
-                cmbPatientDepartment.SelectedIndex = 0;
-            }
-
             patientGrid.ClearSelection();
 
             if (txtPatientName.CanFocus)
             {
                 txtPatientName.Focus();
-            }
-        }
-
-        private void UpdateBedStatusesFromPatients()
-        {
-            try
-            {
-                using (HospitalDbContext db = CreateHospitalDbContext())
-                {
-                    List<BedStatus> bedStatuses = db.BedStatuses.ToList();
-
-                    foreach (BedStatus bedStatus in bedStatuses)
-                    {
-                        int admittedCount = db.Patients.Count(patient =>
-                            patient.Department == bedStatus.Department &&
-                            patient.IsAdmitted);
-                        bedStatus.OpenBeds = Math.Max(0, bedStatus.TotalBeds - admittedCount);
-                        bedStatus.UpdatedAt = DateTime.Now;
-                    }
-
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-                statusText.Text = "Bed status could not be recalculated: " + ex.Message;
             }
         }
 
@@ -303,7 +257,6 @@ namespace HospitalManagement.Client
                         Gender = cmbPatientGender.Text,
                         DateOfBirth = dtpPatientDob.Value.Date,
                         Phone = txtPatientPhone.Text,
-                        Department = cmbPatientDepartment.Text,
                         IsAdmitted = chkPatientAdmitted.Checked,
                         Notes = txtPatientNotes.Text
                     };
@@ -313,7 +266,6 @@ namespace HospitalManagement.Client
                     patientId = patient.PatientId;
                 }
 
-                UpdateBedStatusesFromPatients();
                 EnsurePatientConversation(patientId, patientName);
                 RefreshVisibleChatView();
                 SaveNotification("Patient", "Patient added: " + patientName + ".");
@@ -367,13 +319,11 @@ namespace HospitalManagement.Client
                     patient.Gender = cmbPatientGender.Text;
                     patient.DateOfBirth = dtpPatientDob.Value.Date;
                     patient.Phone = txtPatientPhone.Text;
-                    patient.Department = cmbPatientDepartment.Text;
                     patient.IsAdmitted = chkPatientAdmitted.Checked;
                     patient.Notes = txtPatientNotes.Text;
                     db.SaveChanges();
                 }
 
-                UpdateBedStatusesFromPatients();
                 EnsurePatientConversation(Convert.ToInt32(txtPatientId.Text), patientName);
                 InitializeCurrentUserContext();
                 RefreshVisibleChatView();
@@ -444,7 +394,6 @@ namespace HospitalManagement.Client
                     db.SaveChanges();
                 }
 
-                UpdateBedStatusesFromPatients();
                 SaveNotification("Patient", "Patient deleted: " + patientName + ".");
                 MessageBox.Show("Patient deleted successfully.");
                 ClearPatientForm();

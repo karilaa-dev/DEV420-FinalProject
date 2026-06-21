@@ -24,10 +24,8 @@ namespace HospitalManagement.Client
                         ? db.InventoryItems.Count(item => item.Quantity <= item.ReorderLevel).ToString()
                         : "0";
 
-                    txtDashboardOpenBeds.Text = (db.BedStatuses.Sum(bed => (int?)bed.OpenBeds) ?? 0).ToString();
                     txtDashboardEmergencies.Text = GetScopedCriticalVitalsCount(db).ToString();
 
-                    LoadBedStatusList(db);
                     LoadCriticalStatusList(db);
                     LoadNotificationList(db);
                     LoadRoleSummaryViews(db);
@@ -78,29 +76,6 @@ namespace HospitalManagement.Client
                     record.UpdatedAt >= recentThreshold);
         }
 
-        private void LoadBedStatusList(HospitalDbContext db)
-        {
-            bedStatusGrid.Rows.Clear();
-
-            List<BedStatus> bedStatuses = db.BedStatuses
-                .OrderBy(bed => bed.Department)
-                .ToList();
-
-            foreach (BedStatus bedStatus in bedStatuses)
-            {
-                bedStatusGrid.Rows.Add(
-                    bedStatus.Department,
-                    bedStatus.OpenBeds.ToString(),
-                    bedStatus.TotalBeds.ToString(),
-                    bedStatus.UpdatedAt.ToString("g"));
-            }
-
-            if (bedStatusGrid.Rows.Count == 0)
-            {
-                bedStatusGrid.Rows.Add("No bed status records found.", "", "", "");
-            }
-        }
-
         private void LoadCriticalStatusList(HospitalDbContext db)
         {
             currentAlertsGrid.Rows.Clear();
@@ -116,9 +91,7 @@ namespace HospitalManagement.Client
                 int rowIndex = currentAlertsGrid.Rows.Add(
                     vitalAlert.VitalsStatus,
                     vitalAlert.Patient == null ? "Unknown patient" : vitalAlert.Patient.Name,
-                    "Room " +
-                    vitalAlert.Room +
-                    " | HR " +
+                    "HR " +
                     vitalAlert.HeartRate.ToString() +
                     ", O2 " +
                     vitalAlert.OxygenLevel.ToString() +

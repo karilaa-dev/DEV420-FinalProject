@@ -123,10 +123,6 @@ namespace HospitalManagement.Client
                     {
                         GenerateMedicationUsageReport(db, startDate, endDate, previousStartDate, previousEndDate);
                     }
-                    else
-                    {
-                        GenerateDepartmentLoadReport(db);
-                    }
                 }
 
                 LoadAnalyticsSummary();
@@ -287,38 +283,6 @@ namespace HospitalManagement.Client
                     transaction.QuantityChange < 0 &&
                     transaction.ItemName == itemName)
                 .Sum(transaction => (int?)(-transaction.QuantityChange)) ?? 0;
-        }
-
-        private void GenerateDepartmentLoadReport(HospitalDbContext db)
-        {
-            var departmentRows = db.Patients
-                .GroupBy(patient => patient.Department)
-                .Select(group => new
-                {
-                    Department = group.Key,
-                    PatientCount = group.Count(),
-                    AdmittedCount = group.Count(patient => patient.IsAdmitted)
-                })
-                .OrderByDescending(row => row.PatientCount)
-                .ThenBy(row => row.Department)
-                .ToList();
-
-            foreach (var departmentRow in departmentRows)
-            {
-                AddReportRow(
-                    departmentRow.Department,
-                    departmentRow.PatientCount.ToString() + " patients",
-                    departmentRow.AdmittedCount.ToString() + " admitted",
-                    "Current"
-                );
-            }
-
-            if (reportGrid.Rows.Count == 0)
-            {
-                AddReportRow("No department data found", "0", "0", "0");
-            }
-
-            lstReportOutput.Items.Add("Department load uses current patient records.");
         }
 
         private void AddReportRow(string metric, int currentValue, int previousValue)

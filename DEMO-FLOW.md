@@ -94,7 +94,7 @@ This is the recommended order for the final project demo. It follows one patient
 
 14. Show nurse dashboard and notifications.
     - Open the `Dashboard` tab.
-    - Show updated counts, bed status, and alerts.
+    - Show updated counts and alerts.
     - Click `Notifications`.
     - Show the recent workflow updates.
 
@@ -128,7 +128,7 @@ This is the recommended order for the final project demo. It follows one patient
 20. Log in as Administrative Staff for the final overview.
     - Log in with an `Administrative Staff` account.
     - Open the `Dashboard` tab.
-    - Show hospital counts, bed availability, current alerts, and broad status visibility.
+    - Show hospital counts, current alerts, and broad status visibility.
 
 21. Show inventory features.
     - Open the `Inventory` tab.
@@ -142,7 +142,7 @@ This is the recommended order for the final project demo. It follows one patient
     - Pick a report type.
     - Click `Run Report`.
     - Show the report output grid.
-    - Mention the available report types: `Patient Visits`, `Common Ailments`, `Medication Usage`, and `Department Load`.
+    - Mention the available report types: `Patient Visits`, `Common Ailments`, and `Medication Usage`.
 
 23. Show broad message access.
     - Open the `Messages` tab.
