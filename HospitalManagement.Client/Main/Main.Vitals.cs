@@ -301,8 +301,9 @@ namespace HospitalManagement.Client
                 ClearVitalsForm();
                 LoadVitals();
                 RefreshDashboardCounts();
-                SaveNotification(status == "Critical" ? "Emergency" : "Vitals", message);
-                await SendVitalsChangeAsync(message);
+                string notificationType = status == "Critical" ? "Emergency" : "Vitals";
+                SaveNotification(notificationType, message);
+                await SendVitalsChangeAsync(notificationType, message);
             }
             catch (Exception ex)
             {
@@ -377,8 +378,9 @@ namespace HospitalManagement.Client
                 ClearVitalsForm();
                 LoadVitals();
                 RefreshDashboardCounts();
-                SaveNotification(status == "Critical" ? "Emergency" : "Vitals", message);
-                await SendVitalsChangeAsync(message);
+                string notificationType = status == "Critical" ? "Emergency" : "Vitals";
+                SaveNotification(notificationType, message);
+                await SendVitalsChangeAsync(notificationType, message);
             }
             catch (Exception ex)
             {

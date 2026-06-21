@@ -23,10 +23,24 @@ app.Run();
 public class HospitalHub : Hub
 {
     private readonly MongoAccountRepository accounts;
+    private static readonly string[] AllRoleGroups =
+    {
+        HospitalRoles.AdministrativeStaff,
+        HospitalRoles.Nurse,
+        HospitalRoles.Doctor,
+        HospitalRoles.Patient
+    };
 
     public HospitalHub(MongoAccountRepository accounts)
     {
         this.accounts = accounts;
+    }
+
+    public override async Task OnConnectedAsync()
+    {
+        UserAccount user = await GetCurrentUserAsync();
+        await Groups.AddToGroupAsync(Context.ConnectionId, GetRoleGroupName(user.Role));
+        await base.OnConnectedAsync();
     }
 
     public async Task SendAppointmentChanged(string message)
@@ -38,12 +52,19 @@ public class HospitalHub : Hub
             HospitalRoles.Patient);
 
         await Clients.All.SendAsync("AppointmentChanged", message);
+        await SendServerNotificationAsync("Appointment", "Appointment Update", message, "", AllRoleGroups);
     }
 
     public async Task SendInventoryChanged(string message)
     {
         await RequireRoleAsync(HospitalRoles.AdministrativeStaff);
         await Clients.All.SendAsync("InventoryChanged", message);
+        await SendServerNotificationAsync(
+            "Inventory",
+            "Inventory Update",
+            message,
+            "",
+            HospitalRoles.AdministrativeStaff);
     }
 
     public async Task SendPatientChanged(string message)
@@ -54,6 +75,7 @@ public class HospitalHub : Hub
             HospitalRoles.Patient);
 
         await Clients.All.SendAsync("PatientChanged", message);
+        await SendServerNotificationAsync("Patient", "Patient Update", message, "", AllRoleGroups);
     }
 
     public async Task SendChatMessage(string conversationName, string senderName, string message)
@@ -65,9 +87,15 @@ public class HospitalHub : Hub
             HospitalRoles.Patient);
 
         await Clients.All.SendAsync("ChatMessageReceived", conversationName, senderName, message);
+        await SendServerNotificationAsync(
+            "Chat",
+            "New Message",
+            senderName + " sent a chat message in " + conversationName + ".",
+            conversationName,
+            AllRoleGroups);
     }
 
-    public async Task SendVitalsChanged(string message)
+    public async Task SendVitalsChanged(string notificationType, string message)
     {
         await RequireRoleAsync(
             HospitalRoles.AdministrativeStaff,
@@ -75,6 +103,12 @@ public class HospitalHub : Hub
             HospitalRoles.Doctor);
 
         await Clients.All.SendAsync("VitalsChanged", message);
+        await SendServerNotificationAsync(
+            String.IsNullOrWhiteSpace(notificationType) ? "Vitals" : notificationType,
+            "Vitals Update",
+            message,
+            "",
+            AllRoleGroups);
     }
 
     public async Task SendDashboardChanged(string message)
@@ -85,9 +119,10 @@ public class HospitalHub : Hub
             HospitalRoles.Doctor);
 
         await Clients.All.SendAsync("DashboardChanged", message);
+        await SendServerNotificationAsync("Dashboard", "Dashboard Update", message, "", AllRoleGroups);
     }
 
-    public async Task SendNotification(string message)
+    public async Task SendNotification(string notificationType, string message, string conversationName)
     {
         await RequireRoleAsync(
             HospitalRoles.AdministrativeStaff,
@@ -95,9 +130,30 @@ public class HospitalHub : Hub
             HospitalRoles.Doctor);
 
         await Clients.All.SendAsync("NotificationReceived", message);
+        await SendServerNotificationAsync(
+            String.IsNullOrWhiteSpace(notificationType) ? "Notification" : notificationType,
+            String.IsNullOrWhiteSpace(notificationType) ? "Notification" : notificationType,
+            message,
+            conversationName,
+            AllRoleGroups);
     }
 
     private async Task<UserAccount> RequireRoleAsync(params string[] allowedRoles)
+    {
+        UserAccount user = await GetCurrentUserAsync();
+
+        bool roleIsAllowed = allowedRoles.Any(role =>
+            String.Equals(role, user.Role, StringComparison.OrdinalIgnoreCase));
+
+        if (!roleIsAllowed)
+        {
+            throw new HubException("This account type is not allowed to send this real-time update.");
+        }
+
+        return user;
+    }
+
+    private async Task<UserAccount> GetCurrentUserAsync()
     {
         string? userId = Context.GetHttpContext()?.Request.Query["userId"].ToString();
 
@@ -113,15 +169,33 @@ public class HospitalHub : Hub
             throw new HubException("The current user was not found in MongoDB.");
         }
 
-        bool roleIsAllowed = allowedRoles.Any(role =>
-            String.Equals(role, user.Role, StringComparison.OrdinalIgnoreCase));
-
-        if (!roleIsAllowed)
-        {
-            throw new HubException("This account type is not allowed to send this real-time update.");
-        }
-
         return user;
+    }
+
+    private async Task SendServerNotificationAsync(
+        string notificationType,
+        string title,
+        string message,
+        string conversationName,
+        params string[] roleGroups)
+    {
+        string[] excludedConnectionIds = { Context.ConnectionId };
+        IEnumerable<string> targetGroups = roleGroups
+            .Where(role => !String.IsNullOrWhiteSpace(role))
+            .Select(GetRoleGroupName)
+            .Distinct(StringComparer.OrdinalIgnoreCase);
+
+        foreach (string targetGroup in targetGroups)
+        {
+            await Clients
+                .GroupExcept(targetGroup, excludedConnectionIds)
+                .SendAsync("ServerNotificationReceived", notificationType, title, message, conversationName ?? "");
+        }
+    }
+
+    private static string GetRoleGroupName(string role)
+    {
+        return "role:" + (role ?? "").Trim().ToLowerInvariant();
     }
 }
 

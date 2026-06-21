@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -102,6 +103,125 @@ namespace HospitalManagement.Client
             notificationsWindow.Show(this);
         }
 
+        internal void BringMainWindowToFront()
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                WindowState = FormWindowState.Normal;
+            }
+
+            Show();
+            BringToFront();
+            Activate();
+        }
+
+        internal void ShowNotificationCenter()
+        {
+            ShowNotificationsWindow();
+        }
+
+        private void InitializeDesktopNotifications()
+        {
+            if (notificationTrayIcon != null)
+            {
+                return;
+            }
+
+            notificationTrayIcon = new NotifyIcon
+            {
+                Icon = SystemIcons.Information,
+                Text = "Hospital Management",
+                Visible = true
+            };
+
+            notificationTrayIcon.BalloonTipClicked += (sender, args) =>
+            {
+                BringMainWindowToFront();
+                ShowNotificationCenter();
+            };
+
+            notificationTrayIcon.DoubleClick += (sender, args) =>
+            {
+                BringMainWindowToFront();
+                ShowNotificationCenter();
+            };
+        }
+
+        private void DisposeDesktopNotifications()
+        {
+            if (notificationTrayIcon == null)
+            {
+                return;
+            }
+
+            notificationTrayIcon.Visible = false;
+            notificationTrayIcon.Dispose();
+            notificationTrayIcon = null;
+        }
+
+        private void ShowDesktopNotification(string notificationType, string title, string message, string conversationName)
+        {
+            if (notificationTrayIcon == null)
+            {
+                return;
+            }
+
+            string cleanType = CleanDesktopNotificationText(notificationType, "Notification", 60);
+            string cleanTitle = CleanDesktopNotificationText(title, cleanType, 80);
+            string cleanMessage = CleanDesktopNotificationText(message, cleanTitle, 180);
+
+            try
+            {
+                SystemSounds.Exclamation.Play();
+            }
+            catch
+            {
+                // Sound playback can fail on machines with notification audio disabled.
+            }
+
+            try
+            {
+                notificationTrayIcon.BalloonTipTitle = cleanTitle;
+                notificationTrayIcon.BalloonTipText = cleanMessage;
+                notificationTrayIcon.BalloonTipIcon = GetDesktopNotificationIcon(cleanType);
+                notificationTrayIcon.ShowBalloonTip(5000);
+            }
+            catch
+            {
+                // NotifyIcon can be unavailable when Windows shell notifications are disabled.
+            }
+        }
+
+        private static ToolTipIcon GetDesktopNotificationIcon(string notificationType)
+        {
+            if (notificationType.IndexOf("critical", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                notificationType.IndexOf("warning", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                notificationType.IndexOf("emergency", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                return ToolTipIcon.Warning;
+            }
+
+            return ToolTipIcon.Info;
+        }
+
+        private static string CleanDesktopNotificationText(string value, string fallback, int maxLength)
+        {
+            string cleanValue = String.IsNullOrWhiteSpace(value) ? fallback : value.Trim();
+            cleanValue = cleanValue.Replace("\r", " ").Replace("\n", " ").Trim();
+
+            while (cleanValue.Contains("  "))
+            {
+                cleanValue = cleanValue.Replace("  ", " ");
+            }
+
+            if (cleanValue.Length <= maxLength)
+            {
+                return cleanValue;
+            }
+
+            return cleanValue.Substring(0, Math.Max(0, maxLength - 3)) + "...";
+        }
+
         private async Task StartSignalRConnectionAsync()
         {
             if (hospitalHubConnection != null)
@@ -146,6 +266,21 @@ namespace HospitalManagement.Client
 
                 return Task.CompletedTask;
             };
+
+            hospitalHubConnection.On<string, string, string, string>(
+                "ServerNotificationReceived",
+                (notificationType, title, message, conversationName) =>
+                {
+                    RunOnUiThread(() =>
+                    {
+                        if (!CanCurrentUserSeeDesktopNotification(notificationType, message, conversationName))
+                        {
+                            return;
+                        }
+
+                        ShowDesktopNotification(notificationType, title, message, conversationName);
+                    });
+                });
 
             hospitalHubConnection.On<string>("AppointmentChanged", message =>
             {
@@ -287,6 +422,33 @@ namespace HospitalManagement.Client
             }
         }
 
+        private bool CanCurrentUserSeeDesktopNotification(string notificationType, string message, string conversationName)
+        {
+            string cleanType = String.IsNullOrWhiteSpace(notificationType) ? "" : notificationType.Trim();
+
+            if (String.Equals(cleanType, "Inventory", StringComparison.OrdinalIgnoreCase))
+            {
+                return IsAdminUser();
+            }
+
+            if (String.Equals(cleanType, "Chat", StringComparison.OrdinalIgnoreCase))
+            {
+                return CanCurrentUserAccessConversationName(conversationName);
+            }
+
+            if (String.Equals(cleanType, "Dashboard", StringComparison.OrdinalIgnoreCase))
+            {
+                return !IsPatientUser();
+            }
+
+            if (String.Equals(cleanType, "System", StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            return CanCurrentUserSeeNotificationMessage(message);
+        }
+
         private async Task SendPatientChangeAsync(string message)
         {
             if (hospitalHubConnection != null && hospitalHubConnection.State == HubConnectionState.Connected)
@@ -329,13 +491,13 @@ namespace HospitalManagement.Client
             }
         }
 
-        private async Task SendVitalsChangeAsync(string message)
+        private async Task SendVitalsChangeAsync(string notificationType, string message)
         {
             if (hospitalHubConnection != null && hospitalHubConnection.State == HubConnectionState.Connected)
             {
                 try
                 {
-                    await hospitalHubConnection.InvokeAsync("SendVitalsChanged", message);
+                    await hospitalHubConnection.InvokeAsync("SendVitalsChanged", notificationType, message);
                 }
                 catch (Exception ex)
                 {
@@ -350,13 +512,13 @@ namespace HospitalManagement.Client
             }
         }
 
-        private async Task SendNotificationAsync(string message)
+        private async Task SendNotificationAsync(string notificationType, string message, string conversationName)
         {
             if (hospitalHubConnection != null && hospitalHubConnection.State == HubConnectionState.Connected)
             {
                 try
                 {
-                    await hospitalHubConnection.InvokeAsync("SendNotification", message);
+                    await hospitalHubConnection.InvokeAsync("SendNotification", notificationType, message, conversationName);
                 }
                 catch (Exception ex)
                 {
