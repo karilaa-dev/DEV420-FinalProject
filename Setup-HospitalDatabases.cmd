@@ -5,13 +5,11 @@ set "SCRIPT_DIR=%~dp0"
 set "SQL_SETUP_SCRIPT=%SCRIPT_DIR%SQL setup files\HospitalManagementDB_SQL_Setup.sql"
 set "SQL_DEMO_SCRIPT=%SCRIPT_DIR%SQL setup files\HospitalManagementDB_SQL_Populate_Demo.sql"
 set "MONGO_DEMO_SCRIPT=%SCRIPT_DIR%SQL setup files\HospitalManagementDB_Mongo_Populate_Demo.js"
+set "APP_SETTINGS=%SCRIPT_DIR%appsettings.json"
+set "HOSPITAL_APP_SETTINGS=%APP_SETTINGS%"
 
-set "SQL_SERVER=casper.local"
-set "SQL_DATABASE=HospitalManagementDB_SQL"
-set "SQL_USER=sa"
-set "SQL_PASSWORD=ChangeMe!"
-set "MONGO_CONNECTION_STRING=mongodb://192.168.1.206:27017/HospitalManagementDB"
-set "MONGO_DATABASE=HospitalManagementDB"
+call :LoadSettings
+if errorlevel 1 goto End
 
 :Menu
 cls
@@ -22,9 +20,7 @@ echo.
 echo 1. Reset SQL and MongoDB
 echo 2. Setup SQL schema
 echo 3. Populate SQL and MongoDB demo data
-echo 4. Full reset + setup + demo data
-echo 5. Edit connection settings
-echo 6. Exit
+echo Q. Exit
 echo.
 set "MENU_CHOICE="
 set /p "MENU_CHOICE=Pick an option: "
@@ -47,22 +43,36 @@ if "%MENU_CHOICE%"=="3" (
     call :ShowActionResult
     goto Menu
 )
-if "%MENU_CHOICE%"=="4" (
-    echo.
-    call :FullSetup
-    call :ShowActionResult
-    goto Menu
-)
-if "%MENU_CHOICE%"=="5" call :EditSettings
-if "%MENU_CHOICE%"=="6" goto End
+if /i "%MENU_CHOICE%"=="Q" goto End
 if "%MENU_CHOICE%"=="" goto End
 
-if not "%MENU_CHOICE%"=="1" if not "%MENU_CHOICE%"=="2" if not "%MENU_CHOICE%"=="3" if not "%MENU_CHOICE%"=="4" if not "%MENU_CHOICE%"=="5" if not "%MENU_CHOICE%"=="6" (
+if not "%MENU_CHOICE%"=="1" if not "%MENU_CHOICE%"=="2" if not "%MENU_CHOICE%"=="3" (
     echo.
-    echo Unknown option. Choose 1 through 6.
+    echo Unknown option. Choose 1, 2, 3, or Q.
     call :WaitForEnter
 )
 goto Menu
+
+:LoadSettings
+if not exist "%APP_SETTINGS%" (
+    echo Error: appsettings.json was not found: %APP_SETTINGS%
+    exit /b 1
+)
+
+call :RequireCommand powershell "Install Windows PowerShell or run this script on a Windows machine that includes it."
+if errorlevel 1 exit /b 1
+
+set "CONFIG_OUTPUT=%TEMP%\hospital-config-%RANDOM%-%RANDOM%.tmp"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference = 'Stop'; $config = Get-Content -Raw -Path $env:HOSPITAL_APP_SETTINGS | ConvertFrom-Json; $sqlConnection = $config.ConnectionStrings.HospitalSqlConnection; if ([string]::IsNullOrWhiteSpace($sqlConnection)) { throw 'ConnectionStrings:HospitalSqlConnection is required.' }; $sql = New-Object -TypeName System.Data.SqlClient.SqlConnectionStringBuilder -ArgumentList $sqlConnection; $mongoConnection = $config.ConnectionStrings.MongoConnection; if ([string]::IsNullOrWhiteSpace($mongoConnection)) { $mongoConnection = $config.MongoAccount.ConnectionString }; if ([string]::IsNullOrWhiteSpace($mongoConnection)) { throw 'ConnectionStrings:MongoConnection is required.' }; $mongoDatabase = $config.MongoAccount.DatabaseName; if ([string]::IsNullOrWhiteSpace($mongoDatabase)) { $withoutQuery = $mongoConnection.Split('?')[0]; $lastSlash = $withoutQuery.LastIndexOf('/'); if ($lastSlash -ge 0 -and $lastSlash -lt ($withoutQuery.Length - 1)) { $mongoDatabase = $withoutQuery.Substring($lastSlash + 1) } }; if ([string]::IsNullOrWhiteSpace($mongoDatabase)) { throw 'MongoAccount:DatabaseName is required when the Mongo connection string does not include a database.' }; 'SQL_SERVER=' + $sql.DataSource; 'SQL_DATABASE=' + $sql.InitialCatalog; if ($sql.IntegratedSecurity) { 'SQL_USER='; 'SQL_PASSWORD=' } else { 'SQL_USER=' + $sql.UserID; 'SQL_PASSWORD=' + $sql.Password }; 'MONGO_CONNECTION_STRING=' + $mongoConnection; 'MONGO_DATABASE=' + $mongoDatabase" > "%CONFIG_OUTPUT%"
+if errorlevel 1 (
+    if exist "%CONFIG_OUTPUT%" del "%CONFIG_OUTPUT%" >nul 2>nul
+    echo Error: Could not read connection settings from appsettings.json.
+    exit /b 1
+)
+
+for /f "usebackq tokens=1,* delims==" %%A in ("%CONFIG_OUTPUT%") do set "%%A=%%B"
+del "%CONFIG_OUTPUT%" >nul 2>nul
+exit /b 0
 
 :ShowActionResult
 if errorlevel 1 (
@@ -143,15 +153,6 @@ call :PopulateMongoDemoData
 if errorlevel 1 exit /b 1
 exit /b 0
 
-:FullSetup
-call :ResetDatabases
-if errorlevel 1 exit /b 1
-call :SetupSqlDatabase
-if errorlevel 1 exit /b 1
-call :PopulateDemoData
-if errorlevel 1 exit /b 1
-exit /b 0
-
 :ResetSqlDatabase
 call :RequireCommand sqlcmd "Install Microsoft sqlcmd or run this script on the SQL Server VM where sqlcmd is available."
 if errorlevel 1 exit /b 1
@@ -219,53 +220,6 @@ if errorlevel 1 (
 )
 
 echo MongoDB demo accounts loaded.
-exit /b 0
-
-:EditSettings
-cls
-echo Edit Connection Settings
-echo Leave a value blank to keep the current setting.
-echo.
-
-set "NEW_VALUE="
-set /p "NEW_VALUE=SQL Server [%SQL_SERVER%]: "
-if not "%NEW_VALUE%"=="" set "SQL_SERVER=%NEW_VALUE%"
-
-set "NEW_VALUE="
-set /p "NEW_VALUE=SQL Database [%SQL_DATABASE%]: "
-if not "%NEW_VALUE%"=="" set "SQL_DATABASE=%NEW_VALUE%"
-
-if "%SQL_USER%"=="" (
-    set "CURRENT_SQL_USER=Windows authentication"
-) else (
-    set "CURRENT_SQL_USER=%SQL_USER%"
-)
-set "NEW_VALUE="
-set /p "NEW_VALUE=SQL User, or WINDOWS for Windows authentication [%CURRENT_SQL_USER%]: "
-if /i "%NEW_VALUE%"=="WINDOWS" (
-    set "SQL_USER="
-    set "SQL_PASSWORD="
-) else (
-    if not "%NEW_VALUE%"=="" set "SQL_USER=%NEW_VALUE%"
-)
-
-if not "%SQL_USER%"=="" (
-    set "NEW_VALUE="
-    set /p "NEW_VALUE=SQL Password [blank keeps current value]: "
-    if not "%NEW_VALUE%"=="" set "SQL_PASSWORD=%NEW_VALUE%"
-)
-
-set "NEW_VALUE="
-set /p "NEW_VALUE=Mongo connection string [%MONGO_CONNECTION_STRING%]: "
-if not "%NEW_VALUE%"=="" set "MONGO_CONNECTION_STRING=%NEW_VALUE%"
-
-set "NEW_VALUE="
-set /p "NEW_VALUE=Mongo database [%MONGO_DATABASE%]: "
-if not "%NEW_VALUE%"=="" set "MONGO_DATABASE=%NEW_VALUE%"
-
-echo.
-echo Connection settings updated for this script run.
-call :WaitForEnter
 exit /b 0
 
 :End

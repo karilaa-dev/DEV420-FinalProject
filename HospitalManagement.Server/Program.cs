@@ -4,6 +4,12 @@ using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
+string sharedAppSettingsPath = SharedAppSettings.FindAppSettingsPath(
+    builder.Environment.ContentRootPath,
+    AppContext.BaseDirectory);
+builder.Configuration.AddJsonFile(sharedAppSettingsPath, optional: false, reloadOnChange: true);
+builder.Configuration.AddEnvironmentVariables();
+builder.Configuration.AddCommandLine(args);
 builder.Services.AddSignalR();
 builder.Services.AddSingleton<MongoAccountRepository>();
 
@@ -129,12 +135,19 @@ public sealed class MongoAccountRepository
             .GetSection("MongoAccount")
             .Get<MongoAccountOptions>() ?? new MongoAccountOptions();
 
-        if (String.IsNullOrWhiteSpace(options.ConnectionString))
+        string connectionString = options.ConnectionString;
+
+        if (String.IsNullOrWhiteSpace(connectionString))
         {
-            throw new InvalidOperationException("MongoAccount:ConnectionString is required.");
+            connectionString = configuration.GetConnectionString("MongoConnection") ?? "";
         }
 
-        MongoUrl mongoUrl = MongoUrl.Create(options.ConnectionString);
+        if (String.IsNullOrWhiteSpace(connectionString))
+        {
+            throw new InvalidOperationException("ConnectionStrings:MongoConnection is required.");
+        }
+
+        MongoUrl mongoUrl = MongoUrl.Create(connectionString);
         string databaseName = !String.IsNullOrWhiteSpace(options.DatabaseName)
             ? options.DatabaseName
             : mongoUrl.DatabaseName;
@@ -148,7 +161,7 @@ public sealed class MongoAccountRepository
             ? "Users"
             : options.UsersCollection;
 
-        MongoClient client = new MongoClient(options.ConnectionString);
+        MongoClient client = new MongoClient(connectionString);
         IMongoDatabase database = client.GetDatabase(databaseName);
         users = database.GetCollection<UserAccount>(usersCollection);
     }
@@ -193,4 +206,34 @@ public static class HospitalRoles
     public const string Nurse = "Nurse";
     public const string AdministrativeStaff = "Administrative Staff";
     public const string Patient = "Patient";
+}
+
+public static class SharedAppSettings
+{
+    public static string FindAppSettingsPath(params string[] startPaths)
+    {
+        foreach (string startPath in startPaths)
+        {
+            if (String.IsNullOrWhiteSpace(startPath))
+            {
+                continue;
+            }
+
+            DirectoryInfo? directory = new DirectoryInfo(startPath);
+
+            while (directory != null)
+            {
+                string candidate = Path.Combine(directory.FullName, "appsettings.json");
+
+                if (File.Exists(candidate))
+                {
+                    return candidate;
+                }
+
+                directory = directory.Parent;
+            }
+        }
+
+        throw new FileNotFoundException("Could not find appsettings.json in the application output or solution folder.");
+    }
 }
