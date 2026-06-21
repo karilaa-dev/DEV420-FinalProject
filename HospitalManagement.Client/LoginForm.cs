@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MongoDB.Driver;
-using System.Configuration;
 
 namespace HospitalManagement.Client
 {
@@ -17,6 +15,7 @@ namespace HospitalManagement.Client
         public LoginForm()
         {
             InitializeComponent();
+            Icon = SystemIcons.Shield;
         }
 
         private void button_login_Click(object sender, EventArgs e)
@@ -32,27 +31,34 @@ namespace HospitalManagement.Client
                 return;
             }
 
-            // Connect to MongoDB
-            // Connect to MongoDB using App.config
-            string mongoConnectionString =
-                ConfigurationManager.ConnectionStrings["MongoConnection"].ConnectionString;
+            User loggedInUser;
 
-            MongoClient client = new MongoClient(mongoConnectionString);
+            try
+            {
+                loggedInUser = UserRepository.FindByUsername(username);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not connect to MongoDB.\n\n" + ex.Message);
+                return;
+            }
 
-            IMongoDatabase database =
-                client.GetDatabase(MongoUrl.Create(mongoConnectionString).DatabaseName);
-
-            IMongoCollection<User> users = database.GetCollection<User>("Users");
-
-            // Find matching user
-            User loggedInUser = users
-                .Find(u => u.Username == username && u.Password == password)
-                .FirstOrDefault();
-
-            // Check login result
-            if (loggedInUser == null)
+            if (loggedInUser == null || !UserRepository.IsPasswordValid(loggedInUser, password))
             {
                 MessageBox.Show("Invalid username or password.");
+                return;
+            }
+
+            try
+            {
+                SqlUserProfileSync.SyncUserProfile(loggedInUser);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Login succeeded, but the SQL profile could not be synchronized. Check the SQL setup script.\n\n" +
+                    ex.Message
+                );
                 return;
             }
 

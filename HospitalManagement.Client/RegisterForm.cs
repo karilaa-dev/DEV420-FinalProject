@@ -7,53 +7,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MongoDB.Driver;
-using System.Configuration;
 
 namespace HospitalManagement.Client
 {
     public partial class RegisterForm : Form
     {
-        public RegisterForm()
+        public RegisterForm() : this(null)
+        {
+        }
+
+        public RegisterForm(User createdByUser)
         {
             InitializeComponent();
+            Icon = SystemIcons.Application;
+            ConfigureRoleChoices();
+        }
 
-            // Fill role dropdown for authorization level
+        private void ConfigureRoleChoices()
+        {
             comboBox_role.Items.Clear();
-            comboBox_role.Items.Add("Doctor");
-            comboBox_role.Items.Add("Nurse");
-            comboBox_role.Items.Add("Administrative Staff");
-            comboBox_role.Items.Add("Patient");
+            comboBox_role.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_role.Items.Add(HospitalRoles.Doctor);
+            comboBox_role.Items.Add(HospitalRoles.Nurse);
+            comboBox_role.Items.Add(HospitalRoles.AdministrativeStaff);
+            comboBox_role.Items.Add(HospitalRoles.Patient);
+
             comboBox_role.SelectedIndex = 0;
         }
 
         private void button_register_Click(object sender, EventArgs e)
         {
             // Get form input
-            string username = textBox_username.Text;
+            string username = textBox_username.Text.Trim();
+            string displayName = textBox_displayName.Text.Trim();
             string password = textBox_password.Text;
             string role = comboBox_role.Text;
 
             // Basic validation
-            if (username == "" || password == "" || role == "")
+            if (username == "" || displayName == "" || password == "" || role == "")
             {
                 MessageBox.Show("Please fill in all fields.");
                 return;
             }
 
-            // Connect to MongoDB using App.config
-            string mongoConnectionString =
-                ConfigurationManager.ConnectionStrings["MongoConnection"].ConnectionString;
+            User existingUser;
 
-            MongoClient client = new MongoClient(mongoConnectionString);
-
-            IMongoDatabase database =
-                client.GetDatabase(MongoUrl.Create(mongoConnectionString).DatabaseName);
-
-            IMongoCollection<User> users = database.GetCollection<User>("Users");
-
-            // Check if username already exists
-            User existingUser = users.Find(u => u.Username == username).FirstOrDefault();
+            try
+            {
+                existingUser = UserRepository.FindByUsername(username);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not connect to MongoDB.\n\n" + ex.Message);
+                return;
+            }
 
             if (existingUser != null)
             {
@@ -66,17 +73,39 @@ namespace HospitalManagement.Client
             {
                 UserId = Guid.NewGuid().ToString(),
                 Username = username,
+                DisplayName = displayName,
                 Password = password,
                 Role = role
             };
 
-            // Save user to MongoDB
-            users.InsertOne(newUser);
+            try
+            {
+                UserRepository.Insert(newUser);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("User could not be saved to MongoDB.\n\n" + ex.Message);
+                return;
+            }
+
+            try
+            {
+                SqlUserProfileSync.SyncUserProfile(newUser);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Registration succeeded, but the matching SQL profile could not be created. Run the updated SQL setup/reset script before using this account.\n\n" +
+                    ex.Message
+                );
+                return;
+            }
 
             MessageBox.Show("Registration successful.");
 
             // Clear form
             textBox_username.Clear();
+            textBox_displayName.Clear();
             textBox_password.Clear();
             comboBox_role.SelectedIndex = 0;
         }
