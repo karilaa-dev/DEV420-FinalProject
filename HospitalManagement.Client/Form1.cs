@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -24,12 +23,10 @@ namespace HospitalManagement.Client
         private int currentPatientId = 0;
         private string currentPatientName = "";
         private string currentDoctorDisplayName = "";
-        private ToolTip formToolTip;
         private AppointmentSummaryControls patientAppointmentSummary;
         private AppointmentSummaryControls doctorLastVisitSummary;
         private AppointmentSummaryControls doctorNextVisitSummary;
         private bool loadingDoctorVisitsGrid;
-        private bool adjustingSummaryLayout;
         private readonly List<NotificationDisplayItem> notificationDisplayItems = new List<NotificationDisplayItem>();
         private readonly List<ChatDisplayItem> messageDisplayItems = new List<ChatDisplayItem>();
         private readonly List<ChatDisplayItem> patientMessageDisplayItems = new List<ChatDisplayItem>();
@@ -89,7 +86,7 @@ namespace HospitalManagement.Client
         public Form1()
         {
             InitializeComponent();
-            ConfigureFormUi();
+            BindDesignerControlReferences();
 
             // Set up tab defaults and load starting data
             SetupPatientTab();
@@ -109,13 +106,12 @@ namespace HospitalManagement.Client
         public Form1(User loggedInUser)
         {
             InitializeComponent();
-            ConfigureFormUi();
+            BindDesignerControlReferences();
 
             // Save logged in user
             currentUser = loggedInUser;
 
             InitializeCurrentUserContext();
-            ApplyCreateUserButtonPermissions();
 
             // Set up tab defaults and load starting data
             SetupPatientTab();
@@ -138,58 +134,9 @@ namespace HospitalManagement.Client
             ApplyRolePermissions();
         }
 
-        private void ConfigureFormUi()
+        private void BindDesignerControlReferences()
         {
-            ConfigureHeaderArea();
             BindRoleSummaryControls();
-            ConfigureDashboardLayout();
-            ConfigureSummaryTabSizing();
-            ConfigureTabCaptions();
-            ConfigureActionText();
-            ConfigureGrids();
-            ConfigureWrappingDisplays();
-            ConfigurePlaceholders();
-            ConfigureToolTips();
-        }
-
-        private void ConfigureHeaderArea()
-        {
-            Icon = SystemIcons.Application;
-            headerPanel.Height = 96;
-            lblLoggedInUser.Text = "User: Not signed in";
-            lblRole.Text = "Role: Not assigned";
-            statusText.Text = "Ready";
-            statusText.Spring = true;
-            statusText.TextAlign = ContentAlignment.MiddleLeft;
-            connectionStatusText.Text = "Connection: Waiting";
-            connectionStatusText.TextAlign = ContentAlignment.MiddleRight;
-
-            btnLogout.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnNotifications.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-
-            headerPanel.Resize += headerPanel_Resize;
-            PositionHeaderControls();
-        }
-
-        private void headerPanel_Resize(object sender, EventArgs e)
-        {
-            PositionHeaderControls();
-        }
-
-        private void PositionHeaderControls()
-        {
-            int rightMargin = 32;
-            int buttonTop = 16;
-            int gap = 12;
-            int nextRight = headerPanel.ClientSize.Width - rightMargin;
-
-            btnLogout.Location = new Point(nextRight - btnLogout.Width, buttonTop);
-            nextRight = btnLogout.Left - gap;
-
-            btnNotifications.Location = new Point(nextRight - btnNotifications.Width, buttonTop);
-
-            lblLoggedInUser.Location = new Point(32, 62);
-            lblRole.Location = new Point(300, 62);
         }
 
         private void BindRoleSummaryControls()
@@ -256,310 +203,6 @@ namespace HospitalManagement.Client
                 TextPatientButton = textPatientButton,
                 Compact = compact
             };
-        }
-
-        private void ConfigureSummaryTabSizing()
-        {
-            patientCareTab.Resize += summaryTab_Resize;
-            doctorVisitsTab.Resize += summaryTab_Resize;
-            Resize += summaryTab_Resize;
-            FitSummaryTabsToWindow();
-        }
-
-        private void summaryTab_Resize(object sender, EventArgs e)
-        {
-            FitSummaryTabsToWindow();
-        }
-
-        private void FitSummaryTabsToWindow()
-        {
-            if (adjustingSummaryLayout || patientCareTab.ClientSize.Width <= 0 || doctorVisitsTab.ClientSize.Width <= 0)
-            {
-                return;
-            }
-
-            adjustingSummaryLayout = true;
-
-            try
-            {
-                LayoutPatientCareTab();
-                LayoutDoctorVisitsTab();
-            }
-            finally
-            {
-                adjustingSummaryLayout = false;
-            }
-        }
-
-        private void LayoutPatientCareTab()
-        {
-            const int margin = 18;
-            const int gap = 12;
-            int availableWidth = Math.Max(320, patientCareTab.ClientSize.Width - (margin * 2));
-            int availableHeight = Math.Max(420, patientCareTab.ClientSize.Height - (margin * 2));
-            int appointmentHeight = Math.Min(210, Math.Max(190, availableHeight / 3));
-            int appointmentWidth = Math.Min(646, availableWidth);
-            bool sideBySide = availableWidth >= 1120;
-
-            if (sideBySide)
-            {
-                int vitalsLeft = margin + appointmentWidth + gap;
-                int vitalsWidth = Math.Max(320, availableWidth - appointmentWidth - gap);
-
-                grpPatientNextAppointment.SetBounds(margin, margin, appointmentWidth, appointmentHeight);
-                grpPatientLatestVitals.SetBounds(vitalsLeft, margin, vitalsWidth, availableHeight);
-            }
-            else
-            {
-                int vitalsTop = margin + appointmentHeight + gap;
-                int vitalsHeight = Math.Max(230, patientCareTab.ClientSize.Height - vitalsTop - margin);
-
-                grpPatientNextAppointment.SetBounds(margin, margin, availableWidth, appointmentHeight);
-                grpPatientLatestVitals.SetBounds(margin, vitalsTop, availableWidth, vitalsHeight);
-            }
-
-            LayoutSummaryCard(
-                grpPatientNextAppointment,
-                pnlPatientAppointmentStatus,
-                lblPatientAppointmentPlaceholder,
-                new[]
-                {
-                    lblPatientAppointmentDateCaption,
-                    lblPatientAppointmentTimeCaption,
-                    lblPatientAppointmentDoctorCaption,
-                    lblPatientAppointmentStatusCaption,
-                    lblPatientAppointmentReasonCaption,
-                    lblPatientAppointmentNotesCaption
-                },
-                new[]
-                {
-                    lblPatientAppointmentDateValue,
-                    lblPatientAppointmentTimeValue,
-                    lblPatientAppointmentDoctorValue,
-                    lblPatientAppointmentStatusValue,
-                    lblPatientAppointmentReasonValue,
-                    lblPatientAppointmentNotesValue
-                },
-                null);
-
-            LayoutVitalsPanel();
-        }
-
-        private void LayoutDoctorVisitsTab()
-        {
-            const int margin = 18;
-            const int gap = 12;
-            int availableWidth = Math.Max(320, doctorVisitsTab.ClientSize.Width - (margin * 2));
-            int availableHeight = Math.Max(420, doctorVisitsTab.ClientSize.Height - (margin * 2));
-            int cardHeight = Math.Min(210, Math.Max(190, (availableHeight - gap) / 3));
-            int cardWidth = Math.Min(646, Math.Max(360, (availableWidth - gap) / 2));
-            int gridLeft = margin + cardWidth + gap;
-            int gridWidth = Math.Max(320, availableWidth - cardWidth - gap);
-
-            grpDoctorTodayVisit.SetBounds(margin, margin, cardWidth, cardHeight);
-            grpDoctorLastVisit.SetBounds(margin, margin + cardHeight + gap, cardWidth, cardHeight);
-            grpDoctorTodayVisits.SetBounds(gridLeft, margin, gridWidth, availableHeight);
-            doctorVisitsGrid.SetBounds(12, 24, Math.Max(160, grpDoctorTodayVisits.ClientSize.Width - 24), Math.Max(100, grpDoctorTodayVisits.ClientSize.Height - 38));
-
-            LayoutSummaryCard(
-                grpDoctorTodayVisit,
-                pnlDoctorTodayVisitStatus,
-                lblDoctorTodayVisitPlaceholder,
-                new[]
-                {
-                    lblDoctorTodayVisitDateCaption,
-                    lblDoctorTodayVisitTimeCaption,
-                    lblDoctorTodayVisitPatientCaption,
-                    lblDoctorTodayVisitStatusCaption,
-                    lblDoctorTodayVisitReasonCaption,
-                    lblDoctorTodayVisitNotesCaption
-                },
-                new[]
-                {
-                    lblDoctorTodayVisitDateValue,
-                    lblDoctorTodayVisitTimeValue,
-                    lblDoctorTodayVisitPatientValue,
-                    lblDoctorTodayVisitStatusValue,
-                    lblDoctorTodayVisitReasonValue,
-                    lblDoctorTodayVisitNotesValue
-                },
-                btnTextNextVisitPatient);
-
-            LayoutSummaryCard(
-                grpDoctorLastVisit,
-                pnlDoctorLastVisitStatus,
-                lblDoctorLastVisitPlaceholder,
-                new[]
-                {
-                    lblDoctorLastVisitDateCaption,
-                    lblDoctorLastVisitTimeCaption,
-                    lblDoctorLastVisitPatientCaption,
-                    lblDoctorLastVisitStatusCaption,
-                    lblDoctorLastVisitReasonCaption,
-                    lblDoctorLastVisitNotesCaption
-                },
-                new[]
-                {
-                    lblDoctorLastVisitDateValue,
-                    lblDoctorLastVisitTimeValue,
-                    lblDoctorLastVisitPatientValue,
-                    lblDoctorLastVisitStatusValue,
-                    lblDoctorLastVisitReasonValue,
-                    lblDoctorLastVisitNotesValue
-                },
-                btnTextLastVisitPatient);
-        }
-
-        private void LayoutSummaryCard(
-            GroupBox group,
-            Panel statusStrip,
-            Label placeholder,
-            Label[] captions,
-            Label[] values,
-            Button actionButton)
-        {
-            int contentLeft = 34;
-            int captionWidth = group.ClientSize.Width < 500 ? 66 : 80;
-            int valueLeft = contentLeft + captionWidth + 6;
-            int valueWidth = Math.Max(90, group.ClientSize.Width - valueLeft - 14);
-            int top = 26;
-            int rowHeight = 20;
-            int rowStep = 22;
-
-            statusStrip.SetBounds(18, top, 6, Math.Max(96, group.ClientSize.Height - top - (actionButton == null ? 28 : 48)));
-            placeholder.SetBounds(contentLeft, top, Math.Max(120, group.ClientSize.Width - contentLeft - 14), 32);
-
-            for (int i = 0; i < captions.Length && i < values.Length; i++)
-            {
-                int y = top + (i * rowStep);
-                captions[i].SetBounds(contentLeft, y, captionWidth, rowHeight);
-                values[i].SetBounds(valueLeft, y, valueWidth, rowHeight);
-                captions[i].AutoEllipsis = true;
-                values[i].AutoEllipsis = true;
-            }
-
-            if (actionButton != null)
-            {
-                actionButton.SetBounds(contentLeft, Math.Max(top + (captions.Length * rowStep) + 4, group.ClientSize.Height - 40), 130, 28);
-            }
-        }
-
-        private void LayoutVitalsPanel()
-        {
-            const int margin = 14;
-            const int gap = 12;
-            int panelHeight = 76;
-            int contentWidth = Math.Max(300, grpPatientLatestVitals.ClientSize.Width - (margin * 2));
-            int panelWidth = Math.Max(150, (contentWidth - (gap * 2)) / 3);
-            int row1 = 40;
-            int row2 = row1 + panelHeight + gap;
-            int notesTop = row2 + panelHeight + 14;
-            int notesHeight = Math.Max(56, grpPatientLatestVitals.ClientSize.Height - notesTop - margin);
-
-            pnlVitalHeartRate.SetBounds(margin, row1, panelWidth, panelHeight);
-            pnlVitalBloodPressure.SetBounds(margin + panelWidth + gap, row1, panelWidth, panelHeight);
-            pnlVitalOxygen.SetBounds(margin + ((panelWidth + gap) * 2), row1, Math.Max(150, contentWidth - ((panelWidth + gap) * 2)), panelHeight);
-            pnlVitalTemperature.SetBounds(margin, row2, panelWidth, panelHeight);
-            pnlVitalStatus.SetBounds(margin + panelWidth + gap, row2, panelWidth, panelHeight);
-            pnlVitalUpdated.SetBounds(margin + ((panelWidth + gap) * 2), row2, Math.Max(150, contentWidth - ((panelWidth + gap) * 2)), panelHeight);
-            lblVitalNotes.SetBounds(margin, notesTop, contentWidth, notesHeight);
-            lblPatientVitalsPlaceholder.SetBounds(margin, 24, contentWidth, 28);
-
-            LayoutMetricPanel(pnlVitalHeartRate, lblVitalHeartRateCaption, lblVitalHeartRate);
-            LayoutMetricPanel(pnlVitalBloodPressure, lblVitalBloodPressureCaption, lblVitalBloodPressure);
-            LayoutMetricPanel(pnlVitalOxygen, lblVitalOxygenCaption, lblVitalOxygen);
-            LayoutMetricPanel(pnlVitalTemperature, lblVitalTemperatureCaption, lblVitalTemperature);
-            LayoutMetricPanel(pnlVitalStatus, lblVitalStatusCaption, lblVitalStatus);
-            LayoutMetricPanel(pnlVitalUpdated, lblVitalUpdatedCaption, lblVitalUpdated);
-        }
-
-        private void LayoutMetricPanel(Panel panel, Label caption, Label value)
-        {
-            caption.SetBounds(10, 8, Math.Max(80, panel.ClientSize.Width - 20), 20);
-            value.SetBounds(10, 32, Math.Max(80, panel.ClientSize.Width - 20), 28);
-            value.AutoEllipsis = true;
-        }
-
-        private void ConfigureDashboardLayout()
-        {
-            dashboardTab.Resize += dashboardTab_Resize;
-            LayoutDashboard();
-        }
-
-        private void dashboardTab_Resize(object sender, EventArgs e)
-        {
-            LayoutDashboard();
-        }
-
-        private void LayoutDashboard()
-        {
-            if (dashboardTab.ClientSize.Width <= 0 || dashboardTab.ClientSize.Height <= 0)
-            {
-                return;
-            }
-
-            int margin = 24;
-            int gap = 20;
-            int contentWidth = Math.Max(780, dashboardTab.ClientSize.Width - (margin * 2));
-            int overviewHeight = 150;
-            int lowerTop = margin + overviewHeight + gap;
-            int lowerHeight = Math.Max(260, dashboardTab.ClientSize.Height - lowerTop - margin);
-            int bedWidth = Math.Max(360, (contentWidth - gap) / 2);
-            int alertsWidth = Math.Max(360, contentWidth - bedWidth - gap);
-
-            grpQuickCounts.SetBounds(margin, margin, contentWidth, overviewHeight);
-            grpBedStatus.SetBounds(margin, lowerTop, bedWidth, lowerHeight);
-            grpCriticalStatus.SetBounds(margin + bedWidth + gap, lowerTop, alertsWidth, lowerHeight);
-
-            LayoutDashboardMetrics();
-        }
-
-        private void LayoutDashboardMetrics()
-        {
-            int margin = 18;
-            int gap = 18;
-            int metricCount = 5;
-            int metricWidth = Math.Max(120, (grpQuickCounts.ClientSize.Width - (margin * 2) - (gap * (metricCount - 1))) / metricCount);
-
-            LayoutDashboardMetric(lblDashboardPatients, txtDashboardPatients, margin, metricWidth);
-            LayoutDashboardMetric(lblDashboardAppointments, txtDashboardAppointments, margin + ((metricWidth + gap) * 1), metricWidth);
-            LayoutDashboardMetric(lblDashboardOpenBeds, txtDashboardOpenBeds, margin + ((metricWidth + gap) * 2), metricWidth);
-            LayoutDashboardMetric(lblDashboardLowStock, txtDashboardLowStock, margin + ((metricWidth + gap) * 3), metricWidth);
-            LayoutDashboardMetric(lblDashboardEmergencies, txtDashboardEmergencies, margin + ((metricWidth + gap) * 4), metricWidth);
-        }
-
-        private void LayoutDashboardMetric(Label caption, TextBox value, int left, int width)
-        {
-            caption.AutoSize = false;
-            caption.TextAlign = ContentAlignment.MiddleLeft;
-            caption.SetBounds(left, 44, width, 20);
-
-            value.TextAlign = HorizontalAlignment.Center;
-            value.SetBounds(left, 70, width, 42);
-        }
-
-        private void ConfigureWrappingDisplays()
-        {
-            ConfigureMessageFlowPanel(messageHistoryFlowPanel);
-            ConfigureMessageFlowPanel(patientMessageHistoryFlowPanel);
-
-            messageHistoryFlowPanel.Resize += messageHistoryFlowPanel_Resize;
-            patientMessageHistoryFlowPanel.Resize += patientMessageHistoryFlowPanel_Resize;
-        }
-
-        private void ConfigureMessageFlowPanel(FlowLayoutPanel flowPanel)
-        {
-            DisplayBlockRenderer.ConfigureFlowPanel(flowPanel);
-        }
-
-        private void messageHistoryFlowPanel_Resize(object sender, EventArgs e)
-        {
-            RenderMessageDisplay(messageHistoryFlowPanel, messageDisplayItems, messageDisplayEmptyText);
-        }
-
-        private void patientMessageHistoryFlowPanel_Resize(object sender, EventArgs e)
-        {
-            RenderMessageDisplay(patientMessageHistoryFlowPanel, patientMessageDisplayItems, patientMessageDisplayEmptyText);
         }
 
         private void SetMessageDisplayEmpty(FlowLayoutPanel flowPanel, List<ChatDisplayItem> displayItems, string emptyText)
@@ -665,127 +308,6 @@ namespace HospitalManagement.Client
             }
         }
 
-        private void ConfigureTabCaptions()
-        {
-            analyticsTab.Text = "Reports";
-            communicationTab.Text = "Messages";
-            patientMessagesTab.Text = "My Messages";
-            monitoringTab.Text = "Vitals";
-            patientCareTab.Text = "My Care";
-            doctorVisitsTab.Text = "My Visits";
-        }
-
-        private void ConfigureActionText()
-        {
-            grpPatientDetails.Text = "Add / Edit Patient";
-            grpAppointmentDetails.Text = "Add / Edit Appointment";
-            grpInventoryDetails.Text = "Add / Edit Inventory Item";
-            grpAnalyticsSummary.Text = "Report Summary";
-            grpMessageHistory.Text = "Selected Conversation";
-            grpPatientMessageHistory.Text = "My Patient Chat";
-            grpConversations.Text = "Patient Conversations";
-            grpVitalsEntry.Text = "Update Patient Vitals";
-
-            btnUpdatePatient.Text = "Save Changes";
-            btnClearPatient.Text = "Clear Form";
-            btnPatientRefresh.Text = "Refresh List";
-            btnUpdateAppointment.Text = "Save Changes";
-            btnAppointmentRefresh.Text = "Refresh List";
-            btnClearAppointment.Text = "Clear Form";
-            btnInventoryUpdate.Text = "Save Stock Changes";
-            btnInventoryRefresh.Text = "Refresh List";
-            btnGenerateReport.Text = "Run Report";
-            btnSendMessage.Text = "Send Message";
-            btnSendPatientMessage.Text = "Send Message";
-            btnUpdateVitals.Text = "Save Vitals";
-            btnMonitoringRefresh.Text = "Refresh List";
-
-            lblPatientSearch.Text = "Search";
-            lblAppointmentPatient.Text = "Patient Name";
-            lblMonitoringPatient.Text = "Patient Name";
-            lblOxygenLevel.Text = "Oxygen Level (%)";
-            lblTemperature.Text = "Temperature (F)";
-            lblHeartRate.Text = "Heart Rate (bpm)";
-        }
-
-        private void ConfigureGrids()
-        {
-            ConfigureGrid(bedStatusGrid);
-            ConfigureGrid(currentAlertsGrid);
-            ConfigureGrid(patientGrid);
-            ConfigureGrid(appointmentGrid);
-            ConfigureGrid(doctorVisitsGrid);
-            ConfigureGrid(inventoryGrid);
-            ConfigureGrid(reportGrid);
-            ConfigureGrid(vitalsGrid);
-        }
-
-        private void ConfigureGrid(DataGridView grid)
-        {
-            grid.AllowUserToAddRows = false;
-            grid.AllowUserToDeleteRows = false;
-            grid.AllowUserToResizeRows = false;
-            grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            grid.BackgroundColor = SystemColors.Window;
-            grid.EditMode = DataGridViewEditMode.EditProgrammatically;
-            grid.MultiSelect = false;
-            grid.ReadOnly = true;
-            grid.RowHeadersVisible = false;
-            grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            foreach (DataGridViewColumn column in grid.Columns)
-            {
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            }
-        }
-
-        private void ConfigurePlaceholders()
-        {
-            txtPatientSearch.PlaceholderText = "Search by patient name or ID";
-            txtPatientName.PlaceholderText = "Full patient name";
-            txtPatientPhone.PlaceholderText = "Phone number";
-            txtPatientNotes.PlaceholderText = "Diagnosis, allergies, or visit notes";
-            txtAppointmentReason.PlaceholderText = "Reason for the visit";
-            txtAppointmentNotes.PlaceholderText = "Appointment notes";
-            txtInventoryItem.PlaceholderText = "Medication or supply name";
-            txtInventoryLocation.PlaceholderText = "Storage room, shelf, or cart";
-            txtMessageInput.PlaceholderText = "Type a message to the selected conversation";
-            txtPatientMessageInput.PlaceholderText = "Type a message to your care team";
-            txtBloodPressure.PlaceholderText = "Example: 120/80";
-            txtMonitoringNotes.PlaceholderText = "Vitals notes or follow-up instructions";
-        }
-
-        private void ConfigureToolTips()
-        {
-            if (components == null)
-            {
-                components = new Container();
-            }
-
-            formToolTip = new ToolTip(components);
-            formToolTip.AutoPopDelay = 10000;
-            formToolTip.InitialDelay = 400;
-            formToolTip.ReshowDelay = 200;
-            formToolTip.ShowAlways = true;
-
-            formToolTip.SetToolTip(patientGrid, "Double-click a patient row to load it into Add / Edit Patient.");
-            formToolTip.SetToolTip(appointmentGrid, "Double-click an appointment row to load it into Add / Edit Appointment.");
-            formToolTip.SetToolTip(inventoryGrid, "Double-click an item row to load it into Add / Edit Inventory Item.");
-            formToolTip.SetToolTip(vitalsGrid, "Double-click a vitals row to load it into Update Patient Vitals.");
-            formToolTip.SetToolTip(txtPatientId, "Generated automatically. Use Clear Form before adding a new patient after editing an existing one.");
-            formToolTip.SetToolTip(txtPatientSearch, "Search by patient name or ID, then use Refresh List to show all records again.");
-            formToolTip.SetToolTip(cmbAppointmentPatientPicker, "Choose an existing patient this user can access. Patient users are filled automatically.");
-            formToolTip.SetToolTip(cmbMonitoringPatientPicker, "Choose an existing patient this user can access before saving vitals.");
-            formToolTip.SetToolTip(btnClearPatient, "Clear the form fields and selected patient ID without deleting any patient record.");
-            formToolTip.SetToolTip(btnPatientRefresh, "Reload the patient list.");
-            formToolTip.SetToolTip(btnClearAppointment, "Clear appointment fields and return to add mode.");
-            formToolTip.SetToolTip(btnAppointmentRefresh, "Reload the appointment list.");
-            formToolTip.SetToolTip(btnInventoryRefresh, "Reload the inventory list.");
-            formToolTip.SetToolTip(btnNotifications, "Open notifications in a separate window.");
-            formToolTip.SetToolTip(btnSendPatientMessage, "Send a message in your patient chat.");
-            formToolTip.SetToolTip(btnMonitoringRefresh, "Reload the vitals list.");
-        }
-
         private void SetupPatientTab()
         {
             // Set grid selection behavior
@@ -881,7 +403,6 @@ namespace HospitalManagement.Client
         {
             messageDisplayEmptyText = "Select a conversation to view messages.";
             SetMessageDisplayEmpty(messageHistoryFlowPanel, messageDisplayItems, messageDisplayEmptyText);
-            btnNewConversation.Text = "Start Patient Chat";
 
             if (IsPatientUser())
             {
@@ -1489,11 +1010,6 @@ namespace HospitalManagement.Client
             {
                 statusText.Text = "Current user SQL profile could not be loaded: " + ex.Message;
             }
-        }
-
-        private void ApplyCreateUserButtonPermissions()
-        {
-            PositionHeaderControls();
         }
 
         private void btnNotifications_Click(object sender, EventArgs e)
@@ -5108,6 +4624,16 @@ namespace HospitalManagement.Client
         }
 
         private void lblLoggedInUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void inventoryGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void lblAnalyticsVisits_Click(object sender, EventArgs e)
         {
 
         }

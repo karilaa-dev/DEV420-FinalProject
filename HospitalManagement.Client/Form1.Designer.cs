@@ -28,6 +28,10 @@ namespace HospitalManagement.Client
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             headerPanel = new System.Windows.Forms.Panel();
             btnNotifications = new System.Windows.Forms.Button();
             btnLogout = new System.Windows.Forms.Button();
@@ -159,11 +163,6 @@ namespace HospitalManagement.Client
             txtPatientId = new System.Windows.Forms.TextBox();
             lblPatientId = new System.Windows.Forms.Label();
             patientGrid = new System.Windows.Forms.DataGridView();
-            patientIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            patientNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            patientDepartmentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            patientStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            patientDoctorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             grpPatientSearch = new System.Windows.Forms.GroupBox();
             btnPatientRefresh = new System.Windows.Forms.Button();
             btnPatientSearch = new System.Windows.Forms.Button();
@@ -201,11 +200,6 @@ namespace HospitalManagement.Client
             grpLowStock = new System.Windows.Forms.GroupBox();
             lstLowStock = new System.Windows.Forms.ListBox();
             inventoryGrid = new System.Windows.Forms.DataGridView();
-            inventoryItemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            inventoryCategoryColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            inventoryQuantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            inventoryReorderColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            inventoryLocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             grpInventoryDetails = new System.Windows.Forms.GroupBox();
             btnInventoryRefresh = new System.Windows.Forms.Button();
             btnInventoryRemove = new System.Windows.Forms.Button();
@@ -282,6 +276,16 @@ namespace HospitalManagement.Client
             vitalsBloodPressureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             vitalsOxygenColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             vitalsStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            patientIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            patientNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            patientDepartmentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            patientStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            patientDoctorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            inventoryItemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            inventoryCategoryColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            inventoryQuantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            inventoryReorderColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            inventoryLocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             headerPanel.SuspendLayout();
             statusStrip.SuspendLayout();
             mainTabs.SuspendLayout();
@@ -353,10 +357,10 @@ namespace HospitalManagement.Client
             // btnNotifications
             // 
             btnNotifications.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnNotifications.Location = new System.Drawing.Point(1084, 12);
+            btnNotifications.Location = new System.Drawing.Point(1147, 9);
             btnNotifications.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             btnNotifications.Name = "btnNotifications";
-            btnNotifications.Size = new System.Drawing.Size(127, 43);
+            btnNotifications.Size = new System.Drawing.Size(127, 46);
             btnNotifications.TabIndex = 5;
             btnNotifications.Text = "Notifications";
             btnNotifications.UseVisualStyleBackColor = true;
@@ -365,10 +369,10 @@ namespace HospitalManagement.Client
             // btnLogout
             // 
             btnLogout.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnLogout.Location = new System.Drawing.Point(1217, 12);
+            btnLogout.Location = new System.Drawing.Point(1294, 9);
             btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new System.Drawing.Size(153, 43);
+            btnLogout.Size = new System.Drawing.Size(76, 46);
             btnLogout.TabIndex = 6;
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = true;
@@ -1756,6 +1760,14 @@ namespace HospitalManagement.Client
             patientGrid.AllowUserToAddRows = false;
             patientGrid.AllowUserToDeleteRows = false;
             patientGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            patientGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             patientGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             patientGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { patientIdColumn, patientNameColumn, patientDepartmentColumn, patientStatusColumn, patientDoctorColumn });
             patientGrid.Location = new System.Drawing.Point(28, 111);
@@ -1767,46 +1779,6 @@ namespace HospitalManagement.Client
             patientGrid.TabIndex = 1;
             patientGrid.CellContentClick += patientGrid_CellContentClick;
             patientGrid.CellDoubleClick += patientGrid_CellDoubleClick;
-            // 
-            // patientIdColumn
-            // 
-            patientIdColumn.HeaderText = "Patient ID";
-            patientIdColumn.MinimumWidth = 6;
-            patientIdColumn.Name = "patientIdColumn";
-            patientIdColumn.ReadOnly = true;
-            patientIdColumn.Width = 85;
-            // 
-            // patientNameColumn
-            // 
-            patientNameColumn.HeaderText = "Name";
-            patientNameColumn.MinimumWidth = 6;
-            patientNameColumn.Name = "patientNameColumn";
-            patientNameColumn.ReadOnly = true;
-            patientNameColumn.Width = 180;
-            // 
-            // patientDepartmentColumn
-            // 
-            patientDepartmentColumn.HeaderText = "Department";
-            patientDepartmentColumn.MinimumWidth = 6;
-            patientDepartmentColumn.Name = "patientDepartmentColumn";
-            patientDepartmentColumn.ReadOnly = true;
-            patientDepartmentColumn.Width = 150;
-            // 
-            // patientStatusColumn
-            // 
-            patientStatusColumn.HeaderText = "Status";
-            patientStatusColumn.MinimumWidth = 6;
-            patientStatusColumn.Name = "patientStatusColumn";
-            patientStatusColumn.ReadOnly = true;
-            patientStatusColumn.Width = 120;
-            // 
-            // patientDoctorColumn
-            // 
-            patientDoctorColumn.HeaderText = "Assigned Doctor";
-            patientDoctorColumn.MinimumWidth = 6;
-            patientDoctorColumn.Name = "patientDoctorColumn";
-            patientDoctorColumn.ReadOnly = true;
-            patientDoctorColumn.Width = 170;
             // 
             // grpPatientSearch
             // 
@@ -1907,6 +1879,14 @@ namespace HospitalManagement.Client
             appointmentGrid.AllowUserToAddRows = false;
             appointmentGrid.AllowUserToDeleteRows = false;
             appointmentGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 12F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            appointmentGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             appointmentGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             appointmentGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { appointmentTimeColumn, appointmentPatientColumn, appointmentDoctorColumn, appointmentReasonColumn, appointmentStatusColumn });
             appointmentGrid.Location = new System.Drawing.Point(438, 28);
@@ -2215,6 +2195,14 @@ namespace HospitalManagement.Client
             inventoryGrid.AllowUserToAddRows = false;
             inventoryGrid.AllowUserToDeleteRows = false;
             inventoryGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            inventoryGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             inventoryGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             inventoryGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { inventoryItemColumn, inventoryCategoryColumn, inventoryQuantityColumn, inventoryReorderColumn, inventoryLocationColumn });
             inventoryGrid.Location = new System.Drawing.Point(438, 28);
@@ -2224,47 +2212,8 @@ namespace HospitalManagement.Client
             inventoryGrid.RowHeadersWidth = 51;
             inventoryGrid.Size = new System.Drawing.Size(906, 483);
             inventoryGrid.TabIndex = 1;
+            inventoryGrid.CellContentClick += inventoryGrid_CellContentClick;
             inventoryGrid.CellDoubleClick += inventoryGrid_CellDoubleClick;
-            // 
-            // inventoryItemColumn
-            // 
-            inventoryItemColumn.HeaderText = "Item";
-            inventoryItemColumn.MinimumWidth = 6;
-            inventoryItemColumn.Name = "inventoryItemColumn";
-            inventoryItemColumn.ReadOnly = true;
-            inventoryItemColumn.Width = 200;
-            // 
-            // inventoryCategoryColumn
-            // 
-            inventoryCategoryColumn.HeaderText = "Category";
-            inventoryCategoryColumn.MinimumWidth = 6;
-            inventoryCategoryColumn.Name = "inventoryCategoryColumn";
-            inventoryCategoryColumn.ReadOnly = true;
-            inventoryCategoryColumn.Width = 140;
-            // 
-            // inventoryQuantityColumn
-            // 
-            inventoryQuantityColumn.HeaderText = "Quantity";
-            inventoryQuantityColumn.MinimumWidth = 6;
-            inventoryQuantityColumn.Name = "inventoryQuantityColumn";
-            inventoryQuantityColumn.ReadOnly = true;
-            inventoryQuantityColumn.Width = 125;
-            // 
-            // inventoryReorderColumn
-            // 
-            inventoryReorderColumn.HeaderText = "Reorder Level";
-            inventoryReorderColumn.MinimumWidth = 6;
-            inventoryReorderColumn.Name = "inventoryReorderColumn";
-            inventoryReorderColumn.ReadOnly = true;
-            inventoryReorderColumn.Width = 120;
-            // 
-            // inventoryLocationColumn
-            // 
-            inventoryLocationColumn.HeaderText = "Storage Location";
-            inventoryLocationColumn.MinimumWidth = 6;
-            inventoryLocationColumn.Name = "inventoryLocationColumn";
-            inventoryLocationColumn.ReadOnly = true;
-            inventoryLocationColumn.Width = 150;
             // 
             // grpInventoryDetails
             // 
@@ -2451,6 +2400,14 @@ namespace HospitalManagement.Client
             reportGrid.AllowUserToAddRows = false;
             reportGrid.AllowUserToDeleteRows = false;
             reportGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            reportGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             reportGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             reportGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { reportMetricColumn, reportCurrentColumn, reportPreviousColumn, reportChangeColumn });
             reportGrid.Location = new System.Drawing.Point(448, 129);
@@ -2538,63 +2495,70 @@ namespace HospitalManagement.Client
             // 
             // txtAnalyticsMedicationUsage
             // 
-            txtAnalyticsMedicationUsage.Location = new System.Drawing.Point(38, 268);
+            txtAnalyticsMedicationUsage.Font = new System.Drawing.Font("Segoe UI", 12F);
+            txtAnalyticsMedicationUsage.Location = new System.Drawing.Point(38, 274);
             txtAnalyticsMedicationUsage.Margin = new System.Windows.Forms.Padding(4);
             txtAnalyticsMedicationUsage.Name = "txtAnalyticsMedicationUsage";
             txtAnalyticsMedicationUsage.ReadOnly = true;
-            txtAnalyticsMedicationUsage.Size = new System.Drawing.Size(316, 23);
+            txtAnalyticsMedicationUsage.Size = new System.Drawing.Size(316, 29);
             txtAnalyticsMedicationUsage.TabIndex = 5;
             txtAnalyticsMedicationUsage.Text = "Antibiotics";
             // 
             // lblAnalyticsMedicationUsage
             // 
             lblAnalyticsMedicationUsage.AutoSize = true;
+            lblAnalyticsMedicationUsage.Font = new System.Drawing.Font("Segoe UI", 12F);
             lblAnalyticsMedicationUsage.Location = new System.Drawing.Point(38, 249);
             lblAnalyticsMedicationUsage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblAnalyticsMedicationUsage.Name = "lblAnalyticsMedicationUsage";
-            lblAnalyticsMedicationUsage.Size = new System.Drawing.Size(125, 15);
+            lblAnalyticsMedicationUsage.Size = new System.Drawing.Size(162, 21);
             lblAnalyticsMedicationUsage.TabIndex = 4;
             lblAnalyticsMedicationUsage.Text = "Top Medication Usage";
             // 
             // txtAnalyticsCommonAilment
             // 
-            txtAnalyticsCommonAilment.Location = new System.Drawing.Point(38, 176);
+            txtAnalyticsCommonAilment.Font = new System.Drawing.Font("Segoe UI", 12F);
+            txtAnalyticsCommonAilment.Location = new System.Drawing.Point(38, 182);
             txtAnalyticsCommonAilment.Margin = new System.Windows.Forms.Padding(4);
             txtAnalyticsCommonAilment.Name = "txtAnalyticsCommonAilment";
             txtAnalyticsCommonAilment.ReadOnly = true;
-            txtAnalyticsCommonAilment.Size = new System.Drawing.Size(316, 23);
+            txtAnalyticsCommonAilment.Size = new System.Drawing.Size(316, 29);
             txtAnalyticsCommonAilment.TabIndex = 3;
             txtAnalyticsCommonAilment.Text = "Respiratory Infection";
             // 
             // lblAnalyticsCommonAilment
             // 
             lblAnalyticsCommonAilment.AutoSize = true;
+            lblAnalyticsCommonAilment.Font = new System.Drawing.Font("Segoe UI", 12F);
             lblAnalyticsCommonAilment.Location = new System.Drawing.Point(38, 157);
             lblAnalyticsCommonAilment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblAnalyticsCommonAilment.Name = "lblAnalyticsCommonAilment";
-            lblAnalyticsCommonAilment.Size = new System.Drawing.Size(103, 15);
+            lblAnalyticsCommonAilment.Size = new System.Drawing.Size(133, 21);
             lblAnalyticsCommonAilment.TabIndex = 2;
             lblAnalyticsCommonAilment.Text = "Common Ailment";
             // 
             // txtAnalyticsVisits
             // 
-            txtAnalyticsVisits.Location = new System.Drawing.Point(38, 83);
+            txtAnalyticsVisits.Font = new System.Drawing.Font("Segoe UI", 12F);
+            txtAnalyticsVisits.Location = new System.Drawing.Point(38, 89);
             txtAnalyticsVisits.Margin = new System.Windows.Forms.Padding(4);
             txtAnalyticsVisits.Name = "txtAnalyticsVisits";
             txtAnalyticsVisits.ReadOnly = true;
-            txtAnalyticsVisits.Size = new System.Drawing.Size(316, 23);
+            txtAnalyticsVisits.Size = new System.Drawing.Size(316, 29);
             txtAnalyticsVisits.TabIndex = 1;
             txtAnalyticsVisits.Text = "284 visits";
             // 
             // lblAnalyticsVisits
             // 
             lblAnalyticsVisits.AutoSize = true;
+            lblAnalyticsVisits.Font = new System.Drawing.Font("Segoe UI", 12F);
             lblAnalyticsVisits.Location = new System.Drawing.Point(38, 64);
             lblAnalyticsVisits.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblAnalyticsVisits.Name = "lblAnalyticsVisits";
-            lblAnalyticsVisits.Size = new System.Drawing.Size(74, 15);
+            lblAnalyticsVisits.Size = new System.Drawing.Size(98, 21);
             lblAnalyticsVisits.TabIndex = 0;
             lblAnalyticsVisits.Text = "Patient Visits";
+            lblAnalyticsVisits.Click += lblAnalyticsVisits_Click;
             // 
             // grpAnalyticsFilters
             // 
@@ -3117,6 +3081,86 @@ namespace HospitalManagement.Client
             vitalsStatusColumn.ReadOnly = true;
             vitalsStatusColumn.Width = 160;
             // 
+            // patientIdColumn
+            // 
+            patientIdColumn.HeaderText = "Patient ID";
+            patientIdColumn.MinimumWidth = 6;
+            patientIdColumn.Name = "patientIdColumn";
+            patientIdColumn.ReadOnly = true;
+            patientIdColumn.Width = 105;
+            // 
+            // patientNameColumn
+            // 
+            patientNameColumn.HeaderText = "Name";
+            patientNameColumn.MinimumWidth = 6;
+            patientNameColumn.Name = "patientNameColumn";
+            patientNameColumn.ReadOnly = true;
+            patientNameColumn.Width = 180;
+            // 
+            // patientDepartmentColumn
+            // 
+            patientDepartmentColumn.HeaderText = "Department";
+            patientDepartmentColumn.MinimumWidth = 6;
+            patientDepartmentColumn.Name = "patientDepartmentColumn";
+            patientDepartmentColumn.ReadOnly = true;
+            patientDepartmentColumn.Width = 150;
+            // 
+            // patientStatusColumn
+            // 
+            patientStatusColumn.HeaderText = "Status";
+            patientStatusColumn.MinimumWidth = 6;
+            patientStatusColumn.Name = "patientStatusColumn";
+            patientStatusColumn.ReadOnly = true;
+            patientStatusColumn.Width = 120;
+            // 
+            // patientDoctorColumn
+            // 
+            patientDoctorColumn.HeaderText = "Assigned Doctor";
+            patientDoctorColumn.MinimumWidth = 6;
+            patientDoctorColumn.Name = "patientDoctorColumn";
+            patientDoctorColumn.ReadOnly = true;
+            patientDoctorColumn.Width = 170;
+            // 
+            // inventoryItemColumn
+            // 
+            inventoryItemColumn.HeaderText = "Item";
+            inventoryItemColumn.MinimumWidth = 6;
+            inventoryItemColumn.Name = "inventoryItemColumn";
+            inventoryItemColumn.ReadOnly = true;
+            inventoryItemColumn.Width = 200;
+            // 
+            // inventoryCategoryColumn
+            // 
+            inventoryCategoryColumn.HeaderText = "Category";
+            inventoryCategoryColumn.MinimumWidth = 6;
+            inventoryCategoryColumn.Name = "inventoryCategoryColumn";
+            inventoryCategoryColumn.ReadOnly = true;
+            inventoryCategoryColumn.Width = 140;
+            // 
+            // inventoryQuantityColumn
+            // 
+            inventoryQuantityColumn.HeaderText = "Quantity";
+            inventoryQuantityColumn.MinimumWidth = 6;
+            inventoryQuantityColumn.Name = "inventoryQuantityColumn";
+            inventoryQuantityColumn.ReadOnly = true;
+            inventoryQuantityColumn.Width = 125;
+            // 
+            // inventoryReorderColumn
+            // 
+            inventoryReorderColumn.HeaderText = "Reorder Level";
+            inventoryReorderColumn.MinimumWidth = 6;
+            inventoryReorderColumn.Name = "inventoryReorderColumn";
+            inventoryReorderColumn.ReadOnly = true;
+            inventoryReorderColumn.Width = 140;
+            // 
+            // inventoryLocationColumn
+            // 
+            inventoryLocationColumn.HeaderText = "Storage Location";
+            inventoryLocationColumn.MinimumWidth = 6;
+            inventoryLocationColumn.Name = "inventoryLocationColumn";
+            inventoryLocationColumn.ReadOnly = true;
+            inventoryLocationColumn.Width = 150;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -3365,11 +3409,6 @@ namespace HospitalManagement.Client
         private System.Windows.Forms.GroupBox grpLowStock;
         private System.Windows.Forms.ListBox lstLowStock;
         private System.Windows.Forms.DataGridView inventoryGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn inventoryItemColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn inventoryCategoryColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn inventoryQuantityColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn inventoryReorderColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn inventoryLocationColumn;
         private System.Windows.Forms.GroupBox grpInventoryDetails;
         private System.Windows.Forms.Button btnInventoryRefresh;
         private System.Windows.Forms.Button btnInventoryRemove;
@@ -3447,14 +3486,19 @@ namespace HospitalManagement.Client
         private System.Windows.Forms.DataGridViewTextBoxColumn vitalsOxygenColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn vitalsStatusColumn;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.DataGridViewTextBoxColumn doctorVisitTimeColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn doctorVisitPatientColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn doctorVisitStatusColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn doctorVisitReasonColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn patientIdColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn patientNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn patientDepartmentColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn patientStatusColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn patientDoctorColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn doctorVisitTimeColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn doctorVisitPatientColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn doctorVisitStatusColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn doctorVisitReasonColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn inventoryItemColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn inventoryCategoryColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn inventoryQuantityColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn inventoryReorderColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn inventoryLocationColumn;
     }
 }
