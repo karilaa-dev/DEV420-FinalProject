@@ -41,50 +41,58 @@
             // 
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Segoe UI", 20F);
-            label1.Location = new System.Drawing.Point(327, 19);
+            label1.Location = new System.Drawing.Point(189, 43);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(118, 46);
+            label1.Size = new System.Drawing.Size(95, 37);
             label1.TabIndex = 0;
             label1.Text = "LOGIN";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(188, 130);
+            label2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            label2.Location = new System.Drawing.Point(113, 127);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(73, 20);
+            label2.Size = new System.Drawing.Size(81, 21);
             label2.TabIndex = 1;
-            label2.Text = "username";
+            label2.Text = "Username";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(188, 180);
+            label3.Font = new System.Drawing.Font("Segoe UI", 12F);
+            label3.Location = new System.Drawing.Point(113, 164);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(72, 20);
+            label3.Size = new System.Drawing.Size(76, 21);
             label3.TabIndex = 2;
-            label3.Text = "password";
+            label3.Text = "Password";
             // 
             // textBox_username
             // 
-            textBox_username.Location = new System.Drawing.Point(283, 126);
+            textBox_username.Font = new System.Drawing.Font("Segoe UI", 12F);
+            textBox_username.Location = new System.Drawing.Point(197, 123);
+            textBox_username.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             textBox_username.Name = "textBox_username";
-            textBox_username.Size = new System.Drawing.Size(186, 27);
+            textBox_username.Size = new System.Drawing.Size(163, 29);
             textBox_username.TabIndex = 3;
             // 
             // textBox_password
             // 
-            textBox_password.Location = new System.Drawing.Point(283, 173);
+            textBox_password.Font = new System.Drawing.Font("Segoe UI", 12F);
+            textBox_password.Location = new System.Drawing.Point(197, 159);
+            textBox_password.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             textBox_password.Name = "textBox_password";
             textBox_password.PasswordChar = '*';
-            textBox_password.Size = new System.Drawing.Size(186, 27);
+            textBox_password.Size = new System.Drawing.Size(163, 29);
             textBox_password.TabIndex = 4;
             // 
             // button_login
             // 
-            button_login.Location = new System.Drawing.Point(327, 235);
+            button_login.Font = new System.Drawing.Font("Segoe UI", 12F);
+            button_login.Location = new System.Drawing.Point(181, 211);
+            button_login.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             button_login.Name = "button_login";
-            button_login.Size = new System.Drawing.Size(122, 36);
+            button_login.Size = new System.Drawing.Size(110, 35);
             button_login.TabIndex = 5;
             button_login.Text = "Login";
             button_login.UseVisualStyleBackColor = true;
@@ -92,9 +100,11 @@
             // 
             // button_register
             // 
-            button_register.Location = new System.Drawing.Point(329, 311);
+            button_register.Font = new System.Drawing.Font("Segoe UI", 12F);
+            button_register.Location = new System.Drawing.Point(181, 250);
+            button_register.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             button_register.Name = "button_register";
-            button_register.Size = new System.Drawing.Size(120, 40);
+            button_register.Size = new System.Drawing.Size(110, 35);
             button_register.TabIndex = 6;
             button_register.Text = "Register";
             button_register.UseVisualStyleBackColor = true;
@@ -102,9 +112,9 @@
             // 
             // LoginForm
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(800, 450);
+            ClientSize = new System.Drawing.Size(472, 338);
             Controls.Add(button_register);
             Controls.Add(button_login);
             Controls.Add(textBox_password);
@@ -112,7 +122,9 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             Name = "LoginForm";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "LoginForm";
             ResumeLayout(false);
             PerformLayout();

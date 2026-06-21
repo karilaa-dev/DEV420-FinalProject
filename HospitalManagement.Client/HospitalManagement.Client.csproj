@@ -29,6 +29,8 @@
     <EmbeddedResource Update="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Remove="Main/Main.Dashboard.resx" />
+    <EmbeddedResource Remove="Main/Main.Inventory.resx" />
     <Compile Update="Main/Main.Appointments.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>

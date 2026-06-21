@@ -6,11 +6,14 @@ namespace HospitalManagement.Client
 {
     public partial class RegisterForm : Form
     {
+        public string RegisteredUsername { get; private set; }
+
         public RegisterForm()
         {
             InitializeComponent();
             Icon = SystemIcons.Application;
             ConfigureRoleChoices();
+            RegisteredUsername = "";
         }
 
         private void ConfigureRoleChoices()
@@ -92,12 +95,9 @@ namespace HospitalManagement.Client
             }
 
             MessageBox.Show("Registration successful.");
-
-            // Clear form
-            textBox_username.Clear();
-            textBox_displayName.Clear();
-            textBox_password.Clear();
-            comboBox_role.SelectedIndex = 0;
+            RegisteredUsername = username;
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void button_backToLogin_Click(object sender, EventArgs e)
