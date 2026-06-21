@@ -46,6 +46,8 @@ namespace HospitalManagement.Client
 
         private Notifications notificationsWindow;
 
+        private NotifyIcon notificationTrayIcon;
+
         private string messageDisplayEmptyText = "Select a conversation to view messages.";
 
         private string patientMessageDisplayEmptyText = "Your patient messages will appear here.";
@@ -104,6 +106,7 @@ namespace HospitalManagement.Client
         {
             InitializeComponent();
             BindDesignerControlReferences();
+            InitializeDesktopNotifications();
 
             // Set up tab defaults and load starting data
             SetupPatientTab();
@@ -124,6 +127,7 @@ namespace HospitalManagement.Client
         {
             InitializeComponent();
             BindDesignerControlReferences();
+            InitializeDesktopNotifications();
 
             // Save logged in user
             currentUser = loggedInUser;
@@ -172,6 +176,8 @@ namespace HospitalManagement.Client
             {
                 notificationsWindow.Close();
             }
+
+            DisposeDesktopNotifications();
 
             if (hospitalHubConnection != null)
             {

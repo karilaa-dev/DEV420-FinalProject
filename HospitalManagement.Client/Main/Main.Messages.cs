@@ -487,7 +487,7 @@ namespace HospitalManagement.Client
                 }
 
                 SaveNotification("Chat", "Conversation available: " + conversationName + ".");
-                await SendNotificationAsync("Conversation available: " + conversationName + ".");
+                await SendNotificationAsync("Chat", "Conversation available: " + conversationName + ".", conversationName);
             }
             catch (Exception ex)
             {
