@@ -22,8 +22,8 @@ The goal of the system is to support hospital operations by managing patient rec
 
 ## Setup
 
-1. Check the solution-level `appsettings.json` on the Windows VM. `HospitalSqlConnection` should point to `HospitalManagementDB_SQL`, `MongoConnection` should point to `HospitalManagementDB`, and `SignalRHubUrl` should point to the server hub, usually `http://localhost:5068/hospitalHub`.
-2. Start Command Prompt from the solution folder and run `Setup-HospitalDatabases.cmd`, or double-click the script in File Explorer.
+1. Check the solution-level `appsettings.json`. `HospitalSqlConnection` should point to `HospitalManagementDB_SQL`, `MongoConnection` should point to `HospitalManagementDB`, and `SignalRHubUrl` should point to the server hub, usually `http://localhost:5068/hospitalHub`.
+2. Start Command Prompt from the solution folder and run `.\Setup-HospitalDatabases.cmd`, or double-click the script in File Explorer.
 3. Use option `1` to reset SQL and MongoDB, option `2` to set up the SQL schema, and option `3` to populate demo data.
 4. Start `HospitalManagement.Server`.
 5. Start one or more `HospitalManagement.Client` instances and log in with a MongoDB user.
