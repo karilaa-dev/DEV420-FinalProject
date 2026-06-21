@@ -140,9 +140,7 @@ namespace HospitalManagement.Client
             patientsTab = new System.Windows.Forms.TabPage();
             grpPatientDetails = new System.Windows.Forms.GroupBox();
             btnClearPatient = new System.Windows.Forms.Button();
-            btnDeletePatient = new System.Windows.Forms.Button();
             btnUpdatePatient = new System.Windows.Forms.Button();
-            btnAddPatient = new System.Windows.Forms.Button();
             chkPatientAdmitted = new System.Windows.Forms.CheckBox();
             txtPatientNotes = new System.Windows.Forms.TextBox();
             lblPatientNotes = new System.Windows.Forms.Label();
@@ -1451,9 +1449,7 @@ namespace HospitalManagement.Client
             // 
             grpPatientDetails.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             grpPatientDetails.Controls.Add(btnClearPatient);
-            grpPatientDetails.Controls.Add(btnDeletePatient);
             grpPatientDetails.Controls.Add(btnUpdatePatient);
-            grpPatientDetails.Controls.Add(btnAddPatient);
             grpPatientDetails.Controls.Add(chkPatientAdmitted);
             grpPatientDetails.Controls.Add(txtPatientNotes);
             grpPatientDetails.Controls.Add(lblPatientNotes);
@@ -1478,7 +1474,7 @@ namespace HospitalManagement.Client
             // 
             // btnClearPatient
             // 
-            btnClearPatient.Location = new System.Drawing.Point(196, 540);
+            btnClearPatient.Location = new System.Drawing.Point(186, 496);
             btnClearPatient.Margin = new System.Windows.Forms.Padding(4);
             btnClearPatient.Name = "btnClearPatient";
             btnClearPatient.Size = new System.Drawing.Size(150, 32);
@@ -1487,20 +1483,9 @@ namespace HospitalManagement.Client
             btnClearPatient.UseVisualStyleBackColor = true;
             btnClearPatient.Click += btnClearPatient_Click;
             // 
-            // btnDeletePatient
-            // 
-            btnDeletePatient.Location = new System.Drawing.Point(28, 540);
-            btnDeletePatient.Margin = new System.Windows.Forms.Padding(4);
-            btnDeletePatient.Name = "btnDeletePatient";
-            btnDeletePatient.Size = new System.Drawing.Size(150, 32);
-            btnDeletePatient.TabIndex = 17;
-            btnDeletePatient.Text = "Delete Patient";
-            btnDeletePatient.UseVisualStyleBackColor = true;
-            btnDeletePatient.Click += btnDeletePatient_Click;
-            // 
             // btnUpdatePatient
             // 
-            btnUpdatePatient.Location = new System.Drawing.Point(196, 499);
+            btnUpdatePatient.Location = new System.Drawing.Point(28, 496);
             btnUpdatePatient.Margin = new System.Windows.Forms.Padding(4);
             btnUpdatePatient.Name = "btnUpdatePatient";
             btnUpdatePatient.Size = new System.Drawing.Size(150, 32);
@@ -1508,17 +1493,6 @@ namespace HospitalManagement.Client
             btnUpdatePatient.Text = "Save Changes";
             btnUpdatePatient.UseVisualStyleBackColor = true;
             btnUpdatePatient.Click += btnUpdatePatient_Click;
-            // 
-            // btnAddPatient
-            // 
-            btnAddPatient.Location = new System.Drawing.Point(28, 499);
-            btnAddPatient.Margin = new System.Windows.Forms.Padding(4);
-            btnAddPatient.Name = "btnAddPatient";
-            btnAddPatient.Size = new System.Drawing.Size(150, 32);
-            btnAddPatient.TabIndex = 15;
-            btnAddPatient.Text = "Add Patient";
-            btnAddPatient.UseVisualStyleBackColor = true;
-            btnAddPatient.Click += btnAddPatient_Click;
             // 
             // chkPatientAdmitted
             // 
@@ -3263,9 +3237,7 @@ namespace HospitalManagement.Client
         private System.Windows.Forms.TabPage patientsTab;
         private System.Windows.Forms.GroupBox grpPatientDetails;
         private System.Windows.Forms.Button btnClearPatient;
-        private System.Windows.Forms.Button btnDeletePatient;
         private System.Windows.Forms.Button btnUpdatePatient;
-        private System.Windows.Forms.Button btnAddPatient;
         private System.Windows.Forms.CheckBox chkPatientAdmitted;
         private System.Windows.Forms.TextBox txtPatientNotes;
         private System.Windows.Forms.Label lblPatientNotes;
