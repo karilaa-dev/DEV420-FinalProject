@@ -24,10 +24,20 @@ GO
 IF OBJECT_ID('dbo.Patients', 'U') IS NOT NULL
     AND (
         COL_LENGTH('dbo.Patients', 'PatientUserId') IS NULL
+        OR COL_LENGTH('dbo.Patients', 'Department') IS NOT NULL
         OR ISNULL(COLUMNPROPERTY(OBJECT_ID(N'dbo.Patients'), N'PatientId', 'IsIdentity'), 0) <> 1
     )
 BEGIN
     RAISERROR('Old Patients schema detected. Use Setup-HospitalDatabases.cmd option 1 to reset the SQL database before setup.', 16, 1);
+    RETURN;
+END
+GO
+
+IF (OBJECT_ID('dbo.DoctorProfiles', 'U') IS NOT NULL AND COL_LENGTH('dbo.DoctorProfiles', 'Department') IS NOT NULL)
+    OR (OBJECT_ID('dbo.PatientVitals', 'U') IS NOT NULL AND COL_LENGTH('dbo.PatientVitals', 'Room') IS NOT NULL)
+    OR OBJECT_ID('dbo.BedStatuses', 'U') IS NOT NULL
+BEGIN
+    RAISERROR('Old department, room, or bed schema detected. Use Setup-HospitalDatabases.cmd option 1 to reset the SQL database before setup.', 16, 1);
     RETURN;
 END
 GO
@@ -42,7 +52,6 @@ BEGIN
         Gender NVARCHAR(50) NULL,
         DateOfBirth DATE NULL,
         Phone NVARCHAR(50) NULL,
-        Department NVARCHAR(100) NULL,
         IsAdmitted BIT NOT NULL DEFAULT 0,
         Notes NVARCHAR(500) NULL
     );
@@ -70,7 +79,6 @@ BEGIN
         UserId NVARCHAR(50) NOT NULL UNIQUE,
         Username NVARCHAR(100) NOT NULL UNIQUE,
         DisplayName NVARCHAR(100) NOT NULL,
-        Department NVARCHAR(100) NOT NULL DEFAULT 'General Medicine',
         IsActive BIT NOT NULL DEFAULT 1,
         CreatedAt DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
         UpdatedAt DATETIME2 NOT NULL DEFAULT SYSDATETIME()
@@ -171,7 +179,6 @@ BEGIN
     (
         PatientVitalsId INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
         PatientId INT NOT NULL,
-        Room NVARCHAR(50) NULL,
         HeartRate INT NOT NULL,
         BloodPressure NVARCHAR(50) NULL,
         OxygenLevel INT NOT NULL,
@@ -181,18 +188,6 @@ BEGIN
         UpdatedAt DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
         CONSTRAINT FK_PatientVitals_Patients
             FOREIGN KEY (PatientId) REFERENCES dbo.Patients(PatientId)
-    );
-END
-GO
-
-IF OBJECT_ID('dbo.BedStatuses', 'U') IS NULL
-BEGIN
-    CREATE TABLE dbo.BedStatuses
-    (
-        Department NVARCHAR(100) NOT NULL PRIMARY KEY,
-        TotalBeds INT NOT NULL,
-        OpenBeds INT NOT NULL,
-        UpdatedAt DATETIME2 NOT NULL DEFAULT SYSDATETIME()
     );
 END
 GO

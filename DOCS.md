@@ -44,9 +44,9 @@ This guide explains the app roles, visible tabs, and main actions. The app shows
 | Field | Details |
 | --- | --- |
 | Who can view | Administrative Staff, Nurse |
-| What it shows | Active patients, appointments today, open beds, low-stock count, emergency alerts, bed availability, current alerts |
+| What it shows | Active patients, appointments today, low-stock count, emergency alerts, current alerts |
 | Available actions | Review hospital status and watch live updates |
-| Who can use actions | Administrative Staff can also see low-stock inventory alerts; Nurse sees patient, appointment, bed, and vitals alerts |
+| Who can use actions | Administrative Staff can also see low-stock inventory alerts; Nurse sees patient, appointment, and vitals alerts |
 | Demo value | Good first screen for showing real-time hospital status |
 
 ## My Visits
@@ -108,7 +108,7 @@ This guide explains the app roles, visible tabs, and main actions. The app shows
 | What it shows | Date filters, report type picker, report summary, report output grid |
 | Available actions | Choose report type and click `Run Report` |
 | Who can use actions | Administrative Staff only |
-| Report types | `Patient Visits`, `Common Ailments`, `Medication Usage`, `Department Load` |
+| Report types | `Patient Visits`, `Common Ailments`, `Medication Usage` |
 
 ## Messages
 
@@ -135,7 +135,7 @@ This guide explains the app roles, visible tabs, and main actions. The app shows
 | Field | Details |
 | --- | --- |
 | Who can view | Administrative Staff, Nurse, Doctor |
-| What it shows | Vitals grid, critical care alert list, vitals entry form |
+| What it shows | Vitals grid, vitals alert list, vitals entry form |
 | Available actions | Add vitals, double-click vitals row, update vitals, refresh, clear form |
 | Who can use actions | Administrative Staff and Nurse can update accessible patients; Doctor can update assigned patients |
 | Status results | `Normal`, `Warning`, or `Critical` |

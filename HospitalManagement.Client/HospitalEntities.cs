@@ -11,7 +11,6 @@ namespace HospitalManagement.Client
         public string Gender { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public string Phone { get; set; }
-        public string Department { get; set; }
         public bool IsAdmitted { get; set; }
         public string Notes { get; set; }
 
@@ -26,7 +25,6 @@ namespace HospitalManagement.Client
         public string UserId { get; set; }
         public string Username { get; set; }
         public string DisplayName { get; set; }
-        public string Department { get; set; }
         public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
@@ -104,7 +102,6 @@ namespace HospitalManagement.Client
     {
         public int PatientVitalsId { get; set; }
         public int PatientId { get; set; }
-        public string Room { get; set; }
         public int HeartRate { get; set; }
         public string BloodPressure { get; set; }
         public int OxygenLevel { get; set; }
@@ -114,14 +111,6 @@ namespace HospitalManagement.Client
         public DateTime UpdatedAt { get; set; }
 
         public Patient Patient { get; set; }
-    }
-
-    internal class BedStatus
-    {
-        public string Department { get; set; }
-        public int TotalBeds { get; set; }
-        public int OpenBeds { get; set; }
-        public DateTime UpdatedAt { get; set; }
     }
 
     internal class SystemNotification

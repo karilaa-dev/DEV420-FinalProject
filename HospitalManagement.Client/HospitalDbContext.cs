@@ -24,7 +24,6 @@ namespace HospitalManagement.Client
         public DbSet<ChatConversation> ChatConversations { get; set; }
         public DbSet<ChatMessage> ChatMessages { get; set; }
         public DbSet<PatientVitals> PatientVitals { get; set; }
-        public DbSet<BedStatus> BedStatuses { get; set; }
         public DbSet<SystemNotification> SystemNotifications { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -46,7 +45,6 @@ namespace HospitalManagement.Client
                 entity.Property(e => e.Name).HasMaxLength(100).IsRequired();
                 entity.Property(e => e.Gender).HasMaxLength(50);
                 entity.Property(e => e.Phone).HasMaxLength(50);
-                entity.Property(e => e.Department).HasMaxLength(100);
                 entity.Property(e => e.Notes).HasMaxLength(500);
                 entity.HasIndex(e => e.PatientUserId)
                     .IsUnique()
@@ -61,7 +59,6 @@ namespace HospitalManagement.Client
                 entity.Property(e => e.UserId).HasMaxLength(50).IsRequired();
                 entity.Property(e => e.Username).HasMaxLength(100).IsRequired();
                 entity.Property(e => e.DisplayName).HasMaxLength(100).IsRequired();
-                entity.Property(e => e.Department).HasMaxLength(100).IsRequired();
                 entity.Property(e => e.CreatedAt).HasDefaultValueSql("SYSDATETIME()");
                 entity.Property(e => e.UpdatedAt).HasDefaultValueSql("SYSDATETIME()");
                 entity.HasIndex(e => e.UserId).IsUnique();
@@ -149,7 +146,6 @@ namespace HospitalManagement.Client
                 entity.ToTable("PatientVitals");
                 entity.HasKey(e => e.PatientVitalsId);
                 entity.Property(e => e.PatientVitalsId).ValueGeneratedOnAdd();
-                entity.Property(e => e.Room).HasMaxLength(50);
                 entity.Property(e => e.BloodPressure).HasMaxLength(50);
                 entity.Property(e => e.Temperature).HasColumnType("decimal(5,1)");
                 entity.Property(e => e.VitalsStatus).HasMaxLength(50).IsRequired();
@@ -159,14 +155,6 @@ namespace HospitalManagement.Client
                     .WithMany(e => e.PatientVitals)
                     .HasForeignKey(e => e.PatientId)
                     .OnDelete(DeleteBehavior.Restrict);
-            });
-
-            modelBuilder.Entity<BedStatus>(entity =>
-            {
-                entity.ToTable("BedStatuses");
-                entity.HasKey(e => e.Department);
-                entity.Property(e => e.Department).HasMaxLength(100);
-                entity.Property(e => e.UpdatedAt).HasDefaultValueSql("SYSDATETIME()");
             });
 
             modelBuilder.Entity<SystemNotification>(entity =>

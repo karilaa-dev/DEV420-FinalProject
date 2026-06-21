@@ -42,7 +42,6 @@ namespace HospitalManagement.Client
                         UserId = user.UserId,
                         Username = user.Username,
                         DisplayName = GetDoctorDisplayName(user),
-                        Department = "General Medicine",
                         IsActive = true,
                         CreatedAt = DateTime.Now,
                         UpdatedAt = DateTime.Now
@@ -84,7 +83,6 @@ namespace HospitalManagement.Client
                     {
                         PatientUserId = user.UserId,
                         Name = GetUserDisplayName(user),
-                        Department = "General Medicine",
                         IsAdmitted = false,
                         Notes = "Created from patient registration."
                     };
