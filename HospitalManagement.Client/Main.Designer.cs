@@ -1,6 +1,6 @@
 namespace HospitalManagement.Client
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,15 @@ namespace HospitalManagement.Client
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             headerPanel = new System.Windows.Forms.Panel();
             btnNotifications = new System.Windows.Forms.Button();
             btnLogout = new System.Windows.Forms.Button();
@@ -163,6 +168,11 @@ namespace HospitalManagement.Client
             txtPatientId = new System.Windows.Forms.TextBox();
             lblPatientId = new System.Windows.Forms.Label();
             patientGrid = new System.Windows.Forms.DataGridView();
+            patientIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            patientNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            patientDepartmentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            patientStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            patientDoctorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             grpPatientSearch = new System.Windows.Forms.GroupBox();
             btnPatientRefresh = new System.Windows.Forms.Button();
             btnPatientSearch = new System.Windows.Forms.Button();
@@ -200,6 +210,11 @@ namespace HospitalManagement.Client
             grpLowStock = new System.Windows.Forms.GroupBox();
             lstLowStock = new System.Windows.Forms.ListBox();
             inventoryGrid = new System.Windows.Forms.DataGridView();
+            inventoryItemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            inventoryCategoryColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            inventoryQuantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            inventoryReorderColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            inventoryLocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             grpInventoryDetails = new System.Windows.Forms.GroupBox();
             btnInventoryRefresh = new System.Windows.Forms.Button();
             btnInventoryRemove = new System.Windows.Forms.Button();
@@ -255,8 +270,10 @@ namespace HospitalManagement.Client
             grpMonitoringAlerts = new System.Windows.Forms.GroupBox();
             lstMonitoringAlerts = new System.Windows.Forms.ListBox();
             grpVitalsEntry = new System.Windows.Forms.GroupBox();
+            btnClearVitals = new System.Windows.Forms.Button();
             btnMonitoringRefresh = new System.Windows.Forms.Button();
             btnUpdateVitals = new System.Windows.Forms.Button();
+            btnAddVitals = new System.Windows.Forms.Button();
             txtMonitoringNotes = new System.Windows.Forms.TextBox();
             lblMonitoringNotes = new System.Windows.Forms.Label();
             numOxygenLevel = new System.Windows.Forms.NumericUpDown();
@@ -276,16 +293,6 @@ namespace HospitalManagement.Client
             vitalsBloodPressureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             vitalsOxygenColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             vitalsStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            patientIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            patientNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            patientDepartmentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            patientStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            patientDoctorColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            inventoryItemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            inventoryCategoryColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            inventoryQuantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            inventoryReorderColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            inventoryLocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             headerPanel.SuspendLayout();
             statusStrip.SuspendLayout();
             mainTabs.SuspendLayout();
@@ -357,10 +364,10 @@ namespace HospitalManagement.Client
             // btnNotifications
             // 
             btnNotifications.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnNotifications.Location = new System.Drawing.Point(1147, 9);
+            btnNotifications.Location = new System.Drawing.Point(1245, 11);
             btnNotifications.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             btnNotifications.Name = "btnNotifications";
-            btnNotifications.Size = new System.Drawing.Size(127, 46);
+            btnNotifications.Size = new System.Drawing.Size(125, 50);
             btnNotifications.TabIndex = 5;
             btnNotifications.Text = "Notifications";
             btnNotifications.UseVisualStyleBackColor = true;
@@ -369,10 +376,10 @@ namespace HospitalManagement.Client
             // btnLogout
             // 
             btnLogout.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnLogout.Location = new System.Drawing.Point(1294, 9);
+            btnLogout.Location = new System.Drawing.Point(204, 9);
             btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new System.Drawing.Size(76, 46);
+            btnLogout.Size = new System.Drawing.Size(100, 50);
             btnLogout.TabIndex = 6;
             btnLogout.Text = "Logout";
             btnLogout.UseVisualStyleBackColor = true;
@@ -399,7 +406,6 @@ namespace HospitalManagement.Client
             lblLoggedInUser.Size = new System.Drawing.Size(138, 21);
             lblLoggedInUser.TabIndex = 1;
             lblLoggedInUser.Text = "User: Current User";
-            lblLoggedInUser.Click += lblLoggedInUser_Click;
             // 
             // statusStrip
             // 
@@ -468,7 +474,7 @@ namespace HospitalManagement.Client
             grpCriticalStatus.Margin = new System.Windows.Forms.Padding(4);
             grpCriticalStatus.Name = "grpCriticalStatus";
             grpCriticalStatus.Padding = new System.Windows.Forms.Padding(4);
-            grpCriticalStatus.Size = new System.Drawing.Size(658, 495);
+            grpCriticalStatus.Size = new System.Drawing.Size(641, 495);
             grpCriticalStatus.TabIndex = 3;
             grpCriticalStatus.TabStop = false;
             grpCriticalStatus.Text = "Current Alerts";
@@ -478,14 +484,23 @@ namespace HospitalManagement.Client
             currentAlertsGrid.AllowUserToAddRows = false;
             currentAlertsGrid.AllowUserToDeleteRows = false;
             currentAlertsGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            currentAlertsGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             currentAlertsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             currentAlertsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { alertTypeColumn, alertSubjectColumn, alertDetailsColumn, alertUpdatedColumn });
             currentAlertsGrid.Location = new System.Drawing.Point(18, 28);
             currentAlertsGrid.Margin = new System.Windows.Forms.Padding(4);
             currentAlertsGrid.Name = "currentAlertsGrid";
             currentAlertsGrid.ReadOnly = true;
+            currentAlertsGrid.RowHeadersVisible = false;
             currentAlertsGrid.RowHeadersWidth = 51;
-            currentAlertsGrid.Size = new System.Drawing.Size(620, 443);
+            currentAlertsGrid.Size = new System.Drawing.Size(603, 443);
             currentAlertsGrid.TabIndex = 0;
             // 
             // alertTypeColumn
@@ -494,7 +509,7 @@ namespace HospitalManagement.Client
             alertTypeColumn.MinimumWidth = 6;
             alertTypeColumn.Name = "alertTypeColumn";
             alertTypeColumn.ReadOnly = true;
-            alertTypeColumn.Width = 140;
+            alertTypeColumn.Width = 110;
             // 
             // alertSubjectColumn
             // 
@@ -502,7 +517,7 @@ namespace HospitalManagement.Client
             alertSubjectColumn.MinimumWidth = 6;
             alertSubjectColumn.Name = "alertSubjectColumn";
             alertSubjectColumn.ReadOnly = true;
-            alertSubjectColumn.Width = 160;
+            alertSubjectColumn.Width = 120;
             // 
             // alertDetailsColumn
             // 
@@ -510,7 +525,7 @@ namespace HospitalManagement.Client
             alertDetailsColumn.MinimumWidth = 6;
             alertDetailsColumn.Name = "alertDetailsColumn";
             alertDetailsColumn.ReadOnly = true;
-            alertDetailsColumn.Width = 220;
+            alertDetailsColumn.Width = 250;
             // 
             // alertUpdatedColumn
             // 
@@ -528,7 +543,7 @@ namespace HospitalManagement.Client
             grpBedStatus.Margin = new System.Windows.Forms.Padding(4);
             grpBedStatus.Name = "grpBedStatus";
             grpBedStatus.Padding = new System.Windows.Forms.Padding(4);
-            grpBedStatus.Size = new System.Drawing.Size(632, 495);
+            grpBedStatus.Size = new System.Drawing.Size(581, 495);
             grpBedStatus.TabIndex = 1;
             grpBedStatus.TabStop = false;
             grpBedStatus.Text = "Bed Availability";
@@ -538,14 +553,23 @@ namespace HospitalManagement.Client
             bedStatusGrid.AllowUserToAddRows = false;
             bedStatusGrid.AllowUserToDeleteRows = false;
             bedStatusGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            bedStatusGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             bedStatusGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             bedStatusGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { bedDepartmentColumn, bedOpenColumn, bedTotalColumn, bedUpdatedColumn });
             bedStatusGrid.Location = new System.Drawing.Point(18, 28);
             bedStatusGrid.Margin = new System.Windows.Forms.Padding(4);
             bedStatusGrid.Name = "bedStatusGrid";
             bedStatusGrid.ReadOnly = true;
+            bedStatusGrid.RowHeadersVisible = false;
             bedStatusGrid.RowHeadersWidth = 51;
-            bedStatusGrid.Size = new System.Drawing.Size(594, 443);
+            bedStatusGrid.Size = new System.Drawing.Size(543, 443);
             bedStatusGrid.TabIndex = 0;
             // 
             // bedDepartmentColumn
@@ -750,10 +774,10 @@ namespace HospitalManagement.Client
             doctorVisitsGrid.Margin = new System.Windows.Forms.Padding(4);
             doctorVisitsGrid.Name = "doctorVisitsGrid";
             doctorVisitsGrid.ReadOnly = true;
+            doctorVisitsGrid.RowHeadersVisible = false;
             doctorVisitsGrid.RowHeadersWidth = 51;
             doctorVisitsGrid.Size = new System.Drawing.Size(636, 675);
             doctorVisitsGrid.TabIndex = 0;
-            doctorVisitsGrid.CellContentClick += doctorVisitsGrid_CellContentClick;
             doctorVisitsGrid.SelectionChanged += doctorVisitsGrid_SelectionChanged;
             // 
             // doctorVisitTimeColumn
@@ -805,6 +829,7 @@ namespace HospitalManagement.Client
             grpDoctorTodayVisit.Controls.Add(lblDoctorTodayVisitDateValue);
             grpDoctorTodayVisit.Controls.Add(lblDoctorTodayVisitDateCaption);
             grpDoctorTodayVisit.Controls.Add(pnlDoctorTodayVisitStatus);
+            grpDoctorTodayVisit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             grpDoctorTodayVisit.Location = new System.Drawing.Point(20, 20);
             grpDoctorTodayVisit.Margin = new System.Windows.Forms.Padding(4);
             grpDoctorTodayVisit.Name = "grpDoctorTodayVisit";
@@ -829,15 +854,14 @@ namespace HospitalManagement.Client
             // lblDoctorTodayVisitPlaceholder
             // 
             lblDoctorTodayVisitPlaceholder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            lblDoctorTodayVisitPlaceholder.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic);
+            lblDoctorTodayVisitPlaceholder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, 0);
             lblDoctorTodayVisitPlaceholder.ForeColor = System.Drawing.SystemColors.GrayText;
-            lblDoctorTodayVisitPlaceholder.Location = new System.Drawing.Point(110, 26);
+            lblDoctorTodayVisitPlaceholder.Location = new System.Drawing.Point(120, 25);
             lblDoctorTodayVisitPlaceholder.Name = "lblDoctorTodayVisitPlaceholder";
-            lblDoctorTodayVisitPlaceholder.Size = new System.Drawing.Size(529, 32);
+            lblDoctorTodayVisitPlaceholder.Size = new System.Drawing.Size(425, 63);
             lblDoctorTodayVisitPlaceholder.TabIndex = 13;
             lblDoctorTodayVisitPlaceholder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             lblDoctorTodayVisitPlaceholder.Visible = false;
-            lblDoctorTodayVisitPlaceholder.Click += lblDoctorTodayVisitPlaceholder_Click;
             // 
             // lblDoctorTodayVisitNotesValue
             // 
@@ -965,6 +989,7 @@ namespace HospitalManagement.Client
             grpDoctorLastVisit.Controls.Add(lblDoctorLastVisitDateValue);
             grpDoctorLastVisit.Controls.Add(lblDoctorLastVisitDateCaption);
             grpDoctorLastVisit.Controls.Add(pnlDoctorLastVisitStatus);
+            grpDoctorLastVisit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             grpDoctorLastVisit.Location = new System.Drawing.Point(20, 242);
             grpDoctorLastVisit.Margin = new System.Windows.Forms.Padding(4);
             grpDoctorLastVisit.Name = "grpDoctorLastVisit";
@@ -989,11 +1014,11 @@ namespace HospitalManagement.Client
             // lblDoctorLastVisitPlaceholder
             // 
             lblDoctorLastVisitPlaceholder.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            lblDoctorLastVisitPlaceholder.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic);
+            lblDoctorLastVisitPlaceholder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, 0);
             lblDoctorLastVisitPlaceholder.ForeColor = System.Drawing.SystemColors.GrayText;
             lblDoctorLastVisitPlaceholder.Location = new System.Drawing.Point(110, 25);
             lblDoctorLastVisitPlaceholder.Name = "lblDoctorLastVisitPlaceholder";
-            lblDoctorLastVisitPlaceholder.Size = new System.Drawing.Size(529, 34);
+            lblDoctorLastVisitPlaceholder.Size = new System.Drawing.Size(425, 63);
             lblDoctorLastVisitPlaceholder.TabIndex = 13;
             lblDoctorLastVisitPlaceholder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             lblDoctorLastVisitPlaceholder.Visible = false;
@@ -1139,7 +1164,6 @@ namespace HospitalManagement.Client
             grpPatientLatestVitals.TabIndex = 1;
             grpPatientLatestVitals.TabStop = false;
             grpPatientLatestVitals.Text = "Latest Vitals";
-            grpPatientLatestVitals.Enter += grpPatientLatestVitals_Enter;
             // 
             // lblPatientVitalsPlaceholder
             // 
@@ -1154,7 +1178,6 @@ namespace HospitalManagement.Client
             lblPatientVitalsPlaceholder.Text = "No vitals recorded yet.";
             lblPatientVitalsPlaceholder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             lblPatientVitalsPlaceholder.Visible = false;
-            lblPatientVitalsPlaceholder.Click += lblPatientVitalsPlaceholder_Click;
             // 
             // lblVitalNotes
             // 
@@ -1168,7 +1191,6 @@ namespace HospitalManagement.Client
             lblVitalNotes.Size = new System.Drawing.Size(854, 400);
             lblVitalNotes.TabIndex = 7;
             lblVitalNotes.Text = "Notes: --";
-            lblVitalNotes.Click += lblVitalNotes_Click;
             // 
             // pnlVitalUpdated
             // 
@@ -1336,7 +1358,6 @@ namespace HospitalManagement.Client
             lblVitalBloodPressureCaption.Size = new System.Drawing.Size(220, 20);
             lblVitalBloodPressureCaption.TabIndex = 0;
             lblVitalBloodPressureCaption.Text = "Blood Pressure";
-            lblVitalBloodPressureCaption.Click += lblVitalBloodPressureCaption_Click;
             // 
             // pnlVitalHeartRate
             // 
@@ -1555,7 +1576,7 @@ namespace HospitalManagement.Client
             grpPatientDetails.Controls.Add(lblPatientName);
             grpPatientDetails.Controls.Add(txtPatientId);
             grpPatientDetails.Controls.Add(lblPatientId);
-            grpPatientDetails.Location = new System.Drawing.Point(970, 111);
+            grpPatientDetails.Location = new System.Drawing.Point(896, 111);
             grpPatientDetails.Margin = new System.Windows.Forms.Padding(4);
             grpPatientDetails.Name = "grpPatientDetails";
             grpPatientDetails.Padding = new System.Windows.Forms.Padding(4);
@@ -1760,25 +1781,66 @@ namespace HospitalManagement.Client
             patientGrid.AllowUserToAddRows = false;
             patientGrid.AllowUserToDeleteRows = false;
             patientGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            patientGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            patientGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             patientGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             patientGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { patientIdColumn, patientNameColumn, patientDepartmentColumn, patientStatusColumn, patientDoctorColumn });
-            patientGrid.Location = new System.Drawing.Point(28, 111);
+            patientGrid.Location = new System.Drawing.Point(96, 111);
             patientGrid.Margin = new System.Windows.Forms.Padding(4);
             patientGrid.Name = "patientGrid";
             patientGrid.ReadOnly = true;
+            patientGrid.RowHeadersVisible = false;
             patientGrid.RowHeadersWidth = 51;
-            patientGrid.Size = new System.Drawing.Size(914, 603);
+            patientGrid.Size = new System.Drawing.Size(728, 603);
             patientGrid.TabIndex = 1;
             patientGrid.CellContentClick += patientGrid_CellContentClick;
             patientGrid.CellDoubleClick += patientGrid_CellDoubleClick;
+            // 
+            // patientIdColumn
+            // 
+            patientIdColumn.HeaderText = "Patient ID";
+            patientIdColumn.MinimumWidth = 6;
+            patientIdColumn.Name = "patientIdColumn";
+            patientIdColumn.ReadOnly = true;
+            patientIdColumn.Width = 105;
+            // 
+            // patientNameColumn
+            // 
+            patientNameColumn.HeaderText = "Name";
+            patientNameColumn.MinimumWidth = 6;
+            patientNameColumn.Name = "patientNameColumn";
+            patientNameColumn.ReadOnly = true;
+            patientNameColumn.Width = 180;
+            // 
+            // patientDepartmentColumn
+            // 
+            patientDepartmentColumn.HeaderText = "Department";
+            patientDepartmentColumn.MinimumWidth = 6;
+            patientDepartmentColumn.Name = "patientDepartmentColumn";
+            patientDepartmentColumn.ReadOnly = true;
+            patientDepartmentColumn.Width = 150;
+            // 
+            // patientStatusColumn
+            // 
+            patientStatusColumn.HeaderText = "Status";
+            patientStatusColumn.MinimumWidth = 6;
+            patientStatusColumn.Name = "patientStatusColumn";
+            patientStatusColumn.ReadOnly = true;
+            patientStatusColumn.Width = 120;
+            // 
+            // patientDoctorColumn
+            // 
+            patientDoctorColumn.HeaderText = "Assigned Doctor";
+            patientDoctorColumn.MinimumWidth = 6;
+            patientDoctorColumn.Name = "patientDoctorColumn";
+            patientDoctorColumn.ReadOnly = true;
+            patientDoctorColumn.Width = 170;
             // 
             // grpPatientSearch
             // 
@@ -1879,22 +1941,23 @@ namespace HospitalManagement.Client
             appointmentGrid.AllowUserToAddRows = false;
             appointmentGrid.AllowUserToDeleteRows = false;
             appointmentGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 12F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            appointmentGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            appointmentGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             appointmentGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             appointmentGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { appointmentTimeColumn, appointmentPatientColumn, appointmentDoctorColumn, appointmentReasonColumn, appointmentStatusColumn });
-            appointmentGrid.Location = new System.Drawing.Point(438, 28);
+            appointmentGrid.Location = new System.Drawing.Point(507, 28);
             appointmentGrid.Margin = new System.Windows.Forms.Padding(4);
             appointmentGrid.Name = "appointmentGrid";
             appointmentGrid.ReadOnly = true;
+            appointmentGrid.RowHeadersVisible = false;
             appointmentGrid.RowHeadersWidth = 51;
-            appointmentGrid.Size = new System.Drawing.Size(906, 650);
+            appointmentGrid.Size = new System.Drawing.Size(763, 650);
             appointmentGrid.TabIndex = 1;
             appointmentGrid.CellDoubleClick += appointmentGrid_CellDoubleClick;
             // 
@@ -1959,7 +2022,7 @@ namespace HospitalManagement.Client
             grpAppointmentDetails.Controls.Add(lblAppointmentDoctor);
             grpAppointmentDetails.Controls.Add(cmbAppointmentPatientPicker);
             grpAppointmentDetails.Controls.Add(lblAppointmentPatient);
-            grpAppointmentDetails.Location = new System.Drawing.Point(28, 28);
+            grpAppointmentDetails.Location = new System.Drawing.Point(117, 28);
             grpAppointmentDetails.Margin = new System.Windows.Forms.Padding(4);
             grpAppointmentDetails.Name = "grpAppointmentDetails";
             grpAppointmentDetails.Padding = new System.Windows.Forms.Padding(4);
@@ -2168,11 +2231,11 @@ namespace HospitalManagement.Client
             // 
             grpLowStock.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             grpLowStock.Controls.Add(lstLowStock);
-            grpLowStock.Location = new System.Drawing.Point(438, 529);
+            grpLowStock.Location = new System.Drawing.Point(513, 530);
             grpLowStock.Margin = new System.Windows.Forms.Padding(4);
             grpLowStock.Name = "grpLowStock";
             grpLowStock.Padding = new System.Windows.Forms.Padding(4);
-            grpLowStock.Size = new System.Drawing.Size(906, 184);
+            grpLowStock.Size = new System.Drawing.Size(808, 184);
             grpLowStock.TabIndex = 2;
             grpLowStock.TabStop = false;
             grpLowStock.Text = "Low Stock Alerts";
@@ -2187,7 +2250,7 @@ namespace HospitalManagement.Client
             lstLowStock.Location = new System.Drawing.Point(18, 28);
             lstLowStock.Margin = new System.Windows.Forms.Padding(4);
             lstLowStock.Name = "lstLowStock";
-            lstLowStock.Size = new System.Drawing.Size(868, 130);
+            lstLowStock.Size = new System.Drawing.Size(770, 130);
             lstLowStock.TabIndex = 0;
             // 
             // inventoryGrid
@@ -2195,25 +2258,64 @@ namespace HospitalManagement.Client
             inventoryGrid.AllowUserToAddRows = false;
             inventoryGrid.AllowUserToDeleteRows = false;
             inventoryGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            inventoryGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            inventoryGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             inventoryGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             inventoryGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { inventoryItemColumn, inventoryCategoryColumn, inventoryQuantityColumn, inventoryReorderColumn, inventoryLocationColumn });
-            inventoryGrid.Location = new System.Drawing.Point(438, 28);
+            inventoryGrid.Location = new System.Drawing.Point(513, 29);
             inventoryGrid.Margin = new System.Windows.Forms.Padding(4);
             inventoryGrid.Name = "inventoryGrid";
             inventoryGrid.ReadOnly = true;
             inventoryGrid.RowHeadersWidth = 51;
-            inventoryGrid.Size = new System.Drawing.Size(906, 483);
+            inventoryGrid.Size = new System.Drawing.Size(808, 484);
             inventoryGrid.TabIndex = 1;
-            inventoryGrid.CellContentClick += inventoryGrid_CellContentClick;
             inventoryGrid.CellDoubleClick += inventoryGrid_CellDoubleClick;
+            // 
+            // inventoryItemColumn
+            // 
+            inventoryItemColumn.HeaderText = "Item";
+            inventoryItemColumn.MinimumWidth = 6;
+            inventoryItemColumn.Name = "inventoryItemColumn";
+            inventoryItemColumn.ReadOnly = true;
+            inventoryItemColumn.Width = 200;
+            // 
+            // inventoryCategoryColumn
+            // 
+            inventoryCategoryColumn.HeaderText = "Category";
+            inventoryCategoryColumn.MinimumWidth = 6;
+            inventoryCategoryColumn.Name = "inventoryCategoryColumn";
+            inventoryCategoryColumn.ReadOnly = true;
+            inventoryCategoryColumn.Width = 140;
+            // 
+            // inventoryQuantityColumn
+            // 
+            inventoryQuantityColumn.HeaderText = "Quantity";
+            inventoryQuantityColumn.MinimumWidth = 6;
+            inventoryQuantityColumn.Name = "inventoryQuantityColumn";
+            inventoryQuantityColumn.ReadOnly = true;
+            inventoryQuantityColumn.Width = 125;
+            // 
+            // inventoryReorderColumn
+            // 
+            inventoryReorderColumn.HeaderText = "Reorder Level";
+            inventoryReorderColumn.MinimumWidth = 6;
+            inventoryReorderColumn.Name = "inventoryReorderColumn";
+            inventoryReorderColumn.ReadOnly = true;
+            inventoryReorderColumn.Width = 140;
+            // 
+            // inventoryLocationColumn
+            // 
+            inventoryLocationColumn.HeaderText = "Storage Location";
+            inventoryLocationColumn.MinimumWidth = 6;
+            inventoryLocationColumn.Name = "inventoryLocationColumn";
+            inventoryLocationColumn.ReadOnly = true;
+            inventoryLocationColumn.Width = 150;
             // 
             // grpInventoryDetails
             // 
@@ -2232,7 +2334,7 @@ namespace HospitalManagement.Client
             grpInventoryDetails.Controls.Add(lblInventoryCategory);
             grpInventoryDetails.Controls.Add(txtInventoryItem);
             grpInventoryDetails.Controls.Add(lblInventoryItem);
-            grpInventoryDetails.Location = new System.Drawing.Point(28, 28);
+            grpInventoryDetails.Location = new System.Drawing.Point(85, 28);
             grpInventoryDetails.Margin = new System.Windows.Forms.Padding(4);
             grpInventoryDetails.Name = "grpInventoryDetails";
             grpInventoryDetails.Padding = new System.Windows.Forms.Padding(4);
@@ -2400,22 +2502,22 @@ namespace HospitalManagement.Client
             reportGrid.AllowUserToAddRows = false;
             reportGrid.AllowUserToDeleteRows = false;
             reportGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            reportGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            reportGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             reportGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             reportGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { reportMetricColumn, reportCurrentColumn, reportPreviousColumn, reportChangeColumn });
-            reportGrid.Location = new System.Drawing.Point(448, 129);
+            reportGrid.Location = new System.Drawing.Point(577, 129);
             reportGrid.Margin = new System.Windows.Forms.Padding(4);
             reportGrid.Name = "reportGrid";
             reportGrid.ReadOnly = true;
             reportGrid.RowHeadersWidth = 51;
-            reportGrid.Size = new System.Drawing.Size(896, 391);
+            reportGrid.Size = new System.Drawing.Size(693, 391);
             reportGrid.TabIndex = 2;
             // 
             // reportMetricColumn
@@ -2454,11 +2556,11 @@ namespace HospitalManagement.Client
             // 
             grpReportOutput.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             grpReportOutput.Controls.Add(lstReportOutput);
-            grpReportOutput.Location = new System.Drawing.Point(28, 539);
+            grpReportOutput.Location = new System.Drawing.Point(140, 539);
             grpReportOutput.Margin = new System.Windows.Forms.Padding(4);
             grpReportOutput.Name = "grpReportOutput";
             grpReportOutput.Padding = new System.Windows.Forms.Padding(4);
-            grpReportOutput.Size = new System.Drawing.Size(1316, 176);
+            grpReportOutput.Size = new System.Drawing.Size(1130, 176);
             grpReportOutput.TabIndex = 3;
             grpReportOutput.TabStop = false;
             grpReportOutput.Text = "Report Notes";
@@ -2473,7 +2575,7 @@ namespace HospitalManagement.Client
             lstReportOutput.Location = new System.Drawing.Point(18, 28);
             lstReportOutput.Margin = new System.Windows.Forms.Padding(4);
             lstReportOutput.Name = "lstReportOutput";
-            lstReportOutput.Size = new System.Drawing.Size(1278, 109);
+            lstReportOutput.Size = new System.Drawing.Size(1092, 109);
             lstReportOutput.TabIndex = 0;
             // 
             // grpAnalyticsSummary
@@ -2484,7 +2586,7 @@ namespace HospitalManagement.Client
             grpAnalyticsSummary.Controls.Add(lblAnalyticsCommonAilment);
             grpAnalyticsSummary.Controls.Add(txtAnalyticsVisits);
             grpAnalyticsSummary.Controls.Add(lblAnalyticsVisits);
-            grpAnalyticsSummary.Location = new System.Drawing.Point(28, 129);
+            grpAnalyticsSummary.Location = new System.Drawing.Point(140, 129);
             grpAnalyticsSummary.Margin = new System.Windows.Forms.Padding(4);
             grpAnalyticsSummary.Name = "grpAnalyticsSummary";
             grpAnalyticsSummary.Padding = new System.Windows.Forms.Padding(4);
@@ -2558,7 +2660,6 @@ namespace HospitalManagement.Client
             lblAnalyticsVisits.Size = new System.Drawing.Size(98, 21);
             lblAnalyticsVisits.TabIndex = 0;
             lblAnalyticsVisits.Text = "Patient Visits";
-            lblAnalyticsVisits.Click += lblAnalyticsVisits_Click;
             // 
             // grpAnalyticsFilters
             // 
@@ -2833,11 +2934,11 @@ namespace HospitalManagement.Client
             // 
             grpMonitoringAlerts.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             grpMonitoringAlerts.Controls.Add(lstMonitoringAlerts);
-            grpMonitoringAlerts.Location = new System.Drawing.Point(28, 542);
+            grpMonitoringAlerts.Location = new System.Drawing.Point(84, 542);
             grpMonitoringAlerts.Margin = new System.Windows.Forms.Padding(4);
             grpMonitoringAlerts.Name = "grpMonitoringAlerts";
             grpMonitoringAlerts.Padding = new System.Windows.Forms.Padding(4);
-            grpMonitoringAlerts.Size = new System.Drawing.Size(934, 176);
+            grpMonitoringAlerts.Size = new System.Drawing.Size(878, 176);
             grpMonitoringAlerts.TabIndex = 1;
             grpMonitoringAlerts.TabStop = false;
             grpMonitoringAlerts.Text = "Critical Care Alerts";
@@ -2852,14 +2953,16 @@ namespace HospitalManagement.Client
             lstMonitoringAlerts.Location = new System.Drawing.Point(18, 28);
             lstMonitoringAlerts.Margin = new System.Windows.Forms.Padding(4);
             lstMonitoringAlerts.Name = "lstMonitoringAlerts";
-            lstMonitoringAlerts.Size = new System.Drawing.Size(896, 109);
+            lstMonitoringAlerts.Size = new System.Drawing.Size(840, 109);
             lstMonitoringAlerts.TabIndex = 0;
             // 
             // grpVitalsEntry
             // 
             grpVitalsEntry.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            grpVitalsEntry.Controls.Add(btnClearVitals);
             grpVitalsEntry.Controls.Add(btnMonitoringRefresh);
             grpVitalsEntry.Controls.Add(btnUpdateVitals);
+            grpVitalsEntry.Controls.Add(btnAddVitals);
             grpVitalsEntry.Controls.Add(txtMonitoringNotes);
             grpVitalsEntry.Controls.Add(lblMonitoringNotes);
             grpVitalsEntry.Controls.Add(numOxygenLevel);
@@ -2872,14 +2975,25 @@ namespace HospitalManagement.Client
             grpVitalsEntry.Controls.Add(lblHeartRate);
             grpVitalsEntry.Controls.Add(cmbMonitoringPatientPicker);
             grpVitalsEntry.Controls.Add(lblMonitoringPatient);
-            grpVitalsEntry.Location = new System.Drawing.Point(990, 28);
+            grpVitalsEntry.Location = new System.Drawing.Point(970, 28);
             grpVitalsEntry.Margin = new System.Windows.Forms.Padding(4);
             grpVitalsEntry.Name = "grpVitalsEntry";
             grpVitalsEntry.Padding = new System.Windows.Forms.Padding(4);
-            grpVitalsEntry.Size = new System.Drawing.Size(354, 689);
+            grpVitalsEntry.Size = new System.Drawing.Size(354, 690);
             grpVitalsEntry.TabIndex = 2;
             grpVitalsEntry.TabStop = false;
-            grpVitalsEntry.Text = "Update Patient Vitals";
+            grpVitalsEntry.Text = "Add / Edit Vitals";
+            // 
+            // btnClearVitals
+            // 
+            btnClearVitals.Location = new System.Drawing.Point(28, 544);
+            btnClearVitals.Margin = new System.Windows.Forms.Padding(4);
+            btnClearVitals.Name = "btnClearVitals";
+            btnClearVitals.Size = new System.Drawing.Size(140, 32);
+            btnClearVitals.TabIndex = 15;
+            btnClearVitals.Text = "Clear Form";
+            btnClearVitals.UseVisualStyleBackColor = true;
+            btnClearVitals.Click += btnClearVitals_Click;
             // 
             // btnMonitoringRefresh
             // 
@@ -2887,21 +3001,32 @@ namespace HospitalManagement.Client
             btnMonitoringRefresh.Margin = new System.Windows.Forms.Padding(4);
             btnMonitoringRefresh.Name = "btnMonitoringRefresh";
             btnMonitoringRefresh.Size = new System.Drawing.Size(140, 32);
-            btnMonitoringRefresh.TabIndex = 13;
+            btnMonitoringRefresh.TabIndex = 14;
             btnMonitoringRefresh.Text = "Refresh List";
             btnMonitoringRefresh.UseVisualStyleBackColor = true;
             btnMonitoringRefresh.Click += btnMonitoringRefresh_Click;
             // 
             // btnUpdateVitals
             // 
-            btnUpdateVitals.Location = new System.Drawing.Point(28, 544);
+            btnUpdateVitals.Location = new System.Drawing.Point(186, 584);
             btnUpdateVitals.Margin = new System.Windows.Forms.Padding(4);
             btnUpdateVitals.Name = "btnUpdateVitals";
             btnUpdateVitals.Size = new System.Drawing.Size(140, 32);
-            btnUpdateVitals.TabIndex = 12;
-            btnUpdateVitals.Text = "Save Vitals";
+            btnUpdateVitals.TabIndex = 13;
+            btnUpdateVitals.Text = "Save Changes";
             btnUpdateVitals.UseVisualStyleBackColor = true;
             btnUpdateVitals.Click += btnUpdateVitals_Click;
+            // 
+            // btnAddVitals
+            // 
+            btnAddVitals.Location = new System.Drawing.Point(28, 584);
+            btnAddVitals.Margin = new System.Windows.Forms.Padding(4);
+            btnAddVitals.Name = "btnAddVitals";
+            btnAddVitals.Size = new System.Drawing.Size(140, 32);
+            btnAddVitals.TabIndex = 12;
+            btnAddVitals.Text = "Add Vitals";
+            btnAddVitals.UseVisualStyleBackColor = true;
+            btnAddVitals.Click += btnAddVitals_Click;
             // 
             // txtMonitoringNotes
             // 
@@ -3022,14 +3147,39 @@ namespace HospitalManagement.Client
             vitalsGrid.AllowUserToAddRows = false;
             vitalsGrid.AllowUserToDeleteRows = false;
             vitalsGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            vitalsGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             vitalsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             vitalsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { vitalsPatientColumn, vitalsRoomColumn, vitalsHeartRateColumn, vitalsBloodPressureColumn, vitalsOxygenColumn, vitalsStatusColumn });
-            vitalsGrid.Location = new System.Drawing.Point(28, 28);
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            vitalsGrid.DefaultCellStyle = dataGridViewCellStyle8;
+            vitalsGrid.Location = new System.Drawing.Point(84, 28);
             vitalsGrid.Margin = new System.Windows.Forms.Padding(4);
             vitalsGrid.Name = "vitalsGrid";
             vitalsGrid.ReadOnly = true;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            vitalsGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            vitalsGrid.RowHeadersVisible = false;
             vitalsGrid.RowHeadersWidth = 51;
-            vitalsGrid.Size = new System.Drawing.Size(934, 495);
+            vitalsGrid.Size = new System.Drawing.Size(858, 495);
             vitalsGrid.TabIndex = 0;
             vitalsGrid.CellDoubleClick += vitalsGrid_CellDoubleClick;
             // 
@@ -3047,7 +3197,7 @@ namespace HospitalManagement.Client
             vitalsRoomColumn.MinimumWidth = 6;
             vitalsRoomColumn.Name = "vitalsRoomColumn";
             vitalsRoomColumn.ReadOnly = true;
-            vitalsRoomColumn.Width = 125;
+            vitalsRoomColumn.Width = 220;
             // 
             // vitalsHeartRateColumn
             // 
@@ -3055,7 +3205,7 @@ namespace HospitalManagement.Client
             vitalsHeartRateColumn.MinimumWidth = 6;
             vitalsHeartRateColumn.Name = "vitalsHeartRateColumn";
             vitalsHeartRateColumn.ReadOnly = true;
-            vitalsHeartRateColumn.Width = 125;
+            vitalsHeartRateColumn.Width = 115;
             // 
             // vitalsBloodPressureColumn
             // 
@@ -3063,7 +3213,7 @@ namespace HospitalManagement.Client
             vitalsBloodPressureColumn.MinimumWidth = 6;
             vitalsBloodPressureColumn.Name = "vitalsBloodPressureColumn";
             vitalsBloodPressureColumn.ReadOnly = true;
-            vitalsBloodPressureColumn.Width = 120;
+            vitalsBloodPressureColumn.Width = 140;
             // 
             // vitalsOxygenColumn
             // 
@@ -3071,7 +3221,6 @@ namespace HospitalManagement.Client
             vitalsOxygenColumn.MinimumWidth = 6;
             vitalsOxygenColumn.Name = "vitalsOxygenColumn";
             vitalsOxygenColumn.ReadOnly = true;
-            vitalsOxygenColumn.Width = 125;
             // 
             // vitalsStatusColumn
             // 
@@ -3079,89 +3228,9 @@ namespace HospitalManagement.Client
             vitalsStatusColumn.MinimumWidth = 6;
             vitalsStatusColumn.Name = "vitalsStatusColumn";
             vitalsStatusColumn.ReadOnly = true;
-            vitalsStatusColumn.Width = 160;
+            vitalsStatusColumn.Width = 120;
             // 
-            // patientIdColumn
-            // 
-            patientIdColumn.HeaderText = "Patient ID";
-            patientIdColumn.MinimumWidth = 6;
-            patientIdColumn.Name = "patientIdColumn";
-            patientIdColumn.ReadOnly = true;
-            patientIdColumn.Width = 105;
-            // 
-            // patientNameColumn
-            // 
-            patientNameColumn.HeaderText = "Name";
-            patientNameColumn.MinimumWidth = 6;
-            patientNameColumn.Name = "patientNameColumn";
-            patientNameColumn.ReadOnly = true;
-            patientNameColumn.Width = 180;
-            // 
-            // patientDepartmentColumn
-            // 
-            patientDepartmentColumn.HeaderText = "Department";
-            patientDepartmentColumn.MinimumWidth = 6;
-            patientDepartmentColumn.Name = "patientDepartmentColumn";
-            patientDepartmentColumn.ReadOnly = true;
-            patientDepartmentColumn.Width = 150;
-            // 
-            // patientStatusColumn
-            // 
-            patientStatusColumn.HeaderText = "Status";
-            patientStatusColumn.MinimumWidth = 6;
-            patientStatusColumn.Name = "patientStatusColumn";
-            patientStatusColumn.ReadOnly = true;
-            patientStatusColumn.Width = 120;
-            // 
-            // patientDoctorColumn
-            // 
-            patientDoctorColumn.HeaderText = "Assigned Doctor";
-            patientDoctorColumn.MinimumWidth = 6;
-            patientDoctorColumn.Name = "patientDoctorColumn";
-            patientDoctorColumn.ReadOnly = true;
-            patientDoctorColumn.Width = 170;
-            // 
-            // inventoryItemColumn
-            // 
-            inventoryItemColumn.HeaderText = "Item";
-            inventoryItemColumn.MinimumWidth = 6;
-            inventoryItemColumn.Name = "inventoryItemColumn";
-            inventoryItemColumn.ReadOnly = true;
-            inventoryItemColumn.Width = 200;
-            // 
-            // inventoryCategoryColumn
-            // 
-            inventoryCategoryColumn.HeaderText = "Category";
-            inventoryCategoryColumn.MinimumWidth = 6;
-            inventoryCategoryColumn.Name = "inventoryCategoryColumn";
-            inventoryCategoryColumn.ReadOnly = true;
-            inventoryCategoryColumn.Width = 140;
-            // 
-            // inventoryQuantityColumn
-            // 
-            inventoryQuantityColumn.HeaderText = "Quantity";
-            inventoryQuantityColumn.MinimumWidth = 6;
-            inventoryQuantityColumn.Name = "inventoryQuantityColumn";
-            inventoryQuantityColumn.ReadOnly = true;
-            inventoryQuantityColumn.Width = 125;
-            // 
-            // inventoryReorderColumn
-            // 
-            inventoryReorderColumn.HeaderText = "Reorder Level";
-            inventoryReorderColumn.MinimumWidth = 6;
-            inventoryReorderColumn.Name = "inventoryReorderColumn";
-            inventoryReorderColumn.ReadOnly = true;
-            inventoryReorderColumn.Width = 140;
-            // 
-            // inventoryLocationColumn
-            // 
-            inventoryLocationColumn.HeaderText = "Storage Location";
-            inventoryLocationColumn.MinimumWidth = 6;
-            inventoryLocationColumn.Name = "inventoryLocationColumn";
-            inventoryLocationColumn.ReadOnly = true;
-            inventoryLocationColumn.Width = 150;
-            // 
-            // Form1
+            // Main
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -3171,7 +3240,7 @@ namespace HospitalManagement.Client
             Controls.Add(headerPanel);
             Margin = new System.Windows.Forms.Padding(4);
             MinimumSize = new System.Drawing.Size(1163, 741);
-            Name = "Form1";
+            Name = "Main";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Text = "Hospital Management System";
             headerPanel.ResumeLayout(false);
@@ -3257,10 +3326,6 @@ namespace HospitalManagement.Client
         private System.Windows.Forms.TabPage dashboardTab;
         private System.Windows.Forms.GroupBox grpCriticalStatus;
         private System.Windows.Forms.DataGridView currentAlertsGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn alertTypeColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn alertSubjectColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn alertDetailsColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn alertUpdatedColumn;
         private System.Windows.Forms.GroupBox grpBedStatus;
         private System.Windows.Forms.DataGridView bedStatusGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn bedDepartmentColumn;
@@ -3464,8 +3529,10 @@ namespace HospitalManagement.Client
         private System.Windows.Forms.GroupBox grpMonitoringAlerts;
         private System.Windows.Forms.ListBox lstMonitoringAlerts;
         private System.Windows.Forms.GroupBox grpVitalsEntry;
+        private System.Windows.Forms.Button btnClearVitals;
         private System.Windows.Forms.Button btnMonitoringRefresh;
         private System.Windows.Forms.Button btnUpdateVitals;
+        private System.Windows.Forms.Button btnAddVitals;
         private System.Windows.Forms.TextBox txtMonitoringNotes;
         private System.Windows.Forms.Label lblMonitoringNotes;
         private System.Windows.Forms.NumericUpDown numOxygenLevel;
@@ -3479,12 +3546,6 @@ namespace HospitalManagement.Client
         private System.Windows.Forms.ComboBox cmbMonitoringPatientPicker;
         private System.Windows.Forms.Label lblMonitoringPatient;
         private System.Windows.Forms.DataGridView vitalsGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vitalsPatientColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vitalsRoomColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vitalsHeartRateColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vitalsBloodPressureColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vitalsOxygenColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vitalsStatusColumn;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.DataGridViewTextBoxColumn doctorVisitTimeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn doctorVisitPatientColumn;
@@ -3500,5 +3561,15 @@ namespace HospitalManagement.Client
         private System.Windows.Forms.DataGridViewTextBoxColumn inventoryQuantityColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn inventoryReorderColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn inventoryLocationColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alertTypeColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alertSubjectColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alertDetailsColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alertUpdatedColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vitalsPatientColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vitalsRoomColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vitalsHeartRateColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vitalsBloodPressureColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vitalsOxygenColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vitalsStatusColumn;
     }
 }

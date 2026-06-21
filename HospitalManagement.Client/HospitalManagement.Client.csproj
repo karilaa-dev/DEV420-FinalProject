@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -20,22 +20,57 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Form1.cs">
+    <Compile Update="Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Update="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Update="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Update="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <Compile Update="Notifications.cs" />
+    <Compile Update="Main/Main.Appointments.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Main/Main.Dashboard.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Main/Main.Inventory.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Main/Main.Messages.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Main/Main.MyCare.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Main/Main.MyMessages.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Main/Main.MyVisits.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Main/Main.Patients.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Main/Main.Realtime.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Main/Main.Reports.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Main/Main.Security.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Main/Main.SharedUi.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Main/Main.Vitals.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
     <Compile Update="Notifications.Designer.cs">
       <DependentUpon>Notifications.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Update="Notifications.resx">
-      <DependentUpon>Notifications.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
