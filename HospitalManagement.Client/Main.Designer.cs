@@ -364,7 +364,8 @@ namespace HospitalManagement.Client
             // btnNotifications
             // 
             btnNotifications.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnNotifications.Location = new System.Drawing.Point(1245, 11);
+            btnNotifications.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btnNotifications.Location = new System.Drawing.Point(1139, 11);
             btnNotifications.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             btnNotifications.Name = "btnNotifications";
             btnNotifications.Size = new System.Drawing.Size(125, 50);
@@ -376,7 +377,8 @@ namespace HospitalManagement.Client
             // btnLogout
             // 
             btnLogout.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnLogout.Location = new System.Drawing.Point(204, 9);
+            btnLogout.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            btnLogout.Location = new System.Drawing.Point(1270, 11);
             btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new System.Drawing.Size(100, 50);

@@ -56,8 +56,6 @@ namespace HospitalManagement.Client
                 return;
             }
 
-            MessageBox.Show("Login successful. Role: " + loggedInUser.Role);
-
             // Open main dashboard
             Main dashboard = new Main(loggedInUser);
 
@@ -81,10 +79,17 @@ namespace HospitalManagement.Client
 
             // Open register form
             RegisterForm registerForm = new RegisterForm();
-            registerForm.ShowDialog();
+            DialogResult registerResult = registerForm.ShowDialog();
 
             // Show login form again after register form closes
             this.Show();
+
+            if (registerResult == DialogResult.OK && registerForm.RegisteredUsername != "")
+            {
+                textBox_username.Text = registerForm.RegisteredUsername;
+                textBox_password.Clear();
+                textBox_password.Focus();
+            }
         }
     }
 }
