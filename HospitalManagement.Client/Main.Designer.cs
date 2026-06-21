@@ -792,7 +792,7 @@ namespace HospitalManagement.Client
             // 
             lblDoctorTodayVisitStatusValue.Location = new System.Drawing.Point(110, 92);
             lblDoctorTodayVisitStatusValue.Name = "lblDoctorTodayVisitStatusValue";
-            lblDoctorTodayVisitStatusValue.Size = new System.Drawing.Size(521, 20);
+            lblDoctorTodayVisitStatusValue.Size = new System.Drawing.Size(113, 20);
             lblDoctorTodayVisitStatusValue.TabIndex = 8;
             // 
             // lblDoctorTodayVisitStatusCaption
@@ -952,7 +952,7 @@ namespace HospitalManagement.Client
             // 
             lblDoctorLastVisitStatusValue.Location = new System.Drawing.Point(110, 92);
             lblDoctorLastVisitStatusValue.Name = "lblDoctorLastVisitStatusValue";
-            lblDoctorLastVisitStatusValue.Size = new System.Drawing.Size(521, 20);
+            lblDoctorLastVisitStatusValue.Size = new System.Drawing.Size(113, 20);
             lblDoctorLastVisitStatusValue.TabIndex = 8;
             // 
             // lblDoctorLastVisitStatusCaption
@@ -1133,12 +1133,13 @@ namespace HospitalManagement.Client
             // 
             lblVitalStatus.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             lblVitalStatus.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            lblVitalStatus.Location = new System.Drawing.Point(10, 32);
+            lblVitalStatus.Location = new System.Drawing.Point(10, 30);
             lblVitalStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lblVitalStatus.Name = "lblVitalStatus";
-            lblVitalStatus.Size = new System.Drawing.Size(413, 26);
+            lblVitalStatus.Size = new System.Drawing.Size(121, 25);
             lblVitalStatus.TabIndex = 1;
             lblVitalStatus.Text = "--";
+            lblVitalStatus.Click += lblVitalStatus_Click;
             // 
             // lblVitalStatusCaption
             // 
@@ -1360,7 +1361,7 @@ namespace HospitalManagement.Client
             // 
             lblPatientAppointmentStatusValue.Location = new System.Drawing.Point(120, 92);
             lblPatientAppointmentStatusValue.Name = "lblPatientAppointmentStatusValue";
-            lblPatientAppointmentStatusValue.Size = new System.Drawing.Size(521, 20);
+            lblPatientAppointmentStatusValue.Size = new System.Drawing.Size(116, 20);
             lblPatientAppointmentStatusValue.TabIndex = 8;
             // 
             // lblPatientAppointmentStatusCaption
@@ -2771,11 +2772,11 @@ namespace HospitalManagement.Client
             // 
             grpMonitoringAlerts.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             grpMonitoringAlerts.Controls.Add(lstMonitoringAlerts);
-            grpMonitoringAlerts.Location = new System.Drawing.Point(84, 542);
+            grpMonitoringAlerts.Location = new System.Drawing.Point(152, 542);
             grpMonitoringAlerts.Margin = new System.Windows.Forms.Padding(4);
             grpMonitoringAlerts.Name = "grpMonitoringAlerts";
             grpMonitoringAlerts.Padding = new System.Windows.Forms.Padding(4);
-            grpMonitoringAlerts.Size = new System.Drawing.Size(878, 176);
+            grpMonitoringAlerts.Size = new System.Drawing.Size(744, 176);
             grpMonitoringAlerts.TabIndex = 1;
             grpMonitoringAlerts.TabStop = false;
             grpMonitoringAlerts.Text = "Vitals Alerts";
@@ -2790,7 +2791,7 @@ namespace HospitalManagement.Client
             lstMonitoringAlerts.Location = new System.Drawing.Point(18, 28);
             lstMonitoringAlerts.Margin = new System.Windows.Forms.Padding(4);
             lstMonitoringAlerts.Name = "lstMonitoringAlerts";
-            lstMonitoringAlerts.Size = new System.Drawing.Size(840, 109);
+            lstMonitoringAlerts.Size = new System.Drawing.Size(706, 109);
             lstMonitoringAlerts.TabIndex = 0;
             // 
             // grpVitalsEntry
@@ -3002,7 +3003,7 @@ namespace HospitalManagement.Client
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             vitalsGrid.DefaultCellStyle = dataGridViewCellStyle7;
-            vitalsGrid.Location = new System.Drawing.Point(84, 28);
+            vitalsGrid.Location = new System.Drawing.Point(152, 28);
             vitalsGrid.Margin = new System.Windows.Forms.Padding(4);
             vitalsGrid.Name = "vitalsGrid";
             vitalsGrid.ReadOnly = true;
@@ -3016,7 +3017,7 @@ namespace HospitalManagement.Client
             vitalsGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             vitalsGrid.RowHeadersVisible = false;
             vitalsGrid.RowHeadersWidth = 51;
-            vitalsGrid.Size = new System.Drawing.Size(858, 495);
+            vitalsGrid.Size = new System.Drawing.Size(744, 490);
             vitalsGrid.TabIndex = 0;
             vitalsGrid.CellDoubleClick += vitalsGrid_CellDoubleClick;
             // 

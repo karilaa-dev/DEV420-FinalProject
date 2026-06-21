@@ -284,5 +284,10 @@ namespace HospitalManagement.Client
         {
 
         }
+
+        private void lblVitalStatus_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
