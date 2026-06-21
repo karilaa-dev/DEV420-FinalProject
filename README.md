@@ -92,7 +92,8 @@ mongosh "<MongoConnection>" --quiet --eval "db.getSiblingDB('HospitalManagementD
 Load MongoDB demo users:
 
 ```bat
-mongosh "<MongoConnection>" --quiet --eval "process.env.HOSPITAL_MONGO_DATABASE = 'HospitalManagementDB'; load('SQL setup files/HospitalManagementDB_Mongo_Populate_Demo.js');"
+set "HOSPITAL_MONGO_DATABASE=HospitalManagementDB"
+mongosh "<MongoConnection>" --quiet --file "SQL setup files\HospitalManagementDB_Mongo_Populate_Demo.js"
 ```
 
 Replace `<MongoConnection>` with the `ConnectionStrings:MongoConnection` value from `appsettings.json`.
