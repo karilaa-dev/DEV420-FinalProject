@@ -42,9 +42,7 @@ namespace HospitalManagement.Client
             bool patientCanEditOwnProfile = CanEditOwnPatientProfile();
             bool canEditPatientFields = canManagePatients || patientCanEditOwnProfile;
 
-            btnAddPatient.Enabled = canManagePatients;
             btnUpdatePatient.Enabled = canEditPatientFields;
-            btnDeletePatient.Enabled = canManagePatients;
             btnClearPatient.Enabled = canManagePatients;
 
             txtPatientName.ReadOnly = !canEditPatientFields;
@@ -228,60 +226,6 @@ namespace HospitalManagement.Client
             }
         }
 
-        private async void btnAddPatient_Click(object sender, EventArgs e)
-        {
-            if (!CanManagePatients())
-            {
-                MessageBox.Show("Only nurses and administrative staff can create patient records.");
-                return;
-            }
-
-            // Validate required fields
-            if (txtPatientName.Text == "")
-            {
-                MessageBox.Show("Patient Name is required.");
-                return;
-            }
-
-            string patientName = txtPatientName.Text.Trim();
-
-            try
-            {
-                int patientId;
-
-                using (HospitalDbContext db = CreateHospitalDbContext())
-                {
-                    Patient patient = new Patient
-                    {
-                        Name = txtPatientName.Text,
-                        Gender = cmbPatientGender.Text,
-                        DateOfBirth = dtpPatientDob.Value.Date,
-                        Phone = txtPatientPhone.Text,
-                        IsAdmitted = chkPatientAdmitted.Checked,
-                        Notes = txtPatientNotes.Text
-                    };
-
-                    db.Patients.Add(patient);
-                    db.SaveChanges();
-                    patientId = patient.PatientId;
-                }
-
-                EnsurePatientConversation(patientId, patientName);
-                RefreshVisibleChatView();
-                SaveNotification("Patient", "Patient added: " + patientName + ".");
-                MessageBox.Show("Patient added successfully.");
-                ClearPatientForm();
-                LoadPatients();
-                ConfigurePatientAutoComplete();
-                RefreshDashboardCounts();
-                await SendPatientChangeAsync("Patient added: " + patientName + ".");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error adding patient: " + ex.Message);
-            }
-        }
-
         private async void btnUpdatePatient_Click(object sender, EventArgs e)
         {
             if (!CanManagePatients() && !CanEditOwnPatientProfile())
@@ -341,70 +285,6 @@ namespace HospitalManagement.Client
             catch (Exception ex)
             {
                 MessageBox.Show("Error updating patient: " + ex.Message);
-            }
-        }
-
-        private async void btnDeletePatient_Click(object sender, EventArgs e)
-        {
-            if (!CanManagePatients())
-            {
-                MessageBox.Show("Only nurses and administrative staff can delete patient records.");
-                return;
-            }
-
-            // Validate patient ID
-            if (txtPatientId.Text == "")
-            {
-                MessageBox.Show("Enter or select a Patient ID first.");
-                return;
-            }
-
-            DialogResult result = MessageBox.Show(
-                "Are you sure you want to delete this patient?",
-                "Confirm Delete",
-                MessageBoxButtons.YesNo
-            );
-
-            if (result != DialogResult.Yes)
-            {
-                return;
-            }
-
-            string patientName = txtPatientName.Text.Trim();
-
-            if (patientName == "")
-            {
-                patientName = txtPatientId.Text.Trim();
-            }
-
-            try
-            {
-                using (HospitalDbContext db = CreateHospitalDbContext())
-                {
-                    int patientId = Convert.ToInt32(txtPatientId.Text);
-                    Patient patient = db.Patients.FirstOrDefault(record => record.PatientId == patientId);
-
-                    if (patient == null)
-                    {
-                        MessageBox.Show("No patient found with that ID.");
-                        return;
-                    }
-
-                    db.Patients.Remove(patient);
-                    db.SaveChanges();
-                }
-
-                SaveNotification("Patient", "Patient deleted: " + patientName + ".");
-                MessageBox.Show("Patient deleted successfully.");
-                ClearPatientForm();
-                LoadPatients();
-                ConfigurePatientAutoComplete();
-                RefreshDashboardCounts();
-                await SendPatientChangeAsync("Patient deleted: " + patientName + ".");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error deleting patient: " + ex.Message);
             }
         }
 

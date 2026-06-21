@@ -2,6 +2,8 @@
 
 This guide explains the app roles, visible tabs, and main actions. The app shows different screens based on the logged-in role.
 
+Screenshots are stored in the `Images` folder.
+
 ## Role Summary
 
 | Role | Main purpose | Data access | Main restrictions |
@@ -29,6 +31,53 @@ This guide explains the app roles, visible tabs, and main actions. The app shows
 | `Notifications` | Yes | Yes | Related updates | Own updates |
 | `Logout` | Yes | Yes | Yes | Yes |
 
+## Example Flows
+
+### Register a New Account
+
+1. From the login screen, click `Register`.
+2. Enter `Username`, `Display name`, and `Password`.
+3. Choose a `Role`: Doctor, Nurse, Administrative Staff, or Patient.
+4. Click `Register`.
+5. After the success message, return to the login screen and log in with the new username and password.
+
+### Create an Appointment
+
+1. Log in as Administrative Staff or Nurse. A Patient account can also create an appointment for their own profile.
+2. Open the `Appointments` tab.
+3. Select the patient from the patient picker.
+4. Select the doctor from the doctor picker.
+5. Enter the visit reason, appointment date, and appointment time.
+6. Leave the status as `Scheduled` for a new visit.
+7. Click `Add Appointment`.
+8. Use `Refresh List` if the appointment grid does not update immediately.
+
+### Add Vitals
+
+1. Log in as Administrative Staff, Nurse, or a Doctor assigned to the patient.
+2. Open the `Vitals` tab.
+3. Select the patient.
+4. Enter heart rate, blood pressure, oxygen level, temperature, and notes.
+5. Click `Add Vitals`.
+6. Review the calculated status: `Normal`, `Warning`, or `Critical`.
+7. Check `Notifications` if the vitals create an alert.
+
+### Chat With a Patient or Staff
+
+1. Staff users can open the `Messages` tab, click `Start Patient Chat`, choose a patient, type a message, and click `Send Message`.
+2. Doctors can also open an assigned patient chat from `My Visits` by clicking `Text Patient`.
+3. Patient users open `My Messages`, read staff messages, type a reply, and click `Send Message`.
+4. Staff users return to `Messages` to continue the same patient-specific conversation.
+
+### Manage Inventory
+
+1. Log in as Administrative Staff.
+2. Open the `Inventory` tab.
+3. To add stock, fill in item name, category, quantity, reorder level, and location, then click `Add Item`.
+4. To update stock, select an inventory row, change the quantity, reorder level, or location, then click `Save Stock Changes`.
+5. To remove stock, select an item and click `Remove Item`.
+6. Use `Refresh List` to reload the inventory grid and low-stock list.
+
 ## Login and Register
 
 | Field | Details |
@@ -38,6 +87,15 @@ This guide explains the app roles, visible tabs, and main actions. The app shows
 | Available actions | Log in, register a new account |
 | Who can use actions | Anyone can register as Doctor, Nurse, Administrative Staff, or Patient for this school project |
 | Result | After login, only role-allowed tabs appear |
+
+![](Images/login.png){width=2.7in}
+
+*Login screen: users enter their username and password, then sign in or open registration.*
+
+![](Images/register.png){width=2.7in}
+
+*Register screen: new users enter account details and choose a role before the account is created.*
+
 
 ## Dashboard
 
@@ -49,6 +107,10 @@ This guide explains the app roles, visible tabs, and main actions. The app shows
 | Who can use actions | Administrative Staff can also see low-stock inventory alerts; Nurse sees patient, appointment, and vitals alerts |
 | Demo value | Good first screen for showing real-time hospital status |
 
+![](Images/dashboard.png){width=6.5in}
+
+*Dashboard screen: administrative staff and nurses review active patient, appointment, inventory, and alert counts.*
+
 ## My Visits
 
 | Field | Details |
@@ -58,6 +120,10 @@ This guide explains the app roles, visible tabs, and main actions. The app shows
 | Available actions | Select a visit, review details, click `Text Patient` |
 | Who can use actions | Doctor can only open chats for assigned patients |
 | Demo value | Shows the doctor-focused workflow before updating an appointment |
+
+![](Images/my-visits.png){width=6.5in}
+
+*My Visits screen: doctors review assigned visits, see visit details, and open patient chats from their schedule.*
 
 ## My Care
 
@@ -69,15 +135,23 @@ This guide explains the app roles, visible tabs, and main actions. The app shows
 | Who can use actions | Patient can only view their own information here |
 | Demo value | Shows what the patient sees after staff update appointments, admission status, messages, and vitals |
 
+![](Images/my-care.png){width=6.5in}
+
+*My Care screen: patients review their next appointment, latest vitals, care status, and notes.*
+
 ## Patients
 
 | Field | Details |
 | --- | --- |
 | Who can view | Administrative Staff, Nurse, Doctor |
 | What it shows | Patient list, patient details form, search box, patient filters |
-| Available actions | Search, filter, double-click a row, add patient, save changes, delete patient, clear form |
-| Who can use actions | Administrative Staff and Nurse can add/update/delete; Doctor can view assigned patients only |
-| Important labels | `Currently Admitted`, `Add Patient`, `Save Changes`, `Delete Patient`, `Clear Form` |
+| Available actions | Search, filter, double-click a row, review details, save allowed changes, refresh, clear form |
+| Who can use actions | Administrative Staff and Nurse can update accessible patient details; Doctor can view assigned patients only |
+| Important labels | `Currently Admitted`, `Save Changes`, `Clear Form`, `Refresh` |
+
+![](Images/patients.png){width=6.5in}
+
+*Patients screen: staff search and filter patients, open records, and save allowed detail changes.*
 
 ## Appointments
 
@@ -90,6 +164,10 @@ This guide explains the app roles, visible tabs, and main actions. The app shows
 | Important statuses | `Scheduled`, `Checked In`, `Completed`, `Cancelled`, `Rescheduled` |
 | Important behavior | Setting status to `Completed` sends an automatic follow-up message to the patient chat |
 
+![](Images/appointments.png){width=6.5in}
+
+*Appointments screen: users create or manage appointments according to their role and access level.*
+
 ## Inventory
 
 | Field | Details |
@@ -99,6 +177,10 @@ This guide explains the app roles, visible tabs, and main actions. The app shows
 | Available actions | Add item, update quantity, update reorder level, update location, remove item, refresh |
 | Who can use actions | Administrative Staff only |
 | Demo value | Shows stock tracking, low-stock alerts, and inventory notifications |
+
+![](Images/inventory.png){width=6.5in}
+
+*Inventory screen: administrative staff track stock levels, low-stock items, and inventory updates.*
 
 ## Reports
 
@@ -110,6 +192,10 @@ This guide explains the app roles, visible tabs, and main actions. The app shows
 | Who can use actions | Administrative Staff only |
 | Report types | `Patient Visits`, `Common Ailments`, `Medication Usage` |
 
+![](Images/reports.png){width=6.5in}
+
+*Reports screen: administrative staff choose a report type and date range, then review generated report results.*
+
 ## Messages
 
 | Field | Details |
@@ -120,6 +206,10 @@ This guide explains the app roles, visible tabs, and main actions. The app shows
 | Who can use actions | Administrative Staff and Nurse can use all patient chats; Doctor can use assigned patient chats |
 | Important behavior | Staff chats are patient-specific conversations named like `Patient: <patient name>` |
 
+![](Images/messages.png){width=6.5in}
+
+*Messages screen: staff select patient-specific conversations and exchange messages with patients.*
+
 ## My Messages
 
 | Field | Details |
@@ -129,6 +219,10 @@ This guide explains the app roles, visible tabs, and main actions. The app shows
 | Available actions | Read messages from staff and send a reply |
 | Who can use actions | Patient only |
 | Important behavior | Patients cannot create multiple chats; their chat is created automatically |
+
+![](Images/my-messages.png){width=6.5in}
+
+*My Messages screen: patients read staff messages and reply in their own patient-specific conversation.*
 
 ## Vitals
 
@@ -141,6 +235,10 @@ This guide explains the app roles, visible tabs, and main actions. The app shows
 | Status results | `Normal`, `Warning`, or `Critical` |
 | Important behavior | `Warning` and `Critical` vitals create alerts and notifications |
 
+![](Images/vitals.png){width=6.5in}
+
+*Vitals screen: staff enter patient vitals, review status results, and monitor warning or critical alerts.*
+
 ## Notifications
 
 | Field | Details |
@@ -151,6 +249,10 @@ This guide explains the app roles, visible tabs, and main actions. The app shows
 | Who can use actions | All logged-in users |
 | Role filtering | Administrative Staff and Nurse see broad updates; Doctor sees assigned-patient updates; Patient sees own-care updates |
 
+![](Images/notifications.png){width=4.8in}
+
+*Notifications screen: users review recent updates filtered to the information their role is allowed to see.*
+
 ## Logout
 
 | Field | Details |
@@ -159,4 +261,4 @@ This guide explains the app roles, visible tabs, and main actions. The app shows
 | What it shows | `Logout` button in the header |
 | Available actions | Click `Logout` |
 | Who can use actions | All logged-in users |
-| Result | Main window closes and returns to the login screen |
+| Result | Returns to the login screen |
