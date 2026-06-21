@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HospitalManagement.Client
@@ -65,7 +59,7 @@ namespace HospitalManagement.Client
             MessageBox.Show("Login successful. Role: " + loggedInUser.Role);
 
             // Open main dashboard
-            Form1 dashboard = new Form1(loggedInUser);
+            Main dashboard = new Main(loggedInUser);
 
             // Hide login screen while dashboard is open
             this.Hide();
