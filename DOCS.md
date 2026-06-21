@@ -88,11 +88,11 @@ Screenshots are stored in the `Images` folder.
 | Who can use actions | Anyone can register as Doctor, Nurse, Administrative Staff, or Patient for this school project |
 | Result | After login, only role-allowed tabs appear |
 
-![](Images/login.png){width=2.7in}
+![](Images/login.png)
 
 *Login screen: users enter their username and password, then sign in or open registration.*
 
-![](Images/register.png){width=2.7in}
+![](Images/register.png)
 
 *Register screen: new users enter account details and choose a role before the account is created.*
 
@@ -107,7 +107,7 @@ Screenshots are stored in the `Images` folder.
 | Who can use actions | Administrative Staff can also see low-stock inventory alerts; Nurse sees patient, appointment, and vitals alerts |
 | Demo value | Good first screen for showing real-time hospital status |
 
-![](Images/dashboard.png){width=6.5in}
+![](Images/dashboard.png)
 
 *Dashboard screen: administrative staff and nurses review active patient, appointment, inventory, and alert counts.*
 
@@ -121,7 +121,7 @@ Screenshots are stored in the `Images` folder.
 | Who can use actions | Doctor can only open chats for assigned patients |
 | Demo value | Shows the doctor-focused workflow before updating an appointment |
 
-![](Images/my-visits.png){width=6.5in}
+![](Images/my-visits.png)
 
 *My Visits screen: doctors review assigned visits, see visit details, and open patient chats from their schedule.*
 
@@ -135,7 +135,7 @@ Screenshots are stored in the `Images` folder.
 | Who can use actions | Patient can only view their own information here |
 | Demo value | Shows what the patient sees after staff update appointments, admission status, messages, and vitals |
 
-![](Images/my-care.png){width=6.5in}
+![](Images/my-care.png)
 
 *My Care screen: patients review their next appointment, latest vitals, care status, and notes.*
 
@@ -149,7 +149,7 @@ Screenshots are stored in the `Images` folder.
 | Who can use actions | Administrative Staff and Nurse can update accessible patient details; Doctor can view assigned patients only |
 | Important labels | `Currently Admitted`, `Save Changes`, `Clear Form`, `Refresh` |
 
-![](Images/patients.png){width=6.5in}
+![](Images/patients.png)
 
 *Patients screen: staff search and filter patients, open records, and save allowed detail changes.*
 
@@ -164,7 +164,7 @@ Screenshots are stored in the `Images` folder.
 | Important statuses | `Scheduled`, `Checked In`, `Completed`, `Cancelled`, `Rescheduled` |
 | Important behavior | Setting status to `Completed` sends an automatic follow-up message to the patient chat |
 
-![](Images/appointments.png){width=6.5in}
+![](Images/appointments.png)
 
 *Appointments screen: users create or manage appointments according to their role and access level.*
 
@@ -178,7 +178,7 @@ Screenshots are stored in the `Images` folder.
 | Who can use actions | Administrative Staff only |
 | Demo value | Shows stock tracking, low-stock alerts, and inventory notifications |
 
-![](Images/inventory.png){width=6.5in}
+![](Images/inventory.png)
 
 *Inventory screen: administrative staff track stock levels, low-stock items, and inventory updates.*
 
@@ -192,7 +192,7 @@ Screenshots are stored in the `Images` folder.
 | Who can use actions | Administrative Staff only |
 | Report types | `Patient Visits`, `Common Ailments`, `Medication Usage` |
 
-![](Images/reports.png){width=6.5in}
+![](Images/reports.png)
 
 *Reports screen: administrative staff choose a report type and date range, then review generated report results.*
 
@@ -206,7 +206,7 @@ Screenshots are stored in the `Images` folder.
 | Who can use actions | Administrative Staff and Nurse can use all patient chats; Doctor can use assigned patient chats |
 | Important behavior | Staff chats are patient-specific conversations named like `Patient: <patient name>` |
 
-![](Images/messages.png){width=6.5in}
+![](Images/messages.png)
 
 *Messages screen: staff select patient-specific conversations and exchange messages with patients.*
 
@@ -220,7 +220,7 @@ Screenshots are stored in the `Images` folder.
 | Who can use actions | Patient only |
 | Important behavior | Patients cannot create multiple chats; their chat is created automatically |
 
-![](Images/my-messages.png){width=6.5in}
+![](Images/my-messages.png)
 
 *My Messages screen: patients read staff messages and reply in their own patient-specific conversation.*
 
@@ -235,7 +235,7 @@ Screenshots are stored in the `Images` folder.
 | Status results | `Normal`, `Warning`, or `Critical` |
 | Important behavior | `Warning` and `Critical` vitals create alerts and notifications |
 
-![](Images/vitals.png){width=6.5in}
+![](Images/vitals.png)
 
 *Vitals screen: staff enter patient vitals, review status results, and monitor warning or critical alerts.*
 
@@ -249,7 +249,7 @@ Screenshots are stored in the `Images` folder.
 | Who can use actions | All logged-in users |
 | Role filtering | Administrative Staff and Nurse see broad updates; Doctor sees assigned-patient updates; Patient sees own-care updates |
 
-![](Images/notifications.png){width=4.8in}
+![](Images/notifications.png)
 
 *Notifications screen: users review recent updates filtered to the information their role is allowed to see.*
 
